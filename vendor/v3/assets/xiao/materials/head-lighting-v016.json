@@ -1,0 +1,292 @@
+{
+  "schemaVersion": 1,
+  "layout": "assets/xiao/layers/head-layout-v022.json",
+  "nativeControls": "work/evidence/head-native-control-frames-v017-aligned.json",
+  "output": "exports/head/relighting-v016",
+  "publication": "web/public/assets/characters/xiao/head-v016",
+  "coordinates": "head-local image pixels, x right, y down, z toward viewer; source 432x404 includes bottom overscan",
+  "defaultMaterial": 3,
+  "materials": [
+    {
+      "id": 1,
+      "name": "skin",
+      "diffuseFloor": 0.48,
+      "diffuseStrength": 0.58,
+      "specular": 0.025,
+      "shininess": 24,
+      "shadowStrength": 0.3
+    },
+    {
+      "id": 2,
+      "name": "hair",
+      "diffuseFloor": 0.32,
+      "diffuseStrength": 0.48,
+      "specular": 0.018,
+      "shininess": 48,
+      "shadowStrength": 0.12,
+      "highlightBand": {
+        "center": 0.92,
+        "width": 0.07,
+        "strength": 0.01
+      }
+    },
+    {
+      "id": 3,
+      "name": "cloth",
+      "diffuseFloor": 0.42,
+      "diffuseStrength": 0.62,
+      "specular": 0.012,
+      "shininess": 12,
+      "shadowStrength": 0.3
+    },
+    {
+      "id": 4,
+      "name": "metal",
+      "diffuseFloor": 0.4,
+      "diffuseStrength": 0.7,
+      "specular": 0.23,
+      "shininess": 64,
+      "shadowStrength": 0.22
+    },
+    {
+      "id": 5,
+      "name": "jade",
+      "diffuseFloor": 0.48,
+      "diffuseStrength": 0.65,
+      "specular": 0.16,
+      "shininess": 42,
+      "shadowStrength": 0.18
+    },
+    {
+      "id": 6,
+      "name": "pearl",
+      "diffuseFloor": 0.5,
+      "diffuseStrength": 0.65,
+      "specular": 0.18,
+      "shininess": 48,
+      "shadowStrength": 0.2
+    },
+    {
+      "id": 7,
+      "name": "pigment",
+      "diffuseFloor": 0.5,
+      "diffuseStrength": 0.53,
+      "specular": 0.01,
+      "shininess": 14,
+      "shadowStrength": 0.25
+    },
+    {
+      "id": 8,
+      "name": "eye",
+      "diffuseFloor": 0.6,
+      "diffuseStrength": 0.45,
+      "specular": 0.08,
+      "shininess": 64,
+      "shadowStrength": 0.15
+    }
+  ],
+  "regions": [
+    {
+      "material": 2,
+      "paths": [
+        "M12 0 L340 0 L333 213 L287 242 L229 224 L199 187 L104 229 L50 264 L18 233 Z",
+        "M217 211 L279 209 L287 265 L247 344 L207 390 L183 353 L202 287 Z"
+      ]
+    },
+    {
+      "material": 1,
+      "paths": [
+        "M116 115 C140 109 177 118 205 137 L229 156 L241 178 L232 206 C223 231 214 246 199 258 L181 258 C151 244 126 224 110 208 L100 181 L108 142 Z",
+        "M188 251 L208 244 L234 230 L244 264 L224 292 L211 313 L190 285 Z",
+        "M0 322 L62 276 C85 265 119 276 144 289 L177 310 L159 346 L130 365 L131 398 L0 398 Z",
+        "M324 254 C345 228 379 228 401 244 L431 272 L431 399 L372 399 L353 360 L331 329 Z",
+        "M193 257 C210 247 225 226 232 206 L236 188 L239 193 L243 203 L243 212 L245 216 L247 222 L247 226 L245 229 L242 232 L235 241 L222 257 L212 287 L199 277 Z"
+      ]
+    },
+    {
+      "material": 4,
+      "paths": [
+        "M282 239 L331 251 L345 309 L344 347 L307 316 L282 304 Z",
+        "M166 325 L208 321 L203 362 L179 385 L165 366 Z",
+        "M238 172 L253 173 L256 204 L249 214 L242 211 Z"
+      ]
+    },
+    {
+      "material": 5,
+      "paths": [
+        "M240 190 L250 190 L256 209 L249 226 L244 218 Z",
+        "M176 350 L190 350 L190 371 L181 376 L174 364 Z"
+      ]
+    },
+    {
+      "material": 7,
+      "paths": [
+        "M124 138 L132 140 L137 158 L128 153 Z"
+      ]
+    }
+  ],
+  "skinProfiles": [
+    {
+      "center": [
+        172,
+        187
+      ],
+      "radius": [
+        76,
+        76
+      ],
+      "rotationRadians": -0.34,
+      "strength": 0.34,
+      "bias": [
+        -0.08,
+        -0.05
+      ]
+    },
+    {
+      "center": [
+        212,
+        272
+      ],
+      "radius": [
+        38,
+        50
+      ],
+      "rotationRadians": -0.3,
+      "strength": 0.25,
+      "bias": [
+        -0.08,
+        0.06
+      ]
+    },
+    {
+      "center": [
+        370,
+        297
+      ],
+      "radius": [
+        65,
+        96
+      ],
+      "rotationRadians": -0.2,
+      "strength": 0.4,
+      "bias": [
+        0.08,
+        -0.07
+      ]
+    },
+    {
+      "center": [
+        65,
+        330
+      ],
+      "radius": [
+        100,
+        55
+      ],
+      "rotationRadians": -0.4,
+      "strength": 0.3,
+      "bias": [
+        -0.03,
+        -0.06
+      ]
+    }
+  ],
+  "eyeProfiles": [
+    {
+      "center": [
+        126,
+        197
+      ],
+      "radius": [
+        19,
+        10
+      ],
+      "rotationRadians": -0.31
+    },
+    {
+      "center": [
+        199,
+        163
+      ],
+      "radius": [
+        20,
+        9
+      ],
+      "rotationRadians": -0.37
+    }
+  ],
+  "fixedPearls": [
+    [
+      292,
+      249,
+      9
+    ],
+    [
+      292,
+      261,
+      9
+    ],
+    [
+      290,
+      275,
+      10
+    ],
+    [
+      287,
+      289,
+      10
+    ],
+    [
+      281,
+      305,
+      11
+    ],
+    [
+      272,
+      322,
+      11
+    ]
+  ],
+  "hairNormal": {
+    "heightScale": 0.24,
+    "smoothingPixels": 2.4,
+    "bias": [
+      -0.16,
+      -0.08
+    ]
+  },
+  "delighting": {
+    "method": "selective numerical compensation of baked warm/cool illumination on newly painted donors; geometry, brush boundaries and alpha unchanged",
+    "hairWarmRatio": 1.23,
+    "hairWarmBlueRatio": 0.8,
+    "hairWarmNeutralRgb": [
+      0.27,
+      0.32,
+      0.33
+    ],
+    "hairWarmMaximumMix": 0.96,
+    "skinWarmRimMaximumMix": 0.4,
+    "skinWarmNeutralRgb": [
+      0.86,
+      0.66,
+      0.52
+    ],
+    "hairWarmTransitionWidth": 0.075
+  },
+  "shadow": {
+    "maxOffsetPixels": 18,
+    "softnessPixels": 1.2,
+    "ambientOcclusionStrength": 0.35
+  },
+  "notes": [
+    "Artist calibrated 2.5D fields, not physically reconstructed geometry.",
+    "All painted RGB donors are generated in this project; original illustration supplies no formal pixels.",
+    "P3 first candidate; face/material paths must be visually corrected where required.",
+    "Neck material correction v001: source-local skin beneath the right ear was classified as hair, causing hair warm-light neutralization to paint a gray triangular stain. Add skin coverage before existing jewelry overrides; retain all native RGB, alpha, motion, and material response strengths.",
+    "Neck edge correction v002: measured residual skin anchors adjacent to the earring, including [236,194] through [242,230], were still classified as hair in v005. Complete the skin contour; existing subsequent metal/jade/pearl overrides remain authoritative. Source RGB, alpha and native animation are unchanged.",
+    "Continuous native eyeState drives identical local RGB transition and normal/AO weights; material ID picks the dominant contributing eye state. Native geometric deformation maps remain unchanged and reuse data-v007.",
+    "Upper-lid fields follow actual per-pixel native AE coverage, before the common breathing UV map; no scalar open/closed opacity approximation."
+  ],
+  "baseHairContourNormals": true,
+  "revisionNote": "Reduce material-specific additive sheen and diffuse floor on dark hair; keep painted strand detail, normal movement and existing neck skin classification."
+}

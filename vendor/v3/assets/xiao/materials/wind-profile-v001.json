@@ -1,0 +1,7 @@
+{
+  "primaryCycles":1,
+  "secondaryCycles":2,
+  "secondaryPhase":0.55,
+  "secondaryStrength":0.18,
+  "reference":"head-layout-v019; Wind primary=sin(2*pi*t/loop), secondary=sin(4*pi*t/loop+0.55). The environment response mix is 0.18."
+}

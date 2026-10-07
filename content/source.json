@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "importedOn": "2026-10-07",
+  "sourceProject": "GENSHIN-FRONT-V3",
+  "officialWeb": "release/xiao-full-v002/web",
+  "wallpaperId": "xiao-liyue-full",
+  "atlas": "assets/characters/xiao/full-v016",
+  "referenceHost": "varesaEXE/electron/wallpaper-host.ps1",
+  "files": [
+    {
+      "path": "vendor/v3/web/src/characters/xiao/full.ts",
+      "sha256": "cc4d46fe4b05f66cf5a929351cbff4ea15a300c9a5f5c198c6d6c2191b574ad0"
+    },
+    {
+      "path": "vendor/v3/assets/xiao/materials/body-lighting-v016.json",
+      "sha256": "e359a5d510c6a9ad581a5b14c7f6432c7a674789e1fc8595db3f3cf049dbbf00"
+    },
+    {
+      "path": "vendor/v3/assets/xiao/materials/head-lighting-v016.json",
+      "sha256": "d5074252d1f6a94af4d83a37a1b893f8130e31c48d376d3d59ec1171ce90f5e8"
+    },
+    {
+      "path": "vendor/v3/assets/xiao/layers/body-layout-v015.json",
+      "sha256": "741a677800fe32a61b6379acfb8e8a1c4b226363a46fe280ef7e99051d6fba87"
+    },
+    {
+      "path": "vendor/v3/assets/xiao/layers/head-layout-v022.json",
+      "sha256": "c8735d97736fed0f2d37517f32bfc4a86513a76c1aea0e3b6f0cb87414d9f3e9"
+    },
+    {
+      "path": "vendor/v3/assets/xiao/materials/wind-profile-v001.json",
+      "sha256": "7532e208679290cbfaa3a7f1a409d8bb78b61df5ac91f4f64823070b803b994e"
+    },
+    {
+      "path": "vendor/v3/web/src/characters/xiao/head.ts",
+      "sha256": "2d01f016d34e27a11a6c41bf09fd891e63455bcf3ce6767bbaf6bce2bd253535"
+    },
+    {
+      "path": "vendor/v3/assets/xiao/materials/head-lighting-v016.json",
+      "sha256": "d5074252d1f6a94af4d83a37a1b893f8130e31c48d376d3d59ec1171ce90f5e8"
+    },
+    {
+      "path": "vendor/v3/assets/xiao/layers/head-layout-v022.json",
+      "sha256": "c8735d97736fed0f2d37517f32bfc4a86513a76c1aea0e3b6f0cb87414d9f3e9"
+    },
+    {
+      "path": "vendor/v3/web/src/content/atmosphere.ts",
+      "sha256": "126f0978c5a62a4198414febd2debaf5308e56fad164ae23ffcd65d3cc8b50db"
+    },
+    {
+      "path": "vendor/v3/web/src/content/frame-cache.ts",
+      "sha256": "b4ef8aba4a1d8a23665d7145410f26d9d8470a165505f0d263da993e3dfcc7f6"
+    },
+    {
+      "path": "vendor/v3/web/src/content/frame-clock.ts",
+      "sha256": "102ed60a1ced1ae32b8aa7b2dd84ffd872394372fec162755138eaf8b3946cec"
+    },
+    {
+      "path": "vendor/v3/web/src/content/package-contract.ts",
+      "sha256": "0f7619955509606c2b6430836370ad4ab362f9365ad7150521c52bd36da4b1d9"
+    },
+    {
+      "path": "vendor/v3/web/src/content/scene-environment.ts",
+      "sha256": "043fa43c26ed3a441ccae439f4bbbf84d049d20078b191feb40fef0e6b6de03f"
+    },
+    {
+      "path": "vendor/v3/web/src/content/sequence-manifest.ts",
+      "sha256": "0e1bbb8c1cd75af082f5c9c791972f8f7e6b713f142b48d6aed7003a241de405"
+    },
+    {
+      "path": "vendor/v3/web/src/content/time-background.ts",
+      "sha256": "c38fb9d551deb7f5c411460639feec7fbb35a270a35b0093c906656861662a19"
+    },
+    {
+      "path": "vendor/v3/web/src/main.ts",
+      "sha256": "6c9f548b7a302a7ee5b666c893473fe5fafccadd38cc28a776e353666bf3bc89"
+    },
+    {
+      "path": "vendor/v3/web/src/render/atmosphere-state.ts",
+      "sha256": "9abcd3a804e19a8342ff0cd7cab6caaaf194dc1dcf707669c56a908cc531b16f"
+    },
+    {
+      "path": "vendor/v3/web/src/render/bloom-pipeline.ts",
+      "sha256": "d2bb8efc243f73ce567e022a923a2752130446b3772bb79a84dd0ee2fe684f18"
+    },
+    {
+      "path": "vendor/v3/web/src/render/daylight.ts",
+      "sha256": "cf34146a314c007e24abdda2c36f18a6a3572da4ab359f50976df6709575114d"
+    },
+    {
+      "path": "vendor/v3/web/src/render/environment-particles.ts",
+      "sha256": "908a6f9d56d38be26530d8232d77f15eb20d709dfc5d262625d2f94a1ab88b2a"
+    },
+    {
+      "path": "vendor/v3/web/src/render/environment-shaders.ts",
+      "sha256": "15adcdb2317f938361b2af8ec18884053d5f8e5f52172a87552d7e1ac759197a"
+    },
+    {
+      "path": "vendor/v3/web/src/render/normal-direction.ts",
+      "sha256": "eb6d0102c8b82a128bfb889f5e417aa8d343154a989507e8da56f9b207496bc8"
+    },
+    {
+      "path": "vendor/v3/web/src/render/scene-environment.ts",
+      "sha256": "d9fee66aef3a51fd96edc547f4d17e33d82c7bfaae1e579448d991367020ce16"
+    },
+    {
+      "path": "vendor/v3/web/src/render/shaders.ts",
+      "sha256": "446716aa7b2807f22da1ac71b2a3da5417e6353ac9a0d57333ab4f17541060e3"
+    },
+    {
+      "path": "vendor/v3/web/src/render/time-background-shader.ts",
+      "sha256": "01097d88d34338e068e53c3ea63005f787fd23a8fb6afcb5a1074437d0797806"
+    },
+    {
+      "path": "vendor/v3/web/src/render/wallpaper-runtime.ts",
+      "sha256": "a336eb68db2b9c28eab4a229b0bcdaf98d8b94b8558e9f59729d685a4075bc9a"
+    },
+    {
+      "path": "vendor/v3/web/src/scenes/liyue/full.ts",
+      "sha256": "76a31ad5d461e345cea42ca28609364d0a470784253b3959146bde8b4cc4cf54"
+    },
+    {
+      "path": "vendor/v3/assets/scene/liyue/full-v001/atmosphere-v001.json",
+      "sha256": "dd8c5ef4b9b386cdd895fabce90b6fc25ceb43ff86a8e19dcc89184072c508da"
+    },
+    {
+      "path": "vendor/v3/assets/scene/liyue/full-v001/environment-runtime-v002.json",
+      "sha256": "000ccaa3aee5bc08cfee287ba3b1e072051a4eed576ea183713969a08d55a939"
+    },
+    {
+      "path": "vendor/v3/assets/scene/liyue/time-plates-v001/background.json",
+      "sha256": "0d4ae33636178dbea9aeffa231e5c3e41f8514fd3d46fbcb0422c2c8e6481062"
+    },
+    {
+      "path": "vendor/v3/web/src/scenes/liyue/head.ts",
+      "sha256": "321544173ef7e5a45b30e2ad1818f242bb9937dd09fc22fbd1952e9a674aad0a"
+    },
+    {
+      "path": "vendor/v3/web/src/style.css",
+      "sha256": "86fa59cfb058c99333872ce085c1f3226568d8a0100cd14a0fdebf178d80e730"
+    },
+    {
+      "path": "vendor/v3/web/src/ui/wallpaper-clock.ts",
+      "sha256": "584cf4aec5638b64e723fef66784c0938955791287af3205c1530d9fdd5b8e09"
+    },
+    {
+      "path": "vendor/v3/web/src/wallpapers/registry.ts",
+      "sha256": "a92e4c2fe35d9110430ef62efcff622b7a64c930e0d0bd75eb2342874369dfa1"
+    },
+    {
+      "path": "content/v3-original.css",
+      "sha256": "5d1a2b0d2bc0f68b1dc80430c107f37d9ba7db98883d1cc2c222a1dbf2f0e61c"
+    }
+  ]
+}

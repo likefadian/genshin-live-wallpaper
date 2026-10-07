@@ -1,0 +1,1658 @@
+{
+  "schemaVersion": 1,
+  "status": "User accepted 1.6x right-lock tip; remove stationary body hair only, retain original jewelry",
+  "sourceSize": [
+    1672,
+    941
+  ],
+  "sourceSha256": "581f6b862d0837d0e59d6408fe3932787b198b0728905bcc746a17b8a016446a",
+  "headLayout": "assets/xiao/layers/head-layout-v022.json",
+  "headProject": "ae/xiao-head/xiao-head-v017.aep",
+  "bodyRaw": "assets/generation/body-underplate-v002/raw.png",
+  "bodySprite": "assets/xiao/layers/body-probe-v006/body-underplate-rgba.png",
+  "bodyCrop": [
+    640,
+    228,
+    1032,
+    713
+  ],
+  "bodyRegistration": {
+    "method": "native editable Bezier Warp; generated art only",
+    "variants": [
+      {
+        "id": "unregistered",
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            344,
+            0
+          ],
+          [
+            688,
+            0
+          ],
+          [
+            1032,
+            0
+          ],
+          [
+            1032,
+            237.667
+          ],
+          [
+            1032,
+            475.333
+          ],
+          [
+            1032,
+            713
+          ],
+          [
+            688,
+            713
+          ],
+          [
+            344,
+            713
+          ],
+          [
+            0,
+            713
+          ],
+          [
+            0,
+            475.333
+          ],
+          [
+            0,
+            237.667
+          ]
+        ]
+      },
+      {
+        "id": "pose-a",
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            319.333,
+            0
+          ],
+          [
+            638.667,
+            0
+          ],
+          [
+            958,
+            0
+          ],
+          [
+            934,
+            160
+          ],
+          [
+            938,
+            369
+          ],
+          [
+            1032,
+            713
+          ],
+          [
+            688,
+            713
+          ],
+          [
+            344,
+            713
+          ],
+          [
+            0,
+            713
+          ],
+          [
+            0,
+            429
+          ],
+          [
+            0,
+            180
+          ]
+        ]
+      },
+      {
+        "id": "pose-b",
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            315.333,
+            0
+          ],
+          [
+            630.667,
+            0
+          ],
+          [
+            946,
+            0
+          ],
+          [
+            920,
+            148
+          ],
+          [
+            914,
+            339
+          ],
+          [
+            1032,
+            713
+          ],
+          [
+            688,
+            713
+          ],
+          [
+            344,
+            713
+          ],
+          [
+            0,
+            713
+          ],
+          [
+            0,
+            439
+          ],
+          [
+            0,
+            190
+          ]
+        ]
+      }
+    ],
+    "quality": 8,
+    "selectedVariant": "pose-b"
+  },
+  "headHandoff": {
+    "baseMaskLocal": [
+      [
+        -8,
+        -8
+      ],
+      [
+        440,
+        -8
+      ],
+      [
+        440,
+        229
+      ],
+      [
+        292,
+        229
+      ],
+      [
+        265,
+        237
+      ],
+      [
+        246,
+        269
+      ],
+      [
+        229,
+        286
+      ],
+      [
+        207,
+        278
+      ],
+      [
+        193,
+        261
+      ],
+      [
+        153,
+        251
+      ],
+      [
+        126,
+        237
+      ],
+      [
+        116,
+        235
+      ],
+      [
+        104,
+        244
+      ],
+      [
+        92,
+        246
+      ],
+      [
+        55,
+        246
+      ],
+      [
+        -8,
+        242
+      ]
+    ],
+    "earOccluderMaskLocal": [
+      [
+        228,
+        153
+      ],
+      [
+        285,
+        157
+      ],
+      [
+        285,
+        278
+      ],
+      [
+        257,
+        282
+      ],
+      [
+        229,
+        235
+      ]
+    ],
+    "disableBodyNeckChainInHeadCopy": true,
+    "reuseHairLayersUnchanged": true,
+    "windControls": "link to original XIAO_HEAD_NATIVE control source",
+    "revisionNote": "Restore complete static fringe tips previously clipped by the head/body handoff polygon; lower skin and chest handoff unchanged.",
+    "fringeGapSubtractLocal": [
+      [
+        [
+          63,
+          230
+        ],
+        [
+          68,
+          231
+        ],
+        [
+          73,
+          234
+        ],
+        [
+          77,
+          236
+        ],
+        [
+          74,
+          240
+        ],
+        [
+          68,
+          238
+        ],
+        [
+          64,
+          234
+        ]
+      ],
+      [
+        [
+          71,
+          224
+        ],
+        [
+          75,
+          224
+        ],
+        [
+          80,
+          227
+        ],
+        [
+          85,
+          228
+        ],
+        [
+          83,
+          232
+        ],
+        [
+          79,
+          233
+        ],
+        [
+          75,
+          231
+        ],
+        [
+          71,
+          228
+        ]
+      ]
+    ],
+    "fringeGapNote": "Two small background-colored registration remnants inside the recovered static hair gap; editable native subtract masks, no RGB repaint."
+  },
+  "rigidMask": {
+    "raw": "assets/generation/waist-mask-rigid-v001/raw.png",
+    "sprite": "assets/xiao/layers/body-probe-v001/waist-mask-rigid-rgba.png",
+    "crop": [
+      1228,
+      476,
+      112,
+      178
+    ],
+    "pivotOriginal": [
+      1258,
+      547
+    ],
+    "rotationAmplitudeDegrees": 1.6,
+    "secondaryAmplitudeDegrees": 0.3,
+    "responseDelaySeconds": 0.42,
+    "extremeDegrees": [
+      -8,
+      0,
+      8
+    ],
+    "material": "rigid carved metal and jade; never cloth-warped"
+  },
+  "referenceContactPointsOriginal": {
+    "leftGloveOnKnee": [
+      991,
+      463
+    ],
+    "rightPalmOnRoof": [
+      1508,
+      712
+    ]
+  },
+  "formalRgbPolicy": "new image_gen raw art plus approved generated head; no original pixel donor",
+  "characterCrop": [
+    640,
+    0,
+    1032,
+    941
+  ],
+  "aeProject": "ae/xiao-full/xiao-full-v015.aep",
+  "motionExportFolder": "exports/full/motion-v015",
+  "dataExportFolder": "exports/full/data-v002",
+  "sceneSprite": "assets/scene/liyue/full-v001/environment-base-rgb.png",
+  "breathing": {
+    "method": "Native Displacement Map after static pose registration, shared neck vertical response and ribcage expansion",
+    "fieldPath": "assets/xiao/rig/body-breathing-v001/displacement-linear16.tif",
+    "horizontalPerHeadBreathingPixel": 3.0,
+    "verticalPerHeadBreathingPixel": -1.0,
+    "verticalWeight": {
+      "leftFade": [
+        980,
+        1080
+      ],
+      "rightFade": [
+        1330,
+        1390
+      ],
+      "bottomFade": [
+        350,
+        555
+      ]
+    },
+    "ribcage": {
+      "center": [
+        1205,
+        437
+      ],
+      "radius": [
+        105,
+        92
+      ],
+      "neckFade": [
+        325,
+        385
+      ]
+    },
+    "protectedContactRegionsOriginal": [
+      [
+        813,
+        382,
+        247,
+        175
+      ],
+      [
+        1450,
+        671,
+        167,
+        93
+      ]
+    ],
+    "contactMarginPixels": 12,
+    "contactFadePixels": 28,
+    "neckJointRegionOriginal": [
+      1103,
+      270,
+      82,
+      30
+    ],
+    "rigidChestRegionOriginal": [
+      1077,
+      308,
+      105,
+      117
+    ],
+    "originalHairWindAndHeadTranslationUnchanged": true,
+    "fieldRole": "Numerical deformation data; not an RGB artwork donor"
+  },
+  "ribbons": [
+    {
+      "id": "teal-back-ribbon",
+      "generation": "assets/generation/teal-back-ribbon-v001",
+      "sprite": "assets/xiao/layers/body-probe-v003/teal-back-ribbon-rgba.png",
+      "crop": [
+        1248,
+        307,
+        560,
+        240
+      ],
+      "root": [
+        1270,
+        343
+      ],
+      "tip": [
+        1704,
+        475
+      ],
+      "tipBase": [
+        1516,
+        416
+      ],
+      "order": 10,
+      "bodyAmount": 13.5,
+      "bodySecondaryAmount": 2.3,
+      "tipAmount": 8.2,
+      "tipSecondaryAmount": 1.4,
+      "bodyDelay": 0.18,
+      "tipDelay": 0.55,
+      "tipSecondaryDelay": 0.4,
+      "extremeBodyAmount": 24,
+      "extremeTipAmount": 12
+    },
+    {
+      "id": "purple-back-ribbon",
+      "generation": "assets/generation/purple-back-ribbon-v001",
+      "sprite": "assets/xiao/layers/body-probe-v003/purple-back-ribbon-rgba.png",
+      "crop": [
+        1296,
+        392,
+        330,
+        268
+      ],
+      "root": [
+        1316,
+        415
+      ],
+      "tip": [
+        1348,
+        589
+      ],
+      "tipBase": [
+        1454,
+        553
+      ],
+      "order": 12,
+      "bodyAmount": 12.4,
+      "bodySecondaryAmount": 1.8,
+      "tipAmount": 7.4,
+      "tipSecondaryAmount": 1.1,
+      "bodyDelay": 0.25,
+      "tipDelay": 0.65,
+      "tipSecondaryDelay": 0.51,
+      "extremeBodyAmount": 23,
+      "extremeTipAmount": 11
+    },
+    {
+      "id": "purple-front-tail",
+      "generation": "assets/generation/purple-front-tail-v001",
+      "sprite": "assets/xiao/layers/body-probe-v003/purple-front-tail-rgba.png",
+      "crop": [
+        1208,
+        616,
+        340,
+        390
+      ],
+      "root": [
+        1232,
+        646
+      ],
+      "tip": [
+        1501,
+        950
+      ],
+      "tipBase": [
+        1392,
+        834
+      ],
+      "order": 35,
+      "bodyAmount": 12.6,
+      "bodySecondaryAmount": 1.8,
+      "tipAmount": 9.2,
+      "tipSecondaryAmount": 1.3,
+      "bodyDelay": 0.36,
+      "tipDelay": 0.8,
+      "tipSecondaryDelay": 0.63,
+      "extremeBodyAmount": 24,
+      "extremeTipAmount": 13
+    }
+  ],
+  "rigidItems": [
+    {
+      "id": "waist-mask",
+      "generation": "assets/generation/waist-mask-rigid-v001",
+      "sprite": "assets/xiao/layers/body-probe-v003/waist-mask-rgba.png",
+      "crop": [
+        1228,
+        476,
+        112,
+        178
+      ],
+      "pivot": [
+        1258,
+        547
+      ],
+      "order": 45,
+      "amountDegrees": 1.6,
+      "secondaryDegrees": 0.3,
+      "delay": 0.42,
+      "extremeDegrees": 8,
+      "coverageCrop": [
+        1204,
+        451,
+        170,
+        227
+      ],
+      "cordRoot": [
+        1208,
+        504
+      ],
+      "material": "metal-jade"
+    },
+    {
+      "id": "waist-medallion",
+      "generation": "assets/generation/waist-medallion-v001",
+      "sprite": "assets/xiao/layers/body-probe-v003/waist-medallion-rgba.png",
+      "crop": [
+        1282,
+        623,
+        66,
+        104
+      ],
+      "pivot": [
+        1301,
+        628
+      ],
+      "order": 42,
+      "amountDegrees": 2.0,
+      "secondaryDegrees": 0.35,
+      "delay": 0.57,
+      "extremeDegrees": 9,
+      "coverageCrop": [
+        1260,
+        598,
+        114,
+        151
+      ],
+      "parent": "waist-mask",
+      "material": "metal"
+    },
+    {
+      "id": "waist-jade",
+      "generation": "assets/generation/waist-jade-v001",
+      "sprite": "assets/xiao/layers/body-probe-v003/jade-drop-rgba.png",
+      "crop": [
+        1198,
+        623,
+        22,
+        58
+      ],
+      "pivot": [
+        1209,
+        626
+      ],
+      "order": 48,
+      "amountDegrees": 2.4,
+      "secondaryDegrees": 0.45,
+      "delay": 0.52,
+      "extremeDegrees": 10,
+      "coverageCrop": [
+        1183,
+        613,
+        53,
+        83
+      ],
+      "cordRoot": [
+        1186,
+        530
+      ],
+      "material": "jade-metal"
+    },
+    {
+      "id": "wrist-jade",
+      "generation": "assets/generation/waist-jade-v001",
+      "sprite": "assets/xiao/layers/body-probe-v003/jade-drop-rgba.png",
+      "crop": [
+        1009,
+        514,
+        22,
+        58
+      ],
+      "pivot": [
+        1020,
+        516
+      ],
+      "scalePercent": 64,
+      "order": 48,
+      "amountDegrees": 1.9,
+      "secondaryDegrees": 0.35,
+      "delay": 0.35,
+      "extremeDegrees": 9,
+      "coverageCrop": [
+        997,
+        504,
+        47,
+        69
+      ],
+      "cordRoot": [
+        1015,
+        495
+      ],
+      "material": "jade-metal"
+    },
+    {
+      "id": "gold-drop-left",
+      "generation": "assets/generation/waist-medallion-v001",
+      "sprite": "assets/xiao/layers/body-probe-v003/gold-drop-rgba.png",
+      "crop": [
+        1139,
+        538,
+        15,
+        25
+      ],
+      "pivot": [
+        1147,
+        539
+      ],
+      "order": 47,
+      "amountDegrees": 2.2,
+      "secondaryDegrees": 0.4,
+      "delay": 0.28,
+      "extremeDegrees": 10,
+      "coverageCrop": [
+        1126,
+        526,
+        43,
+        52
+      ],
+      "cordRoot": [
+        1129,
+        518
+      ],
+      "material": "metal"
+    },
+    {
+      "id": "gold-drop-right",
+      "generation": "assets/generation/waist-medallion-v001",
+      "sprite": "assets/xiao/layers/body-probe-v003/gold-drop-rgba.png",
+      "crop": [
+        1188,
+        536,
+        15,
+        25
+      ],
+      "pivot": [
+        1196,
+        537
+      ],
+      "order": 47,
+      "amountDegrees": 2.8,
+      "secondaryDegrees": 0.45,
+      "delay": 0.46,
+      "extremeDegrees": 10,
+      "coverageCrop": [
+        1174,
+        524,
+        45,
+        54
+      ],
+      "cordRoot": [
+        1180,
+        518
+      ],
+      "material": "metal"
+    }
+  ],
+  "headOrder": 60,
+  "dataProject": "ae/xiao-full/xiao-full-data-v015.aep",
+  "unchangedMotionFolder": "exports/full/motion-v001",
+  "unchangedDataFolder": "exports/full/data-v001",
+  "motionFolderOverrides": {
+    "body": "exports/full/motion-v015",
+    "head": "exports/full/motion-v014",
+    "head-base": "exports/full/motion-v010",
+    "rgba": "exports/full/motion-v015"
+  },
+  "bodyRepairs": [
+    {
+      "generation": "assets/generation/chest-cloth-only-v001",
+      "cropBodyLocal": [
+        470,
+        0,
+        150,
+        180
+      ],
+      "raw": "assets/generation/chest-cloth-only-v001/raw.png",
+      "sourceSprite": "assets/xiao/layers/body-probe-v003/body-underplate-rgba.png",
+      "maskPatchLocal": [
+        [
+          112,
+          35
+        ],
+        [
+          120,
+          40
+        ],
+        [
+          119,
+          50
+        ],
+        [
+          112,
+          70
+        ],
+        [
+          101,
+          93
+        ],
+        [
+          88,
+          115
+        ],
+        [
+          72,
+          136
+        ],
+        [
+          51,
+          151
+        ],
+        [
+          40,
+          151
+        ],
+        [
+          53,
+          137
+        ],
+        [
+          67,
+          119
+        ],
+        [
+          78,
+          98
+        ],
+        [
+          88,
+          79
+        ],
+        [
+          97,
+          58
+        ],
+        [
+          103,
+          43
+        ]
+      ],
+      "featherPixels": 0.5,
+      "comp": "BODY_NO_STATIC_RIGHT_HAIR",
+      "patchComp": "CLOTH_UNDER_RIGHT_LOCK",
+      "note": "Remove only baked teal hair; preserve original pearls and pendants using subtract protection, never duplicate foreground cloth or jewelry.",
+      "protectJewelryPathsSourceLocal": [
+        [
+          [
+            603.4,
+            51.2
+          ],
+          [
+            603.242,
+            52.878
+          ],
+          [
+            602.776,
+            54.491
+          ],
+          [
+            602.018,
+            55.978
+          ],
+          [
+            600.998,
+            57.281
+          ],
+          [
+            599.756,
+            58.351
+          ],
+          [
+            598.338,
+            59.145
+          ],
+          [
+            596.8,
+            59.635
+          ],
+          [
+            595.2,
+            59.8
+          ],
+          [
+            593.6,
+            59.635
+          ],
+          [
+            592.062,
+            59.145
+          ],
+          [
+            590.644,
+            58.351
+          ],
+          [
+            589.402,
+            57.281
+          ],
+          [
+            588.382,
+            55.978
+          ],
+          [
+            587.624,
+            54.491
+          ],
+          [
+            587.158,
+            52.878
+          ],
+          [
+            587.0,
+            51.2
+          ],
+          [
+            587.158,
+            49.522
+          ],
+          [
+            587.624,
+            47.909
+          ],
+          [
+            588.382,
+            46.422
+          ],
+          [
+            589.402,
+            45.119
+          ],
+          [
+            590.644,
+            44.049
+          ],
+          [
+            592.062,
+            43.255
+          ],
+          [
+            593.6,
+            42.765
+          ],
+          [
+            595.2,
+            42.6
+          ],
+          [
+            596.8,
+            42.765
+          ],
+          [
+            598.338,
+            43.255
+          ],
+          [
+            599.756,
+            44.049
+          ],
+          [
+            600.998,
+            45.119
+          ],
+          [
+            602.018,
+            46.422
+          ],
+          [
+            602.776,
+            47.909
+          ],
+          [
+            603.242,
+            49.522
+          ]
+        ],
+        [
+          [
+            599.1,
+            64.8
+          ],
+          [
+            598.941,
+            66.595
+          ],
+          [
+            598.468,
+            68.321
+          ],
+          [
+            597.701,
+            69.911
+          ],
+          [
+            596.669,
+            71.305
+          ],
+          [
+            595.411,
+            72.45
+          ],
+          [
+            593.976,
+            73.3
+          ],
+          [
+            592.419,
+            73.823
+          ],
+          [
+            590.8,
+            74.0
+          ],
+          [
+            589.181,
+            73.823
+          ],
+          [
+            587.624,
+            73.3
+          ],
+          [
+            586.189,
+            72.45
+          ],
+          [
+            584.931,
+            71.305
+          ],
+          [
+            583.899,
+            69.911
+          ],
+          [
+            583.132,
+            68.321
+          ],
+          [
+            582.659,
+            66.595
+          ],
+          [
+            582.5,
+            64.8
+          ],
+          [
+            582.659,
+            63.005
+          ],
+          [
+            583.132,
+            61.279
+          ],
+          [
+            583.899,
+            59.689
+          ],
+          [
+            584.931,
+            58.295
+          ],
+          [
+            586.189,
+            57.15
+          ],
+          [
+            587.624,
+            56.3
+          ],
+          [
+            589.181,
+            55.777
+          ],
+          [
+            590.8,
+            55.6
+          ],
+          [
+            592.419,
+            55.777
+          ],
+          [
+            593.976,
+            56.3
+          ],
+          [
+            595.411,
+            57.15
+          ],
+          [
+            596.669,
+            58.295
+          ],
+          [
+            597.701,
+            59.689
+          ],
+          [
+            598.468,
+            61.279
+          ],
+          [
+            598.941,
+            63.005
+          ]
+        ],
+        [
+          [
+            594.0,
+            79.0
+          ],
+          [
+            593.839,
+            80.795
+          ],
+          [
+            593.361,
+            82.521
+          ],
+          [
+            592.584,
+            84.111
+          ],
+          [
+            591.54,
+            85.505
+          ],
+          [
+            590.267,
+            86.65
+          ],
+          [
+            588.815,
+            87.5
+          ],
+          [
+            587.239,
+            88.023
+          ],
+          [
+            585.6,
+            88.2
+          ],
+          [
+            583.961,
+            88.023
+          ],
+          [
+            582.385,
+            87.5
+          ],
+          [
+            580.933,
+            86.65
+          ],
+          [
+            579.66,
+            85.505
+          ],
+          [
+            578.616,
+            84.111
+          ],
+          [
+            577.839,
+            82.521
+          ],
+          [
+            577.361,
+            80.795
+          ],
+          [
+            577.2,
+            79.0
+          ],
+          [
+            577.361,
+            77.205
+          ],
+          [
+            577.839,
+            75.479
+          ],
+          [
+            578.616,
+            73.889
+          ],
+          [
+            579.66,
+            72.495
+          ],
+          [
+            580.933,
+            71.35
+          ],
+          [
+            582.385,
+            70.5
+          ],
+          [
+            583.961,
+            69.977
+          ],
+          [
+            585.6,
+            69.8
+          ],
+          [
+            587.239,
+            69.977
+          ],
+          [
+            588.815,
+            70.5
+          ],
+          [
+            590.267,
+            71.35
+          ],
+          [
+            591.54,
+            72.495
+          ],
+          [
+            592.584,
+            73.889
+          ],
+          [
+            593.361,
+            75.479
+          ],
+          [
+            593.839,
+            77.205
+          ]
+        ],
+        [
+          [
+            587.4,
+            94.8
+          ],
+          [
+            587.208,
+            96.848
+          ],
+          [
+            586.639,
+            98.818
+          ],
+          [
+            585.715,
+            100.633
+          ],
+          [
+            584.471,
+            102.225
+          ],
+          [
+            582.956,
+            103.53
+          ],
+          [
+            581.227,
+            104.501
+          ],
+          [
+            579.351,
+            105.098
+          ],
+          [
+            577.4,
+            105.3
+          ],
+          [
+            575.449,
+            105.098
+          ],
+          [
+            573.573,
+            104.501
+          ],
+          [
+            571.844,
+            103.53
+          ],
+          [
+            570.329,
+            102.225
+          ],
+          [
+            569.085,
+            100.633
+          ],
+          [
+            568.161,
+            98.818
+          ],
+          [
+            567.592,
+            96.848
+          ],
+          [
+            567.4,
+            94.8
+          ],
+          [
+            567.592,
+            92.752
+          ],
+          [
+            568.161,
+            90.782
+          ],
+          [
+            569.085,
+            88.967
+          ],
+          [
+            570.329,
+            87.375
+          ],
+          [
+            571.844,
+            86.07
+          ],
+          [
+            573.573,
+            85.099
+          ],
+          [
+            575.449,
+            84.502
+          ],
+          [
+            577.4,
+            84.3
+          ],
+          [
+            579.351,
+            84.502
+          ],
+          [
+            581.227,
+            85.099
+          ],
+          [
+            582.956,
+            86.07
+          ],
+          [
+            584.471,
+            87.375
+          ],
+          [
+            585.715,
+            88.967
+          ],
+          [
+            586.639,
+            90.782
+          ],
+          [
+            587.208,
+            92.752
+          ]
+        ],
+        [
+          [
+            576.0,
+            112.0
+          ],
+          [
+            575.796,
+            114.283
+          ],
+          [
+            575.193,
+            116.477
+          ],
+          [
+            574.214,
+            118.5
+          ],
+          [
+            572.895,
+            120.273
+          ],
+          [
+            571.289,
+            121.728
+          ],
+          [
+            569.456,
+            122.809
+          ],
+          [
+            567.468,
+            123.475
+          ],
+          [
+            565.4,
+            123.7
+          ],
+          [
+            563.332,
+            123.475
+          ],
+          [
+            561.344,
+            122.809
+          ],
+          [
+            559.511,
+            121.728
+          ],
+          [
+            557.905,
+            120.273
+          ],
+          [
+            556.586,
+            118.5
+          ],
+          [
+            555.607,
+            116.477
+          ],
+          [
+            555.004,
+            114.283
+          ],
+          [
+            554.8,
+            112.0
+          ],
+          [
+            555.004,
+            109.717
+          ],
+          [
+            555.607,
+            107.523
+          ],
+          [
+            556.586,
+            105.5
+          ],
+          [
+            557.905,
+            103.727
+          ],
+          [
+            559.511,
+            102.272
+          ],
+          [
+            561.344,
+            101.191
+          ],
+          [
+            563.332,
+            100.525
+          ],
+          [
+            565.4,
+            100.3
+          ],
+          [
+            567.468,
+            100.525
+          ],
+          [
+            569.456,
+            101.191
+          ],
+          [
+            571.289,
+            102.272
+          ],
+          [
+            572.895,
+            103.727
+          ],
+          [
+            574.214,
+            105.5
+          ],
+          [
+            575.193,
+            107.523
+          ],
+          [
+            575.796,
+            109.717
+          ]
+        ],
+        [
+          [
+            569.1,
+            129.8
+          ],
+          [
+            568.985,
+            131.068
+          ],
+          [
+            568.643,
+            132.287
+          ],
+          [
+            568.089,
+            133.411
+          ],
+          [
+            567.343,
+            134.396
+          ],
+          [
+            566.433,
+            135.205
+          ],
+          [
+            565.396,
+            135.805
+          ],
+          [
+            564.271,
+            136.175
+          ],
+          [
+            563.1,
+            136.3
+          ],
+          [
+            561.929,
+            136.175
+          ],
+          [
+            560.804,
+            135.805
+          ],
+          [
+            559.767,
+            135.205
+          ],
+          [
+            558.857,
+            134.396
+          ],
+          [
+            558.111,
+            133.411
+          ],
+          [
+            557.557,
+            132.287
+          ],
+          [
+            557.215,
+            131.068
+          ],
+          [
+            557.1,
+            129.8
+          ],
+          [
+            557.215,
+            128.532
+          ],
+          [
+            557.557,
+            127.313
+          ],
+          [
+            558.111,
+            126.189
+          ],
+          [
+            558.857,
+            125.204
+          ],
+          [
+            559.767,
+            124.395
+          ],
+          [
+            560.804,
+            123.795
+          ],
+          [
+            561.929,
+            123.425
+          ],
+          [
+            563.1,
+            123.3
+          ],
+          [
+            564.271,
+            123.425
+          ],
+          [
+            565.396,
+            123.795
+          ],
+          [
+            566.433,
+            124.395
+          ],
+          [
+            567.343,
+            125.204
+          ],
+          [
+            568.089,
+            126.189
+          ],
+          [
+            568.643,
+            127.313
+          ],
+          [
+            568.985,
+            128.532
+          ]
+        ],
+        [
+          [
+            560.7,
+            138
+          ],
+          [
+            565.9,
+            138
+          ],
+          [
+            567.3,
+            148
+          ],
+          [
+            568.2,
+            163
+          ],
+          [
+            569.8,
+            182
+          ],
+          [
+            571.2,
+            200
+          ],
+          [
+            568,
+            204
+          ],
+          [
+            554.9,
+            205
+          ],
+          [
+            555.1,
+            191
+          ],
+          [
+            556.3,
+            170
+          ],
+          [
+            557.6,
+            151
+          ]
+        ]
+      ]
+    }
+  ]
+}

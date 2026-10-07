@@ -1,0 +1,518 @@
+{
+  "schemaVersion": 1,
+  "globalLampScale": 0.2,
+  "dataPath": "assets/scenes/liyue/full-v001/environment-data-rgba.png",
+  "normalPath": "assets/scenes/liyue/full-v001/environment-normal-reflection-rgba.png",
+  "lanternPath": "assets/scenes/liyue/full-v001/floating-lantern-rgba.png",
+  "sky": {
+    "heightPixels": 360,
+    "clouds": {
+      "path": "assets/scenes/liyue/full-v001/cloud-bank-rgba.png",
+      "rect": [
+        -260,
+        -80,
+        2250,
+        570
+      ],
+      "driftPixelsPerSecond": 1.8,
+      "verticalOscillationPixels": 4,
+      "periodSeconds": 180,
+      "opacity": 0.52
+    },
+    "sun": {
+      "path": [
+        [
+          200,
+          260
+        ],
+        [
+          680,
+          55
+        ],
+        [
+          1400,
+          180
+        ]
+      ],
+      "radiusPixels": 11,
+      "riseMinutes": 330,
+      "setMinutes": 1130
+    },
+    "moon": {
+      "position": [
+        625,
+        90
+      ],
+      "radiusPixels": 20
+    },
+    "stars": {
+      "density": 180,
+      "brightness": 0.47,
+      "seed": 11
+    }
+  },
+  "water": {
+    "amplitudePixels": [
+      1.3,
+      0.7
+    ],
+    "frequency": [
+      0.038,
+      0.071
+    ],
+    "speed": [
+      0.7,
+      1.1
+    ],
+    "reflectionStrength": 0.46
+  },
+  "lights": [
+    {
+      "id": "eave-lantern",
+      "position": [
+        1557,
+        146,
+        220
+      ],
+      "color": [
+        1,
+        0.5333333333,
+        0.2666666667
+      ],
+      "radiusPixels": 590,
+      "strength": 0.39,
+      "size": [
+        0,
+        0
+      ],
+      "floating": false,
+      "swayPixels": [
+        0,
+        0
+      ],
+      "periodSeconds": 130,
+      "phase": 0,
+      "falloff": 0.003,
+      "flicker": {
+        "amount": 0.11,
+        "frequencies": [
+          2.3,
+          6.1
+        ]
+      }
+    },
+    {
+      "id": "sky-left",
+      "position": [
+        302,
+        152,
+        70
+      ],
+      "color": [
+        1,
+        0.5333333333,
+        0.2666666667
+      ],
+      "radiusPixels": 180,
+      "strength": 0.13,
+      "size": [
+        21,
+        31
+      ],
+      "floating": true,
+      "swayPixels": [
+        13,
+        22
+      ],
+      "periodSeconds": 150,
+      "phase": 0.8,
+      "falloff": 0.003,
+      "flicker": {
+        "amount": 0.11,
+        "frequencies": [
+          2.3,
+          6.1
+        ]
+      }
+    },
+    {
+      "id": "sky-near-head",
+      "position": [
+        1232,
+        89,
+        125
+      ],
+      "color": [
+        1,
+        0.5333333333,
+        0.2666666667
+      ],
+      "radiusPixels": 410,
+      "strength": 0.34,
+      "size": [
+        51,
+        74
+      ],
+      "floating": true,
+      "swayPixels": [
+        15,
+        19
+      ],
+      "periodSeconds": 130,
+      "phase": 2.1,
+      "falloff": 0.003,
+      "flicker": {
+        "amount": 0.11,
+        "frequencies": [
+          2.3,
+          6.1
+        ]
+      }
+    },
+    {
+      "id": "sky-small-west",
+      "position": [
+        474,
+        230,
+        50
+      ],
+      "color": [
+        1,
+        0.5333333333,
+        0.2666666667
+      ],
+      "radiusPixels": 150,
+      "strength": 0.07,
+      "size": [
+        14,
+        21
+      ],
+      "floating": true,
+      "swayPixels": [
+        9,
+        13
+      ],
+      "periodSeconds": 170,
+      "phase": 4.2,
+      "falloff": 0.003,
+      "flicker": {
+        "amount": 0.11,
+        "frequencies": [
+          2.3,
+          6.1
+        ]
+      }
+    },
+    {
+      "id": "sky-far-high",
+      "position": [
+        714,
+        53,
+        70
+      ],
+      "color": [
+        1,
+        0.5333333333,
+        0.2666666667
+      ],
+      "radiusPixels": 190,
+      "strength": 0.11,
+      "size": [
+        17,
+        25
+      ],
+      "floating": true,
+      "swayPixels": [
+        12,
+        16
+      ],
+      "periodSeconds": 180,
+      "phase": 5.4,
+      "falloff": 0.003,
+      "flicker": {
+        "amount": 0.11,
+        "frequencies": [
+          2.3,
+          6.1
+        ]
+      }
+    },
+    {
+      "id": "window-near-temple",
+      "position": [
+        1307,
+        238,
+        100
+      ],
+      "color": [
+        1,
+        0.5333333333,
+        0.2666666667
+      ],
+      "radiusPixels": 370,
+      "strength": 0.16,
+      "size": [
+        0,
+        0
+      ],
+      "floating": false,
+      "swayPixels": [
+        0,
+        0
+      ],
+      "periodSeconds": 120,
+      "phase": 1.3,
+      "falloff": 0.003,
+      "flicker": {
+        "amount": 0.07,
+        "frequencies": [
+          2.6,
+          7.1
+        ]
+      }
+    },
+    {
+      "id": "window-east",
+      "position": [
+        1395,
+        311,
+        90
+      ],
+      "color": [
+        1,
+        0.5333333333,
+        0.2666666667
+      ],
+      "radiusPixels": 290,
+      "strength": 0.13,
+      "size": [
+        0,
+        0
+      ],
+      "floating": false,
+      "swayPixels": [
+        0,
+        0
+      ],
+      "periodSeconds": 120,
+      "phase": 3.1,
+      "falloff": 0.003,
+      "flicker": {
+        "amount": 0.06,
+        "frequencies": [
+          2.1,
+          5.7
+        ]
+      }
+    },
+    {
+      "id": "window-west-tower",
+      "position": [
+        827,
+        302,
+        65
+      ],
+      "color": [
+        1,
+        0.5333333333,
+        0.2666666667
+      ],
+      "radiusPixels": 235,
+      "strength": 0.07,
+      "size": [
+        0,
+        0
+      ],
+      "floating": false,
+      "swayPixels": [
+        0,
+        0
+      ],
+      "periodSeconds": 120,
+      "phase": 4.8,
+      "falloff": 0.003,
+      "flicker": {
+        "amount": 0.06,
+        "frequencies": [
+          1.8,
+          6.8
+        ]
+      }
+    }
+  ],
+  "shadow": {
+    "offsetPixels": 18,
+    "softnessPixels": 1.5,
+    "strength": 0.74
+  },
+  "keyframes": [
+    {
+      "minutes": 0,
+      "skyTop": [
+        0.055,
+        0.09,
+        0.22
+      ],
+      "skyHorizon": [
+        0.19,
+        0.27,
+        0.43
+      ],
+      "cloudColor": [
+        0.3,
+        0.38,
+        0.56
+      ],
+      "cloudOpacity": 0.27,
+      "emission": 1,
+      "sun": 0,
+      "moon": 1,
+      "stars": 1,
+      "fog": 0.07
+    },
+    {
+      "minutes": 300,
+      "skyTop": [
+        0.18,
+        0.24,
+        0.4
+      ],
+      "skyHorizon": [
+        0.79,
+        0.55,
+        0.48
+      ],
+      "cloudColor": [
+        0.76,
+        0.59,
+        0.59
+      ],
+      "cloudOpacity": 0.39,
+      "emission": 0.65,
+      "sun": 0,
+      "moon": 0.18,
+      "stars": 0.12,
+      "fog": 0.13
+    },
+    {
+      "minutes": 390,
+      "skyTop": [
+        0.3,
+        0.55,
+        0.77
+      ],
+      "skyHorizon": [
+        0.89,
+        0.77,
+        0.65
+      ],
+      "cloudColor": [
+        1,
+        0.86,
+        0.73
+      ],
+      "cloudOpacity": 0.55,
+      "emission": 0,
+      "sun": 0.8,
+      "moon": 0,
+      "stars": 0,
+      "fog": 0.1
+    },
+    {
+      "minutes": 720,
+      "skyTop": [
+        0.22,
+        0.52,
+        0.84
+      ],
+      "skyHorizon": [
+        0.63,
+        0.82,
+        0.92
+      ],
+      "cloudColor": [
+        0.97,
+        0.99,
+        1
+      ],
+      "cloudOpacity": 0.58,
+      "emission": 0,
+      "sun": 0.56,
+      "moon": 0,
+      "stars": 0,
+      "fog": 0.04
+    },
+    {
+      "minutes": 1080,
+      "skyTop": [
+        0.27,
+        0.23,
+        0.41
+      ],
+      "skyHorizon": [
+        0.96,
+        0.5,
+        0.31
+      ],
+      "cloudColor": [
+        1,
+        0.63,
+        0.42
+      ],
+      "cloudOpacity": 0.46,
+      "emission": 0.42,
+      "sun": 0.8,
+      "moon": 0.1,
+      "stars": 0.015,
+      "fog": 0.12
+    },
+    {
+      "minutes": 1320,
+      "skyTop": [
+        0.055,
+        0.09,
+        0.22
+      ],
+      "skyHorizon": [
+        0.19,
+        0.27,
+        0.43
+      ],
+      "cloudColor": [
+        0.3,
+        0.38,
+        0.56
+      ],
+      "cloudOpacity": 0.27,
+      "emission": 1,
+      "sun": 0,
+      "moon": 1,
+      "stars": 1,
+      "fog": 0.07
+    },
+    {
+      "minutes": 1440,
+      "skyTop": [
+        0.055,
+        0.09,
+        0.22
+      ],
+      "skyHorizon": [
+        0.19,
+        0.27,
+        0.43
+      ],
+      "cloudColor": [
+        0.3,
+        0.38,
+        0.56
+      ],
+      "cloudOpacity": 0.27,
+      "emission": 1,
+      "sun": 0,
+      "moon": 1,
+      "stars": 1,
+      "fog": 0.07
+    }
+  ]
+}

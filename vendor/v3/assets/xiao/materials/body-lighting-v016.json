@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "shading": {
+    "strength": 0.76,
+    "thresholds": [
+      0.28,
+      0.66
+    ],
+    "softness": 0.07,
+    "weights": [
+      0.6,
+      0.4
+    ]
+  },
+  "materialOverrides": [
+    {
+      "id": 2,
+      "highlightBand": {
+        "center": 0.92,
+        "width": 0.07,
+        "strength": 0.01
+      }
+    }
+  ],
+  "layout": "assets/xiao/layers/body-layout-v015.json",
+  "headCalibration": "assets/xiao/materials/head-lighting-v016.json",
+  "nativeControls": "work/evidence/full-native-control-frames-v015.json",
+  "headNativeControls": "work/evidence/head-native-control-frames-v017-aligned.json",
+  "output": "exports/full/relighting-v016",
+  "publication": "web/public/assets/characters/xiao/full-v016",
+  "coordinates": "body source local before editable AE pose registration; x right, y down, z toward viewer; rigid profiles sprite-local",
+  "defaultMaterial": 3,
+  "clothNormal": {
+    "luminanceHeight": 2.8,
+    "smoothingPixels": 2.2,
+    "bias": [
+      0.02,
+      -0.08
+    ]
+  },
+  "regions": [
+    {
+      "material": 1,
+      "paths": [
+        "M480 0 L571 0 L553 25 L530 55 L513 40 Z",
+        "M174 164 L222 143 L297 115 L356 86 L408 48 L468 45 L450 80 L439 120 L452 157 L417 155 L339 170 L269 183 L208 184 L178 202 Z",
+        "M627 40 C654 20 692 21 716 57 L742 130 L773 221 L824 302 L820 350 L799 369 L751 330 L727 265 L690 188 L663 156 Z"
+      ]
+    },
+    {
+      "material": 9,
+      "paths": [
+        "M223 149 L280 151 L314 166 L345 171 L384 191 L410 245 L433 303 L418 350 L384 370 L331 283 L317 227 L270 219 L222 199 Z",
+        "M797 330 L838 310 L856 370 L890 446 L930 487 L1009 513 L1032 547 L1004 575 L957 569 L915 542 L865 513 L838 462 L818 406 Z",
+        "M100 398 L188 385 L227 439 L237 515 L217 588 L164 656 L114 706 L56 713 L90 637 L122 563 L131 493 Z"
+      ]
+    },
+    {
+      "material": 4,
+      "paths": [
+        "M436 86 L458 100 L461 125 L446 142 L437 121 Z",
+        "M466 105 L502 105 L538 106 L557 92 L584 105 L624 77 L646 101 L655 141 L632 151 L620 111 L583 128 L566 165 L543 218 L512 244 L502 190 L505 142 L473 135 Z",
+        "M633 52 L660 34 L665 79 L682 122 L691 154 L675 173 L652 132 L646 87 Z",
+        "M308 178 L338 171 L374 185 L398 208 L389 229 L368 233 L342 212 L316 212 Z",
+        "M400 289 L425 292 L437 355 L418 411 L405 383 Z",
+        "M157 319 L183 333 L190 378 L212 401 L212 444 L189 461 L169 486 L156 536 L138 558 L125 535 L147 491 L150 449 L136 423 L124 410 L136 389 L150 370 Z",
+        "M861 464 L890 453 L914 487 L918 504 L874 521 L852 507 Z",
+        "M808 333 L832 325 L849 367 L861 403 L845 430 L833 412 L832 377 Z",
+        "M66 651 L119 637 L136 659 L106 692 L81 710 L51 713 Z"
+      ]
+    }
+  ],
+  "skinProfiles": [
+    {
+      "center": [
+        342,
+        123
+      ],
+      "radius": [
+        165,
+        52
+      ],
+      "rotationRadians": -0.3,
+      "strength": 0.36,
+      "bias": [
+        -0.06,
+        -0.1
+      ]
+    },
+    {
+      "center": [
+        687,
+        125
+      ],
+      "radius": [
+        57,
+        109
+      ],
+      "rotationRadians": -0.24,
+      "strength": 0.36,
+      "bias": [
+        0.08,
+        -0.08
+      ]
+    },
+    {
+      "center": [
+        761,
+        265
+      ],
+      "radius": [
+        42,
+        99
+      ],
+      "rotationRadians": -0.48,
+      "strength": 0.35,
+      "bias": [
+        0.08,
+        -0.04
+      ]
+    },
+    {
+      "center": [
+        528,
+        18
+      ],
+      "radius": [
+        42,
+        44
+      ],
+      "rotationRadians": -0.18,
+      "strength": 0.25,
+      "bias": [
+        -0.05,
+        0.02
+      ]
+    }
+  ],
+  "pearls": [
+    [
+      598,
+      35,
+      8
+    ],
+    [
+      596,
+      49,
+      8
+    ],
+    [
+      592,
+      63,
+      8
+    ],
+    [
+      587,
+      77,
+      8
+    ],
+    [
+      578,
+      91,
+      8
+    ],
+    [
+      481,
+      50,
+      7
+    ],
+    [
+      480,
+      65,
+      7
+    ],
+    [
+      480,
+      80,
+      7
+    ],
+    [
+      483,
+      94,
+      7
+    ]
+  ],
+  "bodyGems": [
+    {
+      "center": [
+        491,
+        118
+      ],
+      "radius": [
+        11,
+        12
+      ]
+    },
+    {
+      "center": [
+        570,
+        112
+      ],
+      "radius": [
+        11,
+        12
+      ]
+    }
+  ],
+  "rigidProfiles": {
+    "waist-mask": {
+      "defaultMaterial": 4,
+      "curvature": 0.26,
+      "gems": [
+        {
+          "center": [
+            52,
+            77
+          ],
+          "radius": [
+            13,
+            9
+          ]
+        },
+        {
+          "center": [
+            80,
+            67
+          ],
+          "radius": [
+            10,
+            8
+          ]
+        }
+      ]
+    },
+    "waist-medallion": {
+      "defaultMaterial": 4,
+      "curvature": 0.35,
+      "gems": []
+    },
+    "waist-jade": {
+      "defaultMaterial": 5,
+      "curvature": 0.62,
+      "gems": []
+    },
+    "wrist-jade": {
+      "defaultMaterial": 5,
+      "curvature": 0.62,
+      "gems": []
+    },
+    "gold-drop-left": {
+      "defaultMaterial": 4,
+      "curvature": 0.3,
+      "gems": []
+    },
+    "gold-drop-right": {
+      "defaultMaterial": 4,
+      "curvature": 0.3,
+      "gems": []
+    }
+  },
+  "materialAdditions": [
+    {
+      "id": 9,
+      "name": "leather",
+      "diffuseFloor": 0.45,
+      "diffuseStrength": 0.56,
+      "specular": 0.065,
+      "shininess": 30,
+      "shadowStrength": 0.25
+    }
+  ],
+  "ribbonNormal": {
+    "heightScale": 0.22,
+    "smoothingPixels": 2.5,
+    "bias": [
+      0.02,
+      -0.09
+    ]
+  },
+  "notes": [
+    "Artist calibrated 2.5D fields; native TIFF16 inverse maps for registered/breathing body and flexible cloth; actual toComp affine basis for rigid ornaments.",
+    "Static/material boundaries remain in this character package. No normal maps generated independently per animation frame.",
+    "Native three-background loops and final four-times browser relighting reviewed; sustained performance deferred by user.",
+    "Neck material correction only; native full-color v002 and UV/control exports unchanged.",
+    "Residual ear-side neck skin material edge corrected; all existing native color and UV exports remain unchanged.",
+    "Hair handoff coverage and continuous eye animation updated in full native color v004; inherited body/ribbon/rigid geometry unchanged, numeric maps reused."
+  ],
+  "motionInspection": "work/evidence/right-lock-only-v001/static-color-readback.json",
+  "directionInspection": "work/evidence/full-direction-v002-inspection.json"
+}

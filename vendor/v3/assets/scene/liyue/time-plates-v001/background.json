@@ -1,0 +1,20 @@
+{
+  "plates": [
+    "assets/scenes/liyue/time-plates-v001/dawn.png",
+    "assets/scenes/liyue/time-plates-v001/day.png",
+    "assets/scenes/liyue/time-plates-v001/dusk.png",
+    "assets/scenes/liyue/time-plates-v001/night.png"
+  ],
+  "keyframes": [
+    {"minutes":0,"weights":[0,0,0,1]},
+    {"minutes":300,"weights":[0,0,0,1]},
+    {"minutes":390,"weights":[1,0,0,0]},
+    {"minutes":450,"weights":[1,0,0,0]},
+    {"minutes":660,"weights":[0,1,0,0]},
+    {"minutes":960,"weights":[0,1,0,0]},
+    {"minutes":1080,"weights":[0,0,1,0]},
+    {"minutes":1140,"weights":[0,0,1,0]},
+    {"minutes":1230,"weights":[0,0,0,1]},
+    {"minutes":1440,"weights":[0,0,0,1]}
+  ]
+}

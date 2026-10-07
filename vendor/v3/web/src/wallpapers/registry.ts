@@ -1,0 +1,5 @@
+import {character} from '../characters/xiao/head';import {scene} from '../scenes/liyue/head';import type {WallpaperPackage} from '../content/package-contract';
+import {character as fullCharacter} from '../characters/xiao/full';import {scene as fullScene} from '../scenes/liyue/full';
+const wallpaper:WallpaperPackage={schemaVersion:1,id:'xiao-liyue-head',displayName:'头部联合小样',characterId:character.id,sceneId:scene.id,canvas:[1672,941],preview:[912,0,432,400],characterOrigin:[912,0],drawOrder:['scene','character'],scope:'P0–P3 已验收头部联合小样'};
+const fullWallpaper:WallpaperPackage={schemaVersion:1,id:'xiao-liyue-full',displayName:'璃月 · 全景',characterId:fullCharacter.id,sceneId:fullScene.id,canvas:[1672,941],preview:[0,0,1672,941],characterOrigin:[640,0],drawOrder:['scene','character'],scope:'魈的全身 AE 动作与璃月实时昼夜场景',presentation:{selectable:true,characterKey:'xiao',sceneName:'璃月 · 灯火',focus:[.7,.35],thumbnail:'assets/characters/xiao/portrait.png'}};
+export const registry=new Map([[wallpaper.id,{character,scene,wallpaper}],[fullWallpaper.id,{character:fullCharacter,scene:fullScene,wallpaper:fullWallpaper}]]);export const defaultWallpaperId=fullWallpaper.id;

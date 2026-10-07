@@ -1,0 +1,7 @@
+node_modules/
+.cache/
+/web/
+release/
+work/
+.local-install/
+*.log

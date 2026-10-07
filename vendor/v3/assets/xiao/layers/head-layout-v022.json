@@ -1,0 +1,1367 @@
+{
+  "schemaVersion": 1,
+  "status": "User accepted right lock range repair; requested 1.6x distal response on this lock only",
+  "source": "image/xiao/xiao-03-liyue-lanterns.png",
+  "sourceSha256": "581f6b862d0837d0e59d6408fe3932787b198b0728905bcc746a17b8a016446a",
+  "sourceSize": [
+    1672,
+    941
+  ],
+  "headCrop": [
+    912,
+    0,
+    432,
+    400
+  ],
+  "coordinates": "original image pixels for crop and roots; paths are local to the named crop",
+  "outputFolder": "assets/xiao/layers/head-probe-v011",
+  "baseGeneration": "assets/generation/head-static-underplate-v001",
+  "backgroundGeneration": "assets/generation/head-background-underplate-v001",
+  "structureChecks": {
+    "leftBendDegrees": [
+      -18,
+      0,
+      18
+    ],
+    "rightBendDegrees": [
+      -12,
+      0,
+      12
+    ],
+    "brightExposure": 2.3,
+    "faceCheckRectangleLocal": [
+      116,
+      140,
+      220,
+      236
+    ],
+    "rootCheckRectanglesLocal": [
+      [
+        99,
+        235,
+        111,
+        243
+      ],
+      [
+        239,
+        184,
+        251,
+        193
+      ]
+    ],
+    "bendDegreesByLayer": {
+      "side-left-long": [
+        -22,
+        22
+      ],
+      "side-right-long": [
+        -16,
+        16
+      ],
+      "front-bang": [
+        -12,
+        12
+      ],
+      "center-bang": [
+        -16,
+        16
+      ]
+    },
+    "fixedAnchorPointsLocal": [
+      [
+        105,
+        230
+      ],
+      [
+        246,
+        194
+      ],
+      [
+        112,
+        116
+      ]
+    ],
+    "coreFaceRectangleLocal": [
+      130,
+      144,
+      220,
+      235
+    ]
+  },
+  "originalRgbProtectionPaths": [],
+  "earAndJewelryProtectionPaths": [],
+  "originalRigidOverlays": [],
+  "repairs": [
+    {
+      "id": "side-left-underplate",
+      "crop": [
+        988,
+        188,
+        128,
+        144
+      ],
+      "maskConfig": "assets/xiao/layers/head-layout-v003.json",
+      "maskKeys": [
+        "originalRepairPath",
+        "looseHairRepairPath",
+        "lowerWispRepairPath"
+      ],
+      "padding": 3,
+      "generation": "assets/generation/side-left-clean-underplate-v003"
+    },
+    {
+      "id": "side-right-underplate",
+      "crop": [
+        1128,
+        150,
+        152,
+        230
+      ],
+      "generation": "assets/generation/side-right-clean-underplate-v001",
+      "paths": [
+        "M25 32 C47 32 59 49 64 68 C78 111 55 169 15 217 L0 229 L0 111 C19 98 32 71 29 46 Z"
+      ],
+      "padding": 3,
+      "alpha": "retain base-generation coverage; generated sky is not character alpha"
+    },
+    {
+      "id": "front-bang-underplate",
+      "crop": [
+        964,
+        82,
+        176,
+        160
+      ],
+      "generation": "assets/generation/front-bang-clean-underplate-v001",
+      "paths": [
+        "M46 10 C57 7 65 18 64 33 C63 55 69 82 57 113 L54 127 L32 150 L17 154 C31 132 28 109 34 87 C31 60 34 35 46 10 Z"
+      ],
+      "padding": 2,
+      "alpha": "retain authored base coverage; local hidden hair/temple only"
+    },
+    {
+      "id": "neck-left-beads-underplate",
+      "crop": [
+        1048,
+        240,
+        172,
+        136
+      ],
+      "generation": "assets/generation/neck-bead-underplate-v001",
+      "paths": [
+        "M42 30 C42 26.13400675 45.13400675 23 49 23 C52.86599325 23 56 26.13400675 56 30 C56 33.86599325 52.86599325 37 49 37 C45.13400675 37 42 33.86599325 42 30 Z",
+        "M37.5 37 C37.5 33.410149125000004 40.410149125000004 30.5 44 30.5 C47.589850874999996 30.5 50.5 33.410149125000004 50.5 37 C50.5 40.589850874999996 47.589850874999996 43.5 44 43.5 C40.410149125000004 43.5 37.5 40.589850874999996 37.5 37 Z",
+        "M32 45 C32 41.13400675 35.13400675 38 39 38 C42.86599325 38 46 41.13400675 46 45 C46 48.86599325 42.86599325 52 39 52 C35.13400675 52 32 48.86599325 32 45 Z",
+        "M29.2 53 C29.2 49.79674845 31.79674845 47.2 35 47.2 C38.20325155 47.2 40.8 49.79674845 40.8 53 C40.8 56.20325155 38.20325155 58.8 35 58.8 C31.79674845 58.8 29.2 56.20325155 29.2 53 Z",
+        "M26.6 62 C26.6 57.3608081 30.3608081 53.6 35 53.6 C39.6391919 53.6 43.4 57.3608081 43.4 62 C43.4 66.6391919 39.6391919 70.4 35 70.4 C30.3608081 70.4 26.6 66.6391919 26.6 62 Z",
+        "M29 77 C29 72.02943725 33.02943725 68 38 68 C42.97056275 68 47 72.02943725 47 77 C47 81.97056275 42.97056275 86 38 86 C33.02943725 86 29 81.97056275 29 77 Z",
+        "M35 89 C35 84.02943725 39.02943725 80 44 80 C48.97056275 80 53 84.02943725 53 89 C53 93.97056275 48.97056275 98 44 98 C39.02943725 98 35 93.97056275 35 89 Z",
+        "M47 28 L52 31 L43 45 L36 55 L37 64 L41 78 L47 90 L42 94 L34 79 L31 61 L33 51 L38 42 Z"
+      ],
+      "padding": 5,
+      "preserveOriginalJewelry": false,
+      "alpha": "retain base coverage; local cloth repair only"
+    },
+    {
+      "id": "center-bang-underplate",
+      "crop": [
+        1034,
+        78,
+        96,
+        128
+      ],
+      "generation": "assets/generation/center-bang-clean-underplate-v002",
+      "paths": [
+        "M10 8 C24 9 32 18 34 30 C41 54 45 63 41 76 C39 85 33 96 28 112 L25 113 C31 94 32 76 25 54 C22 37 15 20 10 8 Z"
+      ],
+      "padding": 3,
+      "alpha": "retain generated base coverage; locally painted hidden forehead"
+    },
+    {
+      "id": "brow-tip-clean-underplate",
+      "generation": "assets/generation/brow-tip-clean-underplate-v001",
+      "crop": [
+        1012,
+        146,
+        54,
+        61
+      ],
+      "nativeMask": [
+        [
+          120.5,
+          169.5
+        ],
+        [
+          125,
+          170
+        ],
+        [
+          132.5,
+          180
+        ],
+        [
+          139.5,
+          188
+        ],
+        [
+          139,
+          193
+        ],
+        [
+          135,
+          191
+        ],
+        [
+          126,
+          181
+        ],
+        [
+          121,
+          173
+        ]
+      ]
+    },
+    {
+      "id": "pointed-tip-and-upper-lid-skin",
+      "generation": "assets/generation/upper-lid-skin-backing-v001",
+      "crop": [
+        1000,
+        118,
+        154,
+        108
+      ],
+      "nativeMask": [
+        [
+          113,
+          172
+        ],
+        [
+          120,
+          170
+        ],
+        [
+          125,
+          171
+        ],
+        [
+          134,
+          177
+        ],
+        [
+          130,
+          180
+        ],
+        [
+          123,
+          178
+        ],
+        [
+          118,
+          178
+        ],
+        [
+          113,
+          177
+        ]
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "id": "side-left-long",
+      "order": 30,
+      "crop": [
+        988,
+        188,
+        128,
+        144
+      ],
+      "root": [
+        1017,
+        230
+      ],
+      "tip": [
+        1073,
+        307
+      ],
+      "allowedDisplacementPixels": 14,
+      "status": "same newly generated sprite; continuous native Bender replaces clipping two-stage Bend It",
+      "motion": {
+        "bodyDelaySeconds": 0,
+        "tipDelaySeconds": 0.28,
+        "tipSecondaryDelaySeconds": 0.18,
+        "tipBendStartOriginal": [
+          1034,
+          275
+        ],
+        "nativeDeformer": "CC Bender",
+        "amplitudeUnits": "CC Bender Amount",
+        "style": 1,
+        "adjustToDistance": false,
+        "bodyAmplitude": 9.1,
+        "bodySecondaryAmplitude": 1.7,
+        "tipAmplitude": 5.18,
+        "tipSecondaryAmplitude": 0.9
+      },
+      "generation": "assets/generation/side-left-clean-strand-v003",
+      "registeredOpaqueBoundsLocal": [
+        20,
+        28,
+        87,
+        121
+      ]
+    },
+    {
+      "id": "side-right-long",
+      "order": 20,
+      "crop": [
+        1128,
+        150,
+        152,
+        230
+      ],
+      "generation": "assets/generation/side-right-clean-strand-v001",
+      "registeredOpaqueBoundsLocal": [
+        0,
+        38,
+        72,
+        220
+      ],
+      "root": [
+        1158,
+        194
+      ],
+      "tip": [
+        1133,
+        367
+      ],
+      "allowedDisplacementPixels": 14,
+      "status": "generated-only donor; static extremes inspected; v005 calibrated motion review pending",
+      "motion": {
+        "bodyAmplitudeDegrees": 6.72,
+        "bodySecondaryAmplitudeDegrees": 1.1,
+        "bodyDelaySeconds": 0.14,
+        "tipAmplitudeDegrees": 4.76,
+        "tipSecondaryAmplitudeDegrees": 0.75,
+        "tipDelaySeconds": 0.42,
+        "tipSecondaryDelaySeconds": 0.27,
+        "tipBendStartOriginal": [
+          1156,
+          292
+        ],
+        "tipBendEndOriginal": [
+          1133,
+          428
+        ]
+      }
+    },
+    {
+      "id": "front-bang",
+      "order": 40,
+      "crop": [
+        964,
+        82,
+        176,
+        160
+      ],
+      "generation": "assets/generation/front-bang-clean-strand-v001",
+      "registeredOpaqueBoundsLocal": [
+        17,
+        4,
+        73,
+        154
+      ],
+      "root": [
+        1024,
+        116
+      ],
+      "tip": [
+        997,
+        226
+      ],
+      "allowedDisplacementPixels": 14,
+      "status": "generated-only donor; static extremes inspected; v005 calibrated motion review pending",
+      "motion": {
+        "bodyAmplitudeDegrees": 7.056,
+        "bodySecondaryAmplitudeDegrees": 0.81,
+        "bodyDelaySeconds": 0.06,
+        "tipAmplitudeDegrees": 7.056,
+        "tipSecondaryAmplitudeDegrees": 0.9,
+        "tipDelaySeconds": 0.24,
+        "tipSecondaryDelaySeconds": 0.18,
+        "tipBendStartOriginal": [
+          1024,
+          170
+        ],
+        "tipBendEndOriginal": [
+          1024,
+          238
+        ]
+      }
+    },
+    {
+      "id": "center-bang",
+      "order": 45,
+      "crop": [
+        1034,
+        78,
+        96,
+        128
+      ],
+      "generation": "assets/generation/center-bang-clean-strand-v001",
+      "registeredOpaqueBoundsLocal": [
+        7,
+        8,
+        44,
+        110
+      ],
+      "root": [
+        1054,
+        108
+      ],
+      "tip": [
+        1064,
+        188
+      ],
+      "allowedDisplacementPixels": 12,
+      "motion": {
+        "bodyAmplitudeDegrees": 8.64,
+        "bodySecondaryAmplitudeDegrees": 1.76,
+        "bodyDelaySeconds": 0.08,
+        "tipAmplitudeDegrees": 6.4,
+        "tipSecondaryAmplitudeDegrees": 1.36,
+        "tipDelaySeconds": 0.32,
+        "tipSecondaryDelaySeconds": 0.22,
+        "tipBendStartOriginal": [
+          1067,
+          155
+        ],
+        "tipBendEndOriginal": [
+          1067,
+          220
+        ]
+      },
+      "status": "Native delayed-bend axis extended to retain the full body-deformed pointed tip at both wind extremes"
+    }
+  ],
+  "eyes": {
+    "crop": [
+      1000,
+      130,
+      148,
+      114
+    ],
+    "closedGeneration": "assets/generation/eyes-natural-closed-v003",
+    "halfClosedGeneration": "assets/generation/eyes-halfclosed-v002",
+    "maskPaths": [
+      "M3 64 C18 57 40 55 56 61 L64 74 C53 88 34 95 13 91 L3 82 Z",
+      "M68 37 C83 25 101 19 119 20 L131 28 C120 40 103 48 82 48 L69 43 Z"
+    ],
+    "status": "Artist-generated closed-eye endpoint replaces rejected U-shaped lash. Intermediate native upper lid descends, no lower-lid transform.",
+    "mode": "native-upper-lid",
+    "sourceComp": "XIAO_UPPER_LIDS_NATURAL_EDITABLE",
+    "coverageExportFolder": "exports/head/motion-v013",
+    "coveragePass": "eyes-source",
+    "skinGeneration": "assets/generation/upper-lid-skin-backing-v002",
+    "skinCropLocal": [
+      88,
+      118,
+      154,
+      108
+    ],
+    "nativeLids": [
+      {
+        "id": "left",
+        "openCurve": [
+          [
+            109.5,
+            200.2
+          ],
+          [
+            111.5,
+            188.5
+          ],
+          [
+            132.2,
+            180.8
+          ],
+          [
+            143.1,
+            190.2
+          ]
+        ],
+        "closedCurve": [
+          [
+            109.5,
+            200.2
+          ],
+          [
+            121.5,
+            201
+          ],
+          [
+            135.3,
+            194
+          ],
+          [
+            143.1,
+            190.2
+          ]
+        ],
+        "openThickness": 2.7,
+        "closedThickness": 2.5,
+        "skinSampleLocal": [
+          121,
+          192.5,
+          13,
+          7
+        ],
+        "skinTargetLocal": [
+          106,
+          181,
+          41,
+          28
+        ],
+        "topPaddingPixels": 8.2,
+        "cornerErasePixels": 3.5,
+        "skinMaskFeatherPixels": 0.2,
+        "minimumTopPaddingPixels": 1.5,
+        "coverageClosedCurve": [
+          [
+            109.5,
+            200.2
+          ],
+          [
+            116.0,
+            207.0
+          ],
+          [
+            137.8,
+            203.2
+          ],
+          [
+            143.1,
+            190.2
+          ]
+        ]
+      },
+      {
+        "id": "right",
+        "openCurve": [
+          [
+            175.1,
+            167.6
+          ],
+          [
+            184.2,
+            152.0
+          ],
+          [
+            207.7,
+            143.0
+          ],
+          [
+            218.3,
+            150.5
+          ]
+        ],
+        "closedCurve": [
+          [
+            175.1,
+            167.6
+          ],
+          [
+            188.6,
+            167
+          ],
+          [
+            207,
+            158.5
+          ],
+          [
+            218.3,
+            150.5
+          ]
+        ],
+        "openThickness": 3.1,
+        "closedThickness": 3.2,
+        "skinSampleLocal": [
+          189,
+          158,
+          18,
+          7
+        ],
+        "skinTargetLocal": [
+          171,
+          142,
+          52,
+          36
+        ],
+        "topPaddingPixels": 9.4,
+        "cornerErasePixels": 4.1,
+        "skinMaskFeatherPixels": 0.2,
+        "minimumTopPaddingPixels": 1.5,
+        "coverageClosedCurve": [
+          [
+            175.1,
+            167.6
+          ],
+          [
+            188.2,
+            178.1
+          ],
+          [
+            212.9,
+            172.8
+          ],
+          [
+            218.3,
+            150.5
+          ]
+        ]
+      }
+    ],
+    "lashColorRgb": [
+      0.1059,
+      0.1059,
+      0.1176
+    ],
+    "skinMode": "registered-full-clean-eye-skin",
+    "naturalEndpoint": {
+      "generation": "assets/generation/eyes-natural-closed-v003",
+      "registeredCropLocal": [
+        88,
+        118,
+        154,
+        108
+      ],
+      "visibleFrames": [
+        169,
+        172
+      ],
+      "mode": "HOLD visibility of artwork at near-complete closure, no whole-eye opacity crossfade",
+      "maskPathsLocal": [
+        [
+          [
+            103,
+            197
+          ],
+          [
+            108,
+            186
+          ],
+          [
+            124,
+            181
+          ],
+          [
+            141,
+            183
+          ],
+          [
+            150,
+            192
+          ],
+          [
+            149,
+            201
+          ],
+          [
+            137,
+            210
+          ],
+          [
+            109,
+            211
+          ],
+          [
+            102,
+            205
+          ]
+        ],
+        [
+          [
+            170,
+            170
+          ],
+          [
+            175,
+            159
+          ],
+          [
+            189,
+            148
+          ],
+          [
+            206,
+            143
+          ],
+          [
+            219,
+            147
+          ],
+          [
+            225,
+            155
+          ],
+          [
+            223,
+            170
+          ],
+          [
+            210,
+            179
+          ],
+          [
+            184,
+            183
+          ],
+          [
+            170,
+            177
+          ]
+        ]
+      ],
+      "maskFeatherPixels": 0.55
+    }
+  },
+  "animation": {
+    "fps": 30,
+    "frameCount": 240,
+    "motionBlur": false,
+    "colourProjectBits": 8,
+    "dataProjectBits": 32,
+    "overscanBottomPixels": 4,
+    "breathing": {
+      "verticalAmplitudePixels": 0.65,
+      "phaseRadians": 0.4,
+      "cyclesPerLoop": 2
+    },
+    "harmonicPhaseRadians": 0.55,
+    "blinkFrames": [
+      {
+        "frame": 0,
+        "value": 0
+      },
+      {
+        "frame": 164,
+        "value": 0
+      },
+      {
+        "frame": 165,
+        "value": 0.3
+      },
+      {
+        "frame": 166,
+        "value": 0.8
+      },
+      {
+        "frame": 167,
+        "value": 1.4
+      },
+      {
+        "frame": 168,
+        "value": 1.82
+      },
+      {
+        "frame": 169,
+        "value": 1.98
+      },
+      {
+        "frame": 170,
+        "value": 2
+      },
+      {
+        "frame": 171,
+        "value": 2
+      },
+      {
+        "frame": 172,
+        "value": 1.84
+      },
+      {
+        "frame": 173,
+        "value": 1.44
+      },
+      {
+        "frame": 174,
+        "value": 0.96
+      },
+      {
+        "frame": 175,
+        "value": 0.5
+      },
+      {
+        "frame": 176,
+        "value": 0.14
+      },
+      {
+        "frame": 177,
+        "value": 0
+      },
+      {
+        "frame": 240,
+        "value": 0
+      }
+    ],
+    "neckBeadResponse": {
+      "rotationAmplitudeDegrees": 0.45,
+      "delaySeconds": 0.35,
+      "secondaryAmplitudeDegrees": 0.12
+    },
+    "blinkBlend": {
+      "mode": "native-upper-lid",
+      "durationSeconds": 0.43333333333333335,
+      "halfOpacityExpression": "0;",
+      "closedOpacityExpression": "100;",
+      "reference": "This project native editable skin masks and lash paths; fixed lower lids and pinned corners"
+    }
+  },
+  "scopeNotes": [
+    "P0 historical capability remains verified; this full-head asset version requires fresh P1/P2 visual review.",
+    "Every formal sprite RGB donor is a newly generated asset; original only reference/hash/comparison.",
+    "Static crown and lateral sweep; four independently delayed front/side locks; single generated pearl instanced seven times.",
+    "4px bottom overscan extends the generated edge, not original pixels.",
+    "Artwork identity and registration require visual comparison, not exact-original pixel equality."
+  ],
+  "movableRigidItems": [
+    {
+      "id": "neck-left-beads",
+      "order": 50,
+      "crop": [
+        1048,
+        240,
+        172,
+        136
+      ],
+      "maskPaths": [
+        "M42 30 C42 26.13400675 45.13400675 23 49 23 C52.86599325 23 56 26.13400675 56 30 C56 33.86599325 52.86599325 37 49 37 C45.13400675 37 42 33.86599325 42 30 Z",
+        "M37.5 37 C37.5 33.410149125000004 40.410149125000004 30.5 44 30.5 C47.589850874999996 30.5 50.5 33.410149125000004 50.5 37 C50.5 40.589850874999996 47.589850874999996 43.5 44 43.5 C40.410149125000004 43.5 37.5 40.589850874999996 37.5 37 Z",
+        "M32 45 C32 41.13400675 35.13400675 38 39 38 C42.86599325 38 46 41.13400675 46 45 C46 48.86599325 42.86599325 52 39 52 C35.13400675 52 32 48.86599325 32 45 Z",
+        "M29.2 53 C29.2 49.79674845 31.79674845 47.2 35 47.2 C38.20325155 47.2 40.8 49.79674845 40.8 53 C40.8 56.20325155 38.20325155 58.8 35 58.8 C31.79674845 58.8 29.2 56.20325155 29.2 53 Z",
+        "M26.6 62 C26.6 57.3608081 30.3608081 53.6 35 53.6 C39.6391919 53.6 43.4 57.3608081 43.4 62 C43.4 66.6391919 39.6391919 70.4 35 70.4 C30.3608081 70.4 26.6 66.6391919 26.6 62 Z",
+        "M29 77 C29 72.02943725 33.02943725 68 38 68 C42.97056275 68 47 72.02943725 47 77 C47 81.97056275 42.97056275 86 38 86 C33.02943725 86 29 81.97056275 29 77 Z",
+        "M35 89 C35 84.02943725 39.02943725 80 44 80 C48.97056275 80 53 84.02943725 53 89 C53 93.97056275 48.97056275 98 44 98 C39.02943725 98 35 93.97056275 35 89 Z",
+        "M47 28 L52 31 L43 45 L36 55 L37 64 L41 78 L47 90 L42 94 L34 79 L31 61 L33 51 L38 42 Z"
+      ],
+      "root": [
+        1097,
+        270
+      ],
+      "tip": [
+        1092,
+        329
+      ],
+      "centersOriginal": [
+        [
+          1097,
+          270,
+          7
+        ],
+        [
+          1092,
+          277,
+          6.5
+        ],
+        [
+          1087,
+          285,
+          7
+        ],
+        [
+          1083,
+          293,
+          5.8
+        ],
+        [
+          1083,
+          302,
+          8.4
+        ],
+        [
+          1086,
+          317,
+          9
+        ],
+        [
+          1092,
+          329,
+          9
+        ]
+      ],
+      "status": "seven registered newly generated pearl instances; no original RGB donor",
+      "generation": "assets/generation/neck-single-pearl-v001",
+      "assembly": "generated-pearl-instances",
+      "cordRgba": [
+        30,
+        25,
+        40,
+        255
+      ],
+      "cordWidthPixels": 1
+    }
+  ],
+  "aeProject": "ae/xiao-head/xiao-head-v017.aep",
+  "motionExportFolder": "exports/head/motion-v017",
+  "dataProject": "ae/xiao-head/xiao-head-data-v017.aep",
+  "dataExportFolder": "exports/head/data-v007",
+  "generatedOnly": true,
+  "fixedGeneratedOverlays": [
+    {
+      "id": "right-ear-and-pearl-occluders",
+      "generation": "assets/generation/head-static-underplate-v001",
+      "crop": [
+        912,
+        0,
+        432,
+        400
+      ],
+      "paths": [
+        "M283 249 C283 244.02943725 287.02943725 240 292 240 C296.97056275 240 301 244.02943725 301 249 C301 253.97056275 296.97056275 258 292 258 C287.02943725 258 283 253.97056275 283 249 Z",
+        "M283 261 C283 256.02943725 287.02943725 252 292 252 C296.97056275 252 301 256.02943725 301 261 C301 265.97056275 296.97056275 270 292 270 C287.02943725 270 283 265.97056275 283 261 Z",
+        "M280 275 C280 269.4771525 284.4771525 265 290 265 C295.5228475 265 300 269.4771525 300 275 C300 280.5228475 295.5228475 285 290 285 C284.4771525 285 280 280.5228475 280 275 Z",
+        "M277 289 C277 283.4771525 281.4771525 279 287 279 C292.5228475 279 297 283.4771525 297 289 C297 294.5228475 292.5228475 299 287 299 C281.4771525 299 277 294.5228475 277 289 Z",
+        "M270 305 C270 298.92486775 274.92486775 294 281 294 C287.07513225 294 292 298.92486775 292 305 C292 311.07513225 287.07513225 316 281 316 C274.92486775 316 270 311.07513225 270 305 Z",
+        "M261 322 C261 315.92486775 265.92486775 311 272 311 C278.07513225 311 283 315.92486775 283 322 C283 328.07513225 278.07513225 333 272 333 C265.92486775 333 261 328.07513225 261 322 Z",
+        "M239 177 L251 175 L255 195 L256 211 L252 225 L242 223 L240 200 Z",
+        "M288 243 L296 243 L295 271 L292 292 L277 327 L266 327 L280 291 L287 272 Z"
+      ],
+      "order": 48,
+      "source": "newly generated artwork, not original illustration",
+      "purpose": "right earring and fixed pearl chain remain in front of moving neck-side hair"
+    }
+  ],
+  "rootAttachmentQa": "assets/xiao/layers/root-attachment-qa-v001.json",
+  "motionFolderOverrides": {
+    "side-left-long": "exports/head/motion-v007",
+    "side-right-long": "exports/head/motion-v017",
+    "front-bang": "exports/head/motion-v012",
+    "center-bang": "exports/head/motion-v014",
+    "neck-left-beads": "exports/head/motion-v007"
+  },
+  "dataFolderOverrides": {
+    "front-bang": "exports/head/data-v012",
+    "center-bang": "exports/head/data-v014",
+    "side-right-long": "exports/head/data-v017"
+  },
+  "browTipRepair": {
+    "generation": "assets/generation/brow-tip-clean-underplate-v001",
+    "cropLocal": [
+      100,
+      146,
+      54,
+      61
+    ],
+    "backingMaskLocal": [
+      [
+        120.5,
+        169.5
+      ],
+      [
+        125,
+        170
+      ],
+      [
+        132.5,
+        180
+      ],
+      [
+        139.5,
+        188
+      ],
+      [
+        139,
+        193
+      ],
+      [
+        135,
+        191
+      ],
+      [
+        126,
+        181
+      ],
+      [
+        121,
+        173
+      ]
+    ],
+    "maskFeatherPixels": 0.65,
+    "tip": {
+      "vertices": [
+        [
+          116.5,
+          165
+        ],
+        [
+          120.1,
+          170
+        ],
+        [
+          126,
+          179
+        ],
+        [
+          134.5,
+          187.4
+        ],
+        [
+          139.2,
+          192.5
+        ],
+        [
+          134,
+          190
+        ],
+        [
+          123.5,
+          180
+        ],
+        [
+          119.3,
+          172
+        ],
+        [
+          115.3,
+          167
+        ]
+      ],
+      "inTangents": [
+        [
+          0,
+          0
+        ],
+        [
+          -1,
+          -2
+        ],
+        [
+          -2,
+          -3
+        ],
+        [
+          -3,
+          -3
+        ],
+        [
+          -1,
+          -1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "outTangents": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          -1,
+          -0.5
+        ],
+        [
+          -3,
+          -3
+        ],
+        [
+          -2,
+          -3
+        ],
+        [
+          -1,
+          -2
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "fillRgb": [
+        0.1803921568627451,
+        0.20392156862745098,
+        0.23529411764705882
+      ],
+      "sourceComp": "FRONT_BANG_CONNECTED_SOURCE",
+      "editable": "native AE Bezier shape inside the original front-bang source, before the unchanged two CC Bend It effects"
+    },
+    "baseComp": "HEAD_STATIC_BROW_REPAIR",
+    "provenance": "Skin repair RGB is newly imagegen-produced in this project. Tip is an editable native vector following this project sprite; original source RGB donor remains zero."
+  },
+  "pointedBangRepair": {
+    "generation": "assets/generation/upper-lid-skin-backing-v001",
+    "baseComp": "HEAD_STATIC_POINTED_TIP_REPAIR",
+    "sourceComp": "FRONT_BANG_POINTED_TIP_SOURCE",
+    "skinSampleLocal": [
+      126,
+      164,
+      10,
+      6
+    ],
+    "skinTargetLocal": [
+      112,
+      168,
+      25,
+      14
+    ],
+    "backingMaskLocal": [
+      [
+        113,
+        172
+      ],
+      [
+        120,
+        170
+      ],
+      [
+        125,
+        171
+      ],
+      [
+        134,
+        177
+      ],
+      [
+        130,
+        180
+      ],
+      [
+        123,
+        178
+      ],
+      [
+        118,
+        178
+      ],
+      [
+        113,
+        177
+      ]
+    ],
+    "browBackingMaskLocal": [
+      [
+        119,
+        175.5
+      ],
+      [
+        128,
+        175.5
+      ],
+      [
+        133,
+        179
+      ],
+      [
+        134,
+        184
+      ],
+      [
+        127,
+        187
+      ],
+      [
+        122,
+        184
+      ],
+      [
+        120,
+        180
+      ]
+    ],
+    "tip": {
+      "vertices": [
+        [
+          115.1,
+          162.5
+        ],
+        [
+          119.5,
+          168
+        ],
+        [
+          124.4,
+          171.1
+        ],
+        [
+          133.2,
+          177.4
+        ],
+        [
+          126.2,
+          176.4
+        ],
+        [
+          120.4,
+          173.1
+        ],
+        [
+          115.1,
+          168
+        ]
+      ],
+      "inTangents": [
+        [
+          0,
+          0
+        ],
+        [
+          -1.4,
+          -2
+        ],
+        [
+          -1.8,
+          -0.9
+        ],
+        [
+          -1.1,
+          -1.0
+        ],
+        [
+          2,
+          0.6
+        ],
+        [
+          1.8,
+          1.1
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "outTangents": [
+        [
+          1,
+          1.8
+        ],
+        [
+          1.6,
+          1.8
+        ],
+        [
+          2.8,
+          1.4
+        ],
+        [
+          -1.8,
+          -0.1
+        ],
+        [
+          -2,
+          -0.7
+        ],
+        [
+          -1.5,
+          -1.8
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "fillRgb": [
+        0.1803921568627451,
+        0.20392156862745098,
+        0.23529411764705882
+      ],
+      "enabled": false
+    },
+    "note": "The user circled this small pointed spike above the left brow. It is part of front-bang and must share its deformer; the actual eyebrow remains on the stationary face."
+  },
+  "frontBangAxisRepair": {
+    "startLocal": [
+      112,
+      170
+    ],
+    "endLocal": [
+      112,
+      238
+    ],
+    "sourceComp": "FRONT_BANG_POINTED_TIP_SOURCE",
+    "beforeStartLocal": [
+      102,
+      177
+    ],
+    "beforeEndLocal": [
+      85,
+      226
+    ],
+    "reason": "Long tip exists in editable source, but the old diagonal second CC Bend It axis crops it in actual native passes. New vertical axis covers the full branch; bend expressions, amplitudes, root and source artwork unchanged.",
+    "evidence": "work/evidence/bang-length-v004/axis-comparison.png"
+  },
+  "singleTipRepair": {
+    "sourceComp": "FRONT_BANG_POINTED_TIP_SOURCE",
+    "disabledDuplicateLayer": "User identified pointed bang tip (same hair binding)",
+    "retainedContinuationComp": "FRONT_BANG_CONNECTED_SOURCE",
+    "retainedContinuationLayer": "Editable tapered eyebrow bang continuation",
+    "note": "Keep the long editable continuation only. The extra v010 short spur made the restored tip fork. The v011 axis and all bend expressions remain."
+  },
+  "centerBangAxisRepair": {
+    "id": "center-bang",
+    "effect": "Delayed tip bend",
+    "startLocal": [
+      155,
+      155
+    ],
+    "endLocal": [
+      155,
+      220
+    ],
+    "beforeEndLocal": [
+      152,
+      188
+    ],
+    "reason": "Second native CC Bend It range clipped the already-body-bent tip at the negative wind extreme; no stationary hair remnant in isolated underplate. Extend axis while retaining source, root, amplitudes, delays and layer order.",
+    "evidence": "work/evidence/center-bang-occlusion-v007/axis-comparison.png"
+  },
+  "rightLockAxisRepair": {
+    "id": "side-right-long",
+    "effect": "Delayed tip bend",
+    "startLocal": [
+      244,
+      292
+    ],
+    "beforeEndLocal": [
+      221,
+      367
+    ],
+    "endLocal": [
+      221,
+      428
+    ],
+    "reason": "Delayed bend range clipped the already deformed tip. Extend its range only, following the accepted center bang repair. No motion amplification, body lean, underplate or necklace changes.",
+    "evidence": "work/evidence/right-lock-only-v001/right-axis-comparison.png"
+  },
+  "rightLockTipAmplitude": {
+    "id": "side-right-long",
+    "effect": "Delayed tip bend",
+    "scale": 1.6,
+    "rootedBodyScale": 1.0,
+    "reason": "User confirmed no clipping, requested larger right lock motion to show more of the pearls. Increase distal response only; all other animation stays at the checkpoint."
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "sourceOriginalRgbDonor": false,
+  "maskChannels": {
+    "R": "sky",
+    "G": "shore-safe water",
+    "B": "window/fixed paper lantern emission",
+    "A": "contact shadow caster"
+  },
+  "normalChannels": {
+    "RGB": "linear artist normal, 128 + N*127",
+    "A": "water-only harbor reflection"
+  },
+  "skyPixels": 380865,
+  "waterPixels": 82382,
+  "emissionPixels": 13645,
+  "emissionOnSkyPixels": 0,
+  "waterSkyOverlap": 0,
+  "files": [
+    {
+      "file": "environment-base-rgb.png",
+      "sha256": "65cabb0be0c3fc72810e35d71f92c4d1a6a2cd87f1adf1a347ddda8fec2644d1",
+      "bytes": 2893440,
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "file": "environment-data-rgba.png",
+      "sha256": "1aa65ceb0a4c4c46d4bb499a2d3486a66e15d935b24e4147b1a7227bf62aabbe",
+      "bytes": 51059,
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "file": "environment-normal-reflection-rgba.png",
+      "sha256": "3a86f8789775553e4b7b545c8812c2c3642000662558531033ec7fd3eb558d57",
+      "bytes": 565357,
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "file": "cloud-bank-rgba.png",
+      "sha256": "a446192ce23dbbe8f6f4143ee7224db8e5c01fe86750755adcd8638bae4b81a9",
+      "bytes": 779991,
+      "size": [
+        2162,
+        814
+      ]
+    },
+    {
+      "file": "floating-lantern-rgba.png",
+      "sha256": "f61ca09b9b2e57f8e5f690a390f5761f60c58e2a1d3a2406ea7f409d6c044f74",
+      "bytes": 23683,
+      "size": [
+        192,
+        224
+      ]
+    }
+  ]
+}
