@@ -12,5 +12,8 @@ if(isWallpaper){
  api.reconnect=()=>ipcRenderer.invoke('wallpaper:reconnect');
  api.openLogs=()=>ipcRenderer.invoke('app:logs');
  api.quit=()=>ipcRenderer.invoke('app:quit');
+ api.checkUpdate=()=>ipcRenderer.invoke('update:check');
+ api.downloadUpdate=()=>ipcRenderer.invoke('update:download');
+ api.installUpdate=()=>ipcRenderer.invoke('update:install');
 }
 contextBridge.exposeInMainWorld('genshinDesktop',api);

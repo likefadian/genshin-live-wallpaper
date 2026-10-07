@@ -8,6 +8,7 @@ function display(snapshot){
  $('version').textContent='v'+state.version+' · 本地版';$('character-name').textContent=content.name;$('scene-name').textContent=content.sceneName;
  const portraitUrl=state.serverUrl+'/'+content.thumbnail;if($('portrait').src!==portraitUrl)$('portrait').src=portraitUrl;
  $('content-version').textContent=content.name+' / '+content.sceneName+' · '+state.catalog.contentVersion;
+ displayUpdate(state.update);
  if(!presetsReady){
   for(const preset of content.controls.presets){const button=document.createElement('button');button.textContent=preset.name;button.dataset.minutes=preset.minutes;button.onclick=()=>queue({timeMode:'manual',minutes:preset.minutes},true);$('presets').append(button);}
   presetsReady=true;
@@ -28,6 +29,25 @@ function display(snapshot){
  if(Object.keys(pending).length===0)$('save-status').textContent=state.appliedRevision===state.revision?'设置已保存 · 已应用到桌面':'设置已保存 · 等待壁纸同步';
 }
 function labels(s){$('exposure-label').textContent=(s.exposure>0?'+':'')+s.exposure.toFixed(2)+' EV';$('light-label').textContent=Math.round(s.light*100)+'%';$('shadow-label').textContent=Math.round(s.shadow*100)+'%';$('speed-label').textContent=s.speed.toFixed(1)+'×';}
+function displayUpdate(update){
+ if(!update)return;
+ const status=update.status,busy=['checking','downloading','installing'].includes(status);
+ const messages={idle:'尚未检查更新',disabled:'请在安装版中检查更新',checking:'正在检查更新…','no-release':'更新源尚无正式发布版本',current:'当前已是最新版本',available:'发现新版本 v'+update.availableVersion,downloading:'正在下载新版本…',downloaded:'下载完成，已通过校验',installing:'正在重启并安装…',error:'更新未完成，可重试'};
+ $('update-state').textContent=messages[status]||'尚未检查更新';
+ $('update-hint').textContent=status==='no-release'?'正式版本发布后，可在这里检查并下载安装。':status==='downloaded'?'安装期间壁纸会暂时关闭，设置会保留。':status==='error'?'壁纸继续运行，请检查网络后重试。':'当前 v'+update.currentVersion+' · 由你确认下载和安装';
+ $('update-source').textContent=update.source.name+' · '+update.source.url;
+ $('update-notes').hidden=!update.availableVersion;
+ $('update-version').textContent='v'+update.availableVersion+' 更新说明';
+ $('update-release-notes').textContent=update.releaseNotes||'此版本未提供更新说明。';
+ $('update-check').disabled=busy||status==='disabled'||status==='downloaded';
+ $('update-download').hidden=!(status==='available'||status==='downloading'||(status==='error'&&update.retry==='download'));
+ $('update-download').disabled=busy;$('update-download').textContent=status==='error'?'重新下载':'下载新版本';
+ $('update-install').hidden=!['downloaded','installing'].includes(status);$('update-install').disabled=busy;
+ $('update-progress-area').hidden=!update.progress;
+ if(update.progress){$('update-progress').value=update.progress.percent;$('update-progress-label').textContent=update.progress.percent.toFixed(1)+'% · '+(update.progress.transferred/1048576).toFixed(1)+' / '+(update.progress.total/1048576).toFixed(1)+' MiB';}
+ $('update-error').hidden=!update.error;if(update.error)$('update-error').textContent=update.error;
+}
+function updateAction(method){$('update-error').hidden=true;api[method]().then(display).catch(error=>{$('update-error').textContent=String(error.message||error);$('update-error').hidden=false;});}
 function queue(patch,immediate=false){
  Object.assign(pending,patch);labels({...state.settings,...pending});$('save-status').textContent='正在保存…';clearTimeout(timer);
  if(immediate)flush();else timer=setTimeout(flush,100);
@@ -47,6 +67,7 @@ $('openAtLogin').onchange=()=>api.setOpenAtLogin($('openAtLogin').checked).then(
 $('reset').onclick=()=>{clearTimeout(timer);pending={};chain=chain.then(()=>api.resetSettings()).then(display).catch(fail);};
 $('reconnect').onclick=()=>api.reconnect().catch(fail);$('logs').onclick=()=>api.openLogs().catch(fail);
 $('quit').onclick=()=>{flush();chain.then(()=>api.quit()).catch(fail);};
+$('update-check').onclick=()=>updateAction('checkUpdate');$('update-download').onclick=()=>updateAction('downloadUpdate');$('update-install').onclick=()=>{flush();chain.then(()=>updateAction('installUpdate'));};
 for(const tab of document.querySelectorAll('[data-tab]'))tab.onclick=()=>{
  for(const item of document.querySelectorAll('[data-tab]')){const active=item===tab;item.classList.toggle('active',active);item.setAttribute('aria-selected',String(active));$('panel-'+item.dataset.tab).hidden=!active;}
  [$('section-title').textContent,$('section-intro').textContent]=titles[tab.dataset.tab];

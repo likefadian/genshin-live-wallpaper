@@ -1,10 +1,12 @@
 const {app,BrowserWindow,Menu,Tray,nativeImage,screen,ipcMain,shell,dialog}=require('electron');
-const {existsSync,mkdirSync,readFileSync}=require('node:fs');
+const {existsSync,mkdirSync,readFileSync,writeFileSync}=require('node:fs');
 const {join,resolve}=require('node:path');
 const {SettingsStore,DEFAULT_SETTINGS}=require('./settings.cjs');
 const {startAssetServer}=require('./asset-server.cjs');
 const {attachDesktop,checkDesktop,nativeHandle}=require('./desktop-host.cjs');
 const {createLog}=require('./runtime-log.cjs');
+const {createUpdateController}=require('./update-controller.cjs');
+const {resolveUpdateSource}=require('./update-source.cjs');
 
 app.setName('GenshinEXE');app.setAppUserModelId('com.genshinexe.wallpaper');
 const userData=process.env.GENSHINEXE_PROFILE?resolve(process.env.GENSHINEXE_PROFILE):join(app.getPath('appData'),'GenshinEXE');
@@ -14,10 +16,10 @@ const log=createLog(userData);
 const web=app.isPackaged?join(process.resourcesPath,'wallpaper'):resolve(__dirname,'..','web');
 const hostScript=app.isPackaged?join(process.resourcesPath,'wallpaper-host.ps1'):join(__dirname,'wallpaper-host.ps1');
 const icon=join(__dirname,'assets','genshinexe.ico');
-let store,catalog,server,wallpaperWindow,settingsWindow,tray,quitting=false,attachment,attaching,attachTarget,monitor,boundsTimer;
+let store,catalog,server,wallpaperWindow,settingsWindow,tray,updateController,installConfirmation=false,quitting=false,attachment,attaching,attachTarget,monitor,boundsTimer;
 let desktopStatus='connecting',wallpaperStatus='loading',desktopError='',renderError='',telemetry=null,appliedRevision=-1,recoveries=0;
 function loginEnabled(){return app.isPackaged&&app.getLoginItemSettings({path:process.execPath,args:['--background']}).openAtLogin;}
-function snapshot(){return {...store.snapshot(),version:app.getVersion(),packaged:app.isPackaged,catalog,serverUrl:server?.url,desktopStatus,wallpaperStatus,desktopError,renderError,appliedRevision,telemetry,openAtLogin:loginEnabled(),updateStatus:'unconfigured'};}
+function snapshot(){const update=updateController?.snapshot();return {...store.snapshot(),version:app.getVersion(),packaged:app.isPackaged,catalog,serverUrl:server?.url,desktopStatus,wallpaperStatus,desktopError,renderError,appliedRevision,telemetry,openAtLogin:loginEnabled(),updateStatus:update?.status||'idle',update};}
 function broadcast(includeWallpaper=true){
  if(!store)return;
  const current=snapshot();
@@ -90,6 +92,17 @@ async function boot(){
  if(!existsSync(join(web,'index.html')))throw Error('缺少本地壁纸资源，请先构建网页');
  store=new SettingsStore(join(userData,'settings.json'));catalog=JSON.parse(readFileSync(join(web,'catalog.json'),'utf8'));
  server=await startAssetServer(web);log.write('startup',{version:app.getVersion(),electron:process.versions.electron,packaged:app.isPackaged,web,displays:screen.getAllDisplays().map(d=>({id:d.id,bounds:d.bounds,scaleFactor:d.scaleFactor}))});
+ const source=resolveUpdateSource(),{autoUpdater,NsisUpdater}=require('electron-updater');
+ const updater=source.kind==='local-verification'?new NsisUpdater(source.feed):autoUpdater;
+ if(source.kind==='local-verification'){
+  const verificationConfig=join(userData,'verification-update.yml');
+  writeFileSync(verificationConfig,JSON.stringify(source.feed,null,2)+'\n');
+  // electron-updater's test-only config setter also scopes its download cache.
+  updater.updateConfigPath=verificationConfig;
+ }
+ updater.logger={info:message=>log.write('updater-info',{message:String(message)}),warn:message=>log.write('updater-warning',{message:String(message)}),error:message=>log.write('updater-error',{message:String(message)})};
+ updateController=createUpdateController({updater,currentVersion:app.getVersion(),packaged:app.isPackaged,source,onChange:()=>broadcast(false),log:log.write});
+ log.write('update-source',{kind:source.kind,url:source.url});
  createWallpaper();createTray();if(!process.argv.includes('--background'))openSettings();
  const changeBounds=()=>{clearTimeout(boundsTimer);boundsTimer=setTimeout(()=>{if(!quitting){log.write('display-change');replaceWallpaper();}},500);};
  for(const event of ['display-metrics-changed','display-added','display-removed'])screen.on(event,changeBounds);
@@ -113,6 +126,22 @@ ipcMain.handle('app:login',(event,enabled)=>{assertSender(event,true);if(!app.is
 ipcMain.handle('app:logs',event=>{assertSender(event,true);return shell.openPath(log.directory);});
 ipcMain.handle('wallpaper:reconnect',event=>{assertSender(event,true);recoveries=0;replaceWallpaper();});
 ipcMain.handle('app:quit',event=>{assertSender(event,true);setImmediate(quit);});
+ipcMain.handle('update:check',async event=>{assertSender(event,true);await updateController.check();return broadcast(false);});
+ipcMain.handle('update:download',async event=>{assertSender(event,true);await updateController.download();return broadcast(false);});
+ipcMain.handle('update:install',async event=>{
+ assertSender(event,true);
+ if(installConfirmation)return snapshot();
+ if(updateController.snapshot().status!=='downloaded')throw Error('请先下载并校验新版本');
+ installConfirmation=true;
+ try{
+  const result=await dialog.showMessageBox(settingsWindow,{type:'question',title:'安装软件更新',message:`重启并安装 v${updateController.snapshot().availableVersion}？`,detail:'安装期间壁纸会暂时关闭，完成后重新启动。你的壁纸设置会保留。',buttons:['重启并安装','稍后'],defaultId:1,cancelId:1,noLink:true});
+  if(result.response===0&&!quitting){
+   if(updateController.snapshot().source.kind==='local-verification')delete process.env.GENSHINEXE_VERIFY_UPDATE_URL;
+   updateController.install();
+  }
+  return snapshot();
+ }finally{installConfirmation=false;}
+});
 ipcMain.on('wallpaper:applied',(event,payload)=>{
  if(event.sender!==wallpaperWindow?.webContents||event.senderFrame!==event.sender.mainFrame||payload?.revision!==store.revision)return;
  telemetry=payload;appliedRevision=payload.revision;wallpaperStatus=payload.loadError?'error':store.settings.motion?'running':'paused';renderError=String(payload.loadError||'');broadcast(false);
@@ -126,6 +155,7 @@ if(!app.requestSingleInstanceLock()){app.quit();}else{
  app.on('window-all-closed',()=>{});
  app.on('before-quit',()=>{
   if(quitting)return;quitting=true;clearInterval(monitor);clearTimeout(boundsTimer);
+  updateController?.dispose();
   if(store&&store.settings.timeMode==='cycle'&&telemetry&&Number.isFinite(telemetry.lightingMinutes)){
    try{store.update({minutes:Math.min(1439,telemetry.lightingMinutes)});}catch(error){log.write('settings-save-error',{message:error.message});}
   }

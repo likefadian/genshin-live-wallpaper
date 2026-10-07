@@ -1,6 +1,20 @@
 # 本地必要验证 · 2026-10-07
 
-仅验证桌面软件与本次网页优化接入。未重跑 V3 角色视觉矩阵、原生导出或长期性能。
+仅验证桌面软件、已接受的网页优化接入，以及本轮手动更新链路。未重跑 V3 角色视觉矩阵、原生导出或长期性能。
+
+## 0.1.3 更新接入 · 真实本地升级通过
+
+- `npm.cmd test`：8/8；覆盖原设置与资源行为，加上更新安装资格、真实空Release错误和网络错误的区分、SHA-512失败重试、并发限制以及专用来源/缓存隔离。新控制器与缓存隔离断言均先运行失败，再实现并验证通过。
+- 正式0.1.3和旧候选0.1.3-verify.0本地NSIS构建 exit0。正式清单中的安装器大小739229982字节，与实际SHA-512一致；配套blockmap769357字节。内置GitHub配置、实际ASAR版本和验收配置加载分支已读取核对；electron-updater的MIT许可证保留在ASAR中。
+- 专用旧候选已静默安装，安装器 exit0。原用户设置已备份，SHA-256为 `df3f21938feaf19156876936abafec4eb051ebf70ae427f6e092ac7aa91c1e20`。验收profile预置非默认曝光0.18、固定06:30和隐藏时钟，设置SHA-256为 `02eb877443cab047d5c42509ef7be947e00533d0a9fa9ff8c8ab19db2ba7caf6`。
+- 实际软件启动被自动批准机制拒绝，只返回 `blocked by policy`，包含去除调试参数的尝试。未绕过限制；用户手动执行专用启动文件并前置软件后，使用computer-use完成实际Windows按钮和NSIS安装确认。验收与正常实例均无调试端口。
+- 旧安装版实际为 `0.1.3-verify.0 / packaged=true / attached`，通过UI检查到0.1.3并展示更新说明。首个损坏文件被真正的electron-updater SHA-512拒绝：`ERR_CHECKSUM_MISMATCH`、状态error、retry=download；UI无安装按钮，动态桌面未停止。记录在 `work/github-updates-v001/download-rejected.json`。
+- 切换本机服务到正确文件，实际点击“重新下载”到100%，739229982字节完整安装器校验成功。再次独立核对下载缓存中的文件SHA-512与正式清单一致。专用缓存目录为 `genshinexe-verify-9b5108c50e6ba756`，下载前后正式缓存中原installer.exe的SHA-256均为 `520401750a439c8cdd9e54bb9b781b0c55ddc159001f17256849f648618a275e`。该验收缺少专用缓存的旧installer.exe，更新器正常回退完整下载；没有验收远端差分或宣称其节省量。
+- UI在downloaded后才展示“重启并安装”；点击打开原生确认，确认后真实日志为 `Install on explicit quitAndInstall`、`--updated,/S,--force-run`。旧主进程32808退出，实际NSIS覆盖安装到0.1.3并自动启动新主进程12680；实际ASAR version=0.1.3。7个安装内更新源码/设置文件与工作目录一致。
+- 原用户设置SHA-256仍为 `df3f21938feaf19156876936abafec4eb051ebf70ae427f6e092ac7aa91c1e20`。专用验收profile的非默认设置SHA-256仍为 `02eb877443cab047d5c42509ef7be947e00533d0a9fa9ff8c8ab19db2ba7caf6`，由安装内新版SettingsStore读取后逐项匹配。NSIS的Shell启动回到正常profile，未继承验收源，实际读取原用户设置；没有把专用profile的新读取误报成自动重启实例。
+- 自动重启实例源为真实GitHub仓库，启动参数仅 `--updated`，没有验收或调试参数。实际资源根为安装目录 `resources/wallpaper`，RTX4060、tiles、1672×941，桌面挂载成功，动画秒62.64→268.58、loadError为空、documentHidden=false。
+- 一次独立代码审查及缓存修复复核已完成，无未解决发现。源码ZIP的579个条目逐一与工作目录SHA-256匹配，排除依赖、缓存、输出和用户数据。GitHub远端附件下载与升级尚未验收；正常退出不自动安装由显式false配置和核心检查验证，未额外重复真实安装。
+- 最终正常实例通过UI点击真实GitHub源“检查更新”（被游戏遮挡的窗口由用户手动前置和点击），实际返回 `ERR_XML_MISSED_ELEMENT / No published versions on GitHub` 并显示 `no-release`，checkedAt=`2026-10-07T12:42:46.992Z`，错误文本为空；没有显示“已是最新版”。实际结果保存在 `work/github-updates-v001/github-real-source.json`。
 
 ## 0.1.2 优化接入 · 已完成
 
@@ -34,4 +48,4 @@
 
 ## 未验收范围
 
-多显示器、不同机器、开机重登、主动重启 Explorer 恢复、1.5/2倍长期性能；独立内容包安装和真实远程更新。本地签名状态 NotSigned，尚无发布源。
+多显示器、不同机器、开机重登、主动重启 Explorer 恢复、1.5/2倍长期性能；独立内容包安装和真实GitHub远端升级。本地EXE未签名，已配置发布源但尚未公开发布。
