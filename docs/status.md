@@ -1,8 +1,20 @@
 # GenshinEXE 状态 · 2026-10-07
 
-本地安装阶段已完成，版本 **0.1.0 / Windows x64 / 主显示器**。最终远程更新目标尚未完成。
+当前本地版本 **0.1.2 / Windows x64 / 主显示器**，已接入用户确认的网页优化并覆盖安装。当前正常实例使用 RTX 4060，保留原用户设置；没有配置或发布远程更新。
 
-## 交付与运行
+## 0.1.2 网页优化接入
+
+- 来源：V3 已接受提交 `f407ea7a02dfe998ef563fcb820258c472506e9f`，包含 `aba5612` 的共用渲染优化。新增来源清单 `content/engine-update.json`，首次导入记录 `content/source.json` 保留。
+- 内容：原魈 full-v016 的240帧、四通道图集及参数保留；追加240个无损独立分块PNG及manifest，默认采用 `tiles` 传输。没有重做角色，没有改变桌面宿主、显卡选择或设置接口。核显候选仍在 `candidate/gpu-low-power-v001`，没有混入本轮。
+- 像素预算：单帧解码/上传原始RGBA由2064×1882（约14.82 MiB）降为1024×1536（6 MiB）；实际8帧缓存的像素估算为48 MiB，不代表进程总内存或功耗。原完整图集继续保留，安装包因追加分块资源变大。
+- 安装版：`release/web-engine-v001/GenshinEXE-Setup-0.1.2-x64.exe`；源码包：`release/GenshinEXE-Source-0.1.2.zip`。本轮大小、SHA-256和签名状态见 `release/web-engine-v001/delivery-checksums.json`。0.1.0与核显候选交付保留。
+- 验证：现有核心4/4、网页构建、NSIS构建及实际安装均通过。37个来源文件、241个安装内分块文件与240个安装内原始帧哈希通过。从 `C:/Windows/Temp` 启动，资源只取安装目录，`packaged=true`、`attached=true`、`frameTransport=tiles`。
+- 运行：ANGLE实际报告 NVIDIA GeForce RTX 4060 Laptop GPU，采样画质仍为1672×941；动画秒159.20→163.13，等待帧0、加载/渲染错误为空。原 `%APPDATA%/GenshinEXE/settings.json` 升级前后SHA-256相同。已查看实际壁纸和Windows设置窗口；最终只有一个软件实例，不开放调试端口。
+- 本轮现场记录：`work/web-engine-v001/verification-summary.json`、`installed-runtime.json` 和实际截图。仅做接入必要检查，未测长期功耗、风扇、其他机器或重新跑全帧视觉矩阵。
+
+以下保留0.1.0首次交付记录，便于追溯。
+
+## 0.1.0 交付与运行
 
 - 软件源码：本项目 electron/、scripts/、vendor/v3/、content/ 及根目录配置，可独立重建；附 release/GenshinEXE-Source-0.1.0.zip，包含正式资源，不含 node_modules、缓存、用户数据或 AE。
 - 安装 EXE：release/GenshinEXE-Setup-0.1.0-x64.exe；配套本地 blockmap，没有生成或上传线上更新清单。

@@ -1,8 +1,22 @@
 # 本地必要验证 · 2026-10-07
 
-仅验证此次桌面软件阶段。未重跑 V3 角色视觉矩阵、原生导出或长期性能。
+仅验证桌面软件与本次网页优化接入。未重跑 V3 角色视觉矩阵、原生导出或长期性能。
 
-## 已完成
+## 0.1.2 优化接入 · 已完成
+
+网页来源为已接受的 `f407ea7`（包含 `aba5612`），对应V3的 `web-performance-v001.md` 与 `web-frame-patches-v001.md`。网页阶段已记录全部240帧重建像素一致及选定帧GPU一致，本轮沿用该已接受结果，不重复制作或导出。
+
+- `npm.cmd test`：现有4/4通过；`npm.cmd run prepare:web` 与NSIS构建 exit0。安装器输出独立本地目录，构建命令显式 `--publish never`，未上传。
+- 来源同步只接受固定Git提交，文本允许Windows CRLF转换，PNG要求Git blob和SHA-256均一致。同步清单中的37个源码/JSON，以及安装目录内的241个分块文件全部SHA-256通过；240个原完整帧也与原manifest一致。
+- 真实打包版在独立验证配置运行，`version=0.1.2`、`packaged=true`、`desktopStatus=attached`、`frameTransport=tiles`。动画持续推进，加载/渲染错误为空；设置canvas=0、壁纸canvas=1。已查看实际动态窗口截图及Windows设置窗口。
+- NSIS实际升级 `.local-install`：exit0，EXE产品版本0.1.2.0。升级前备份用户设置，升级后原文件SHA-256为 `df3f21938feaf19156876936abafec4eb051ebf70ae427f6e092ac7aa91c1e20`，完全一致，原设置被新进程读取。
+- 最终安装版从 `C:/Windows/Temp` 正常启动，未传调试参数、未使用临时profile；实际资源根为 `.local-install/resources/wallpaper`。原生挂载返回 `classic-workerw / attached=true`，动画秒159.2047→163.1255、等待帧0、`documentHidden=false`、错误为空。
+- 实际渲染器为 `NVIDIA GeForce RTX 4060 Laptop GPU`；分块像素1572864/帧、缓存容量8，像素缓存估算50331648字节（48 MiB），全部原光影/粒子/Bloom启用，画质1672×941。数值来自本地运行状态；没有据此宣称实际功耗或风扇降幅。
+- 独立验证实例已退出、9239调试端口已关闭；最终只有一个安装版主进程及其正常Electron子进程。安装版设置窗口已在前台显示，壁纸保持运行。更新状态仍为 `unconfigured`。
+
+本轮现场摘要：`work/web-engine-v001/verification-summary.json`。旧安装包、原来源记录和核显试验候选分支均保留；V3源项目未修改。
+
+## 0.1.0 首次交付 · 已完成
 
 - 正式资源来自 V3 的 full-v016；从新项目快照构建，运行加载同帧图集并保留 V3 原 SHA-256 校验。没有修改 V3 源项目。
 - `npm.cmd test`：4/4。覆盖用户设置跨启动保存、无效修改不覆盖已保存值、损坏字段/JSON、昼夜锚点不被无关控制重置、真实文件及明确 HTTP 错误/路径边界。

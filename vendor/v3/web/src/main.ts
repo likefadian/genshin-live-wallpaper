@@ -33,7 +33,7 @@ function applyLight(){runtime.setExposureEV(settings.exposure);runtime.setLightS
 function navigateWallpaper(id:string){if(id===selected?.wallpaper.id)return;const url=new URL(location.href);url.searchParams.set('wallpaper',id);url.searchParams.delete('revision');location.assign(url)}
 try{
  if(!selected)throw Error('未注册的壁纸组合');
- runtime=await WallpaperRuntime.create(host,selected.character,selected.scene,selected.wallpaper);runtime.onFrame=(now,snapshot)=>{el('runtime-report').textContent=JSON.stringify(snapshot);report(now,snapshot)};
+ runtime=await WallpaperRuntime.create(host,selected.character,selected.scene,selected.wallpaper,{frameTransport:query.get('frames')==='full'?'full':'auto'});runtime.onFrame=report;
  document.title=(runtime.character.displayName??runtime.character.id)+' · '+(runtime.wallpaper.presentation?.sceneName??runtime.wallpaper.displayName??'风与昼夜');
  const focus=runtime.wallpaper.presentation?.focus??[.5,.5];host.style.setProperty('--focus',focus.map(v=>v*100+'%').join(' '));host.dataset.fit=settings.fit;el<HTMLSelectElement>('fit').value=settings.fit;
  el('current-wallpaper').textContent=(runtime.character.displayName??runtime.character.id)+' · '+(runtime.wallpaper.presentation?.sceneName??runtime.wallpaper.displayName??'');

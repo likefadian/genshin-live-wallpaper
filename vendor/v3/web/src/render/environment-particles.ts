@@ -69,6 +69,7 @@ varying vec4 vColor;
 varying float vKind,vOpacity,vPhase;
 float ellipse(vec2 p,vec2 c,vec2 r){return 1.-smoothstep(.7,1.,length((p-c)/r));}
 void main(){
+ if(vOpacity<=0.)discard;
  vec2 p=vLocal;float r=dot(p,p),shape=0.;vec3 color=vColor.rgb;
  if(vKind<.5){shape=exp(-r*4.)*.8;}
  else if(vKind<1.5){shape=exp(-p.x*p.x*5.)*pow(1.-abs(p.y),1.8);}

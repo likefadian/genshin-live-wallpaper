@@ -11,14 +11,18 @@ vec4 sampleTile(vec2 tile,vec2 p){p=clamp(p,.5/uSize,1.-.5/uSize);return texture
 vec3 decodeSrgb(vec3 c){return mix(c/12.92,pow((c+.055)/1.055,vec3(2.4)),step(vec3(.04045),c));}
 vec3 encodeSrgb(vec3 c){c=max(c,vec3(0.));return mix(c*12.92,1.055*pow(c,vec3(1./2.4))-.055,step(vec3(.0031308),c));}
 void main(){
- vec2 p=vec2(vUv.x,1.-vUv.y);vec4 albedo=sampleTile(vec2(0.),p);vec3 n=normalize((sampleTile(vec2(1.,0.),p).rgb*255.-128.)/127.);
+ vec2 p=vec2(vUv.x,1.-vUv.y);vec4 albedo=sampleTile(vec2(0.),p);
+ // Skip only fully transparent texels; retain every antialiased edge and hair tip.
+ if(albedo.a==0.)discard;
+ vec3 n=normalize((sampleTile(vec2(1.,0.),p).rgb*255.-128.)/127.);
  vec3 data=sampleTile(vec2(0.,1.),p).rgb;int materialId=int(floor(data.r*255.+.5));vec4 mat=uMaterials[0];float shadowStrength=0.;vec3 highlight=vec3(.88,.1,0.);
  for(int i=0;i<16;i++){if(i==materialId){mat=uMaterials[i];shadowStrength=uMaterialShadow[i];highlight=uHighlights[i];}}
  vec3 L=normalize(uLight),P=normalize(uLampDirection);float facing=dot(n,L);
  float bands=uBandWeights.x*smoothstep(uPainted.z-uPainted.y,uPainted.z+uPainted.y,facing)+uBandWeights.y*smoothstep(uPainted.w-uPainted.y,uPainted.w+uPainted.y,facing);
  float diffuse=mat.x+mat.y*mix(smoothstep(-.08,.82,facing),bands,uPainted.x);
  vec2 shadowP=p+L.xy*uShadowOffset/(max(L.z,.35)*uSize);vec2 s=uShadowSoftness/uSize;
- float caster=(sampleTile(vec2(1.),shadowP).r+sampleTile(vec2(1.),shadowP+vec2(s.x,0.)).r+sampleTile(vec2(1.),shadowP-vec2(s.x,0.)).r+sampleTile(vec2(1.),shadowP+vec2(0.,s.y)).r+sampleTile(vec2(1.),shadowP-vec2(0.,s.y)).r)/5.;
+ float caster=0.;
+ if(data.b>0.&&shadowStrength>0.)caster=(sampleTile(vec2(1.),shadowP).r+sampleTile(vec2(1.),shadowP+vec2(s.x,0.)).r+sampleTile(vec2(1.),shadowP-vec2(s.x,0.)).r+sampleTile(vec2(1.),shadowP+vec2(0.,s.y)).r+sampleTile(vec2(1.),shadowP-vec2(0.,s.y)).r)/5.;
  float shadow=1.-caster*data.b*shadowStrength;float ao=mix(1.,data.g,uAoStrength);
  vec3 light=uAmbient*ao+uKey*diffuse*shadow+uLocalLampGain*(uLampColor*(mat.x+mat.y*max(0.,dot(n,P)))+pointIllumination(uOrigin+p*uSize,n));
  vec3 halfVector=normalize(L+vec3(0.,0.,1.));float spec=pow(max(0.,dot(n,halfVector)),max(mat.w,1.))*mat.z;

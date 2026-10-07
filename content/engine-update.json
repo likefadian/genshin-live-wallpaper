@@ -1,0 +1,1441 @@
+{
+  "schemaVersion": 1,
+  "recordedOn": "2026-10-07",
+  "sourceProject": "GENSHIN-FRONT-V3",
+  "sourceCommit": "f407ea7a02dfe998ef563fcb820258c472506e9f",
+  "baselineRecord": "content/source.json",
+  "purpose": "Accepted shared rendering optimizations and lossless independent frame tiles",
+  "gpuSelectionChanged": false,
+  "originalAtlasRetained": true,
+  "files": [
+    {
+      "path": "vendor/v3/web/src/characters/xiao/full.ts",
+      "sourcePath": "web/src/characters/xiao/full.ts",
+      "sha256": "e84f8d2f249037ced83bd3a574c9b9a1d93a6a30c0bdbac9915ae13d41235f0c",
+      "committedSha256": "e84f8d2f249037ced83bd3a574c9b9a1d93a6a30c0bdbac9915ae13d41235f0c"
+    },
+    {
+      "path": "vendor/v3/assets/xiao/materials/body-lighting-v016.json",
+      "sourcePath": "assets/xiao/materials/body-lighting-v016.json",
+      "sha256": "e359a5d510c6a9ad581a5b14c7f6432c7a674789e1fc8595db3f3cf049dbbf00",
+      "committedSha256": "94233592e410232fe38d65db54b50881852ac9123c429fb77a9e97ea16c9e48d"
+    },
+    {
+      "path": "vendor/v3/assets/xiao/materials/head-lighting-v016.json",
+      "sourcePath": "assets/xiao/materials/head-lighting-v016.json",
+      "sha256": "d5074252d1f6a94af4d83a37a1b893f8130e31c48d376d3d59ec1171ce90f5e8",
+      "committedSha256": "87f071c06e773efdffffede1a531e310cbf96a7231f47137fa3d61799d0a7800"
+    },
+    {
+      "path": "vendor/v3/assets/xiao/layers/body-layout-v015.json",
+      "sourcePath": "assets/xiao/layers/body-layout-v015.json",
+      "sha256": "741a677800fe32a61b6379acfb8e8a1c4b226363a46fe280ef7e99051d6fba87",
+      "committedSha256": "4838a98505acbe739d53e67ad7eee265720d8a2ebb098adbab303f53a3d187d6"
+    },
+    {
+      "path": "vendor/v3/assets/xiao/layers/head-layout-v022.json",
+      "sourcePath": "assets/xiao/layers/head-layout-v022.json",
+      "sha256": "c8735d97736fed0f2d37517f32bfc4a86513a76c1aea0e3b6f0cb87414d9f3e9",
+      "committedSha256": "b848df345a0dfb11335cc62d0cce25b3a3b84243057a2781a8c987208517c20c"
+    },
+    {
+      "path": "vendor/v3/assets/xiao/materials/wind-profile-v001.json",
+      "sourcePath": "assets/xiao/materials/wind-profile-v001.json",
+      "sha256": "7532e208679290cbfaa3a7f1a409d8bb78b61df5ac91f4f64823070b803b994e",
+      "committedSha256": "7532e208679290cbfaa3a7f1a409d8bb78b61df5ac91f4f64823070b803b994e"
+    },
+    {
+      "path": "vendor/v3/assets/xiao/materials/frame-transport-v001.json",
+      "sourcePath": "assets/xiao/materials/frame-transport-v001.json",
+      "sha256": "d5d2b304e4f41ed124ad6676300c53d7b89b3a4832a6d246d832c306e2d7ce6f",
+      "committedSha256": "d5d2b304e4f41ed124ad6676300c53d7b89b3a4832a6d246d832c306e2d7ce6f"
+    },
+    {
+      "path": "vendor/v3/web/src/characters/xiao/head.ts",
+      "sourcePath": "web/src/characters/xiao/head.ts",
+      "sha256": "2d01f016d34e27a11a6c41bf09fd891e63455bcf3ce6767bbaf6bce2bd253535",
+      "committedSha256": "2d01f016d34e27a11a6c41bf09fd891e63455bcf3ce6767bbaf6bce2bd253535"
+    },
+    {
+      "path": "vendor/v3/web/src/content/atmosphere.ts",
+      "sourcePath": "web/src/content/atmosphere.ts",
+      "sha256": "126f0978c5a62a4198414febd2debaf5308e56fad164ae23ffcd65d3cc8b50db",
+      "committedSha256": "126f0978c5a62a4198414febd2debaf5308e56fad164ae23ffcd65d3cc8b50db"
+    },
+    {
+      "path": "vendor/v3/web/src/content/frame-buffer-plan.ts",
+      "sourcePath": "web/src/content/frame-buffer-plan.ts",
+      "sha256": "b52dcf93fe264154a73ccc77bc90a6ec77ec66320cf871431001bcdf3d89a0ae",
+      "committedSha256": "b52dcf93fe264154a73ccc77bc90a6ec77ec66320cf871431001bcdf3d89a0ae"
+    },
+    {
+      "path": "vendor/v3/web/src/content/frame-cache.ts",
+      "sourcePath": "web/src/content/frame-cache.ts",
+      "sha256": "b4ef8aba4a1d8a23665d7145410f26d9d8470a165505f0d263da993e3dfcc7f6",
+      "committedSha256": "b4ef8aba4a1d8a23665d7145410f26d9d8470a165505f0d263da993e3dfcc7f6"
+    },
+    {
+      "path": "vendor/v3/web/src/content/frame-clock.ts",
+      "sourcePath": "web/src/content/frame-clock.ts",
+      "sha256": "102ed60a1ced1ae32b8aa7b2dd84ffd872394372fec162755138eaf8b3946cec",
+      "committedSha256": "102ed60a1ced1ae32b8aa7b2dd84ffd872394372fec162755138eaf8b3946cec"
+    },
+    {
+      "path": "vendor/v3/web/src/content/frame-patches.ts",
+      "sourcePath": "web/src/content/frame-patches.ts",
+      "sha256": "16b5f18c039fafffdfdd49cb5093cc757d3c333ed76cb74e3de825ad94532054",
+      "committedSha256": "16b5f18c039fafffdfdd49cb5093cc757d3c333ed76cb74e3de825ad94532054"
+    },
+    {
+      "path": "vendor/v3/web/src/content/package-contract.ts",
+      "sourcePath": "web/src/content/package-contract.ts",
+      "sha256": "88b2911e9c0f9896575c1335728ba7b6a6e2270598d362e57621e152e708290f",
+      "committedSha256": "88b2911e9c0f9896575c1335728ba7b6a6e2270598d362e57621e152e708290f"
+    },
+    {
+      "path": "vendor/v3/web/src/content/scene-environment.ts",
+      "sourcePath": "web/src/content/scene-environment.ts",
+      "sha256": "043fa43c26ed3a441ccae439f4bbbf84d049d20078b191feb40fef0e6b6de03f",
+      "committedSha256": "043fa43c26ed3a441ccae439f4bbbf84d049d20078b191feb40fef0e6b6de03f"
+    },
+    {
+      "path": "vendor/v3/web/src/content/sequence-manifest.ts",
+      "sourcePath": "web/src/content/sequence-manifest.ts",
+      "sha256": "0e1bbb8c1cd75af082f5c9c791972f8f7e6b713f142b48d6aed7003a241de405",
+      "committedSha256": "0e1bbb8c1cd75af082f5c9c791972f8f7e6b713f142b48d6aed7003a241de405"
+    },
+    {
+      "path": "vendor/v3/web/src/content/time-background.ts",
+      "sourcePath": "web/src/content/time-background.ts",
+      "sha256": "c38fb9d551deb7f5c411460639feec7fbb35a270a35b0093c906656861662a19",
+      "committedSha256": "c38fb9d551deb7f5c411460639feec7fbb35a270a35b0093c906656861662a19"
+    },
+    {
+      "path": "vendor/v3/web/src/main.ts",
+      "sourcePath": "web/src/main.ts",
+      "sha256": "a5b62adf04e528875a37c43df16453d1c46797c89d39a1da28e967f8592f2a4d",
+      "committedSha256": "a5b62adf04e528875a37c43df16453d1c46797c89d39a1da28e967f8592f2a4d"
+    },
+    {
+      "path": "vendor/v3/web/src/render/atmosphere-state.ts",
+      "sourcePath": "web/src/render/atmosphere-state.ts",
+      "sha256": "9abcd3a804e19a8342ff0cd7cab6caaaf194dc1dcf707669c56a908cc531b16f",
+      "committedSha256": "9abcd3a804e19a8342ff0cd7cab6caaaf194dc1dcf707669c56a908cc531b16f"
+    },
+    {
+      "path": "vendor/v3/web/src/render/bloom-pipeline.ts",
+      "sourcePath": "web/src/render/bloom-pipeline.ts",
+      "sha256": "d2bb8efc243f73ce567e022a923a2752130446b3772bb79a84dd0ee2fe684f18",
+      "committedSha256": "d2bb8efc243f73ce567e022a923a2752130446b3772bb79a84dd0ee2fe684f18"
+    },
+    {
+      "path": "vendor/v3/web/src/render/daylight.ts",
+      "sourcePath": "web/src/render/daylight.ts",
+      "sha256": "cf34146a314c007e24abdda2c36f18a6a3572da4ab359f50976df6709575114d",
+      "committedSha256": "cf34146a314c007e24abdda2c36f18a6a3572da4ab359f50976df6709575114d"
+    },
+    {
+      "path": "vendor/v3/web/src/render/environment-particles.ts",
+      "sourcePath": "web/src/render/environment-particles.ts",
+      "sha256": "99d2195729068a6b1584d9fbb69adb06fef38e37968e4a2025816df5dddcaa08",
+      "committedSha256": "99d2195729068a6b1584d9fbb69adb06fef38e37968e4a2025816df5dddcaa08"
+    },
+    {
+      "path": "vendor/v3/web/src/render/environment-shaders.ts",
+      "sourcePath": "web/src/render/environment-shaders.ts",
+      "sha256": "d4b33e4e4f462d8abd30acb2aa630273ae85ce71d63f9db3cbb3c63c96233a16",
+      "committedSha256": "d4b33e4e4f462d8abd30acb2aa630273ae85ce71d63f9db3cbb3c63c96233a16"
+    },
+    {
+      "path": "vendor/v3/web/src/render/normal-direction.ts",
+      "sourcePath": "web/src/render/normal-direction.ts",
+      "sha256": "eb6d0102c8b82a128bfb889f5e417aa8d343154a989507e8da56f9b207496bc8",
+      "committedSha256": "eb6d0102c8b82a128bfb889f5e417aa8d343154a989507e8da56f9b207496bc8"
+    },
+    {
+      "path": "vendor/v3/web/src/render/scene-environment.ts",
+      "sourcePath": "web/src/render/scene-environment.ts",
+      "sha256": "d9fee66aef3a51fd96edc547f4d17e33d82c7bfaae1e579448d991367020ce16",
+      "committedSha256": "d9fee66aef3a51fd96edc547f4d17e33d82c7bfaae1e579448d991367020ce16"
+    },
+    {
+      "path": "vendor/v3/web/src/render/shaders.ts",
+      "sourcePath": "web/src/render/shaders.ts",
+      "sha256": "3aa6e0794f23896b0fe0b15a6a7844f005b53bee0cd4a8555a735d66c9a415cb",
+      "committedSha256": "3aa6e0794f23896b0fe0b15a6a7844f005b53bee0cd4a8555a735d66c9a415cb"
+    },
+    {
+      "path": "vendor/v3/web/src/render/tiled-atlas.ts",
+      "sourcePath": "web/src/render/tiled-atlas.ts",
+      "sha256": "13a034303fa7fce6de8e1bfbe7f247202f27a8175620fb73b4ccf947fa77980a",
+      "committedSha256": "13a034303fa7fce6de8e1bfbe7f247202f27a8175620fb73b4ccf947fa77980a"
+    },
+    {
+      "path": "vendor/v3/web/src/render/time-background-shader.ts",
+      "sourcePath": "web/src/render/time-background-shader.ts",
+      "sha256": "54e98572b2d303772daba78a3a1700d9a85c44eca61beabad15c63facf7a7840",
+      "committedSha256": "54e98572b2d303772daba78a3a1700d9a85c44eca61beabad15c63facf7a7840"
+    },
+    {
+      "path": "vendor/v3/web/src/render/wallpaper-runtime.ts",
+      "sourcePath": "web/src/render/wallpaper-runtime.ts",
+      "sha256": "70552c37dbf0dc338d79e74a9466a243baa5553f7b2f4c7e99f2f88946a0c006",
+      "committedSha256": "cee748ebcafc6c072d638f90a36df830bec37a3d818d91a7da095f78ce01a427"
+    },
+    {
+      "path": "vendor/v3/web/src/scenes/liyue/full.ts",
+      "sourcePath": "web/src/scenes/liyue/full.ts",
+      "sha256": "76a31ad5d461e345cea42ca28609364d0a470784253b3959146bde8b4cc4cf54",
+      "committedSha256": "76a31ad5d461e345cea42ca28609364d0a470784253b3959146bde8b4cc4cf54"
+    },
+    {
+      "path": "vendor/v3/assets/scene/liyue/full-v001/atmosphere-v001.json",
+      "sourcePath": "assets/scene/liyue/full-v001/atmosphere-v001.json",
+      "sha256": "dd8c5ef4b9b386cdd895fabce90b6fc25ceb43ff86a8e19dcc89184072c508da",
+      "committedSha256": "dd8c5ef4b9b386cdd895fabce90b6fc25ceb43ff86a8e19dcc89184072c508da"
+    },
+    {
+      "path": "vendor/v3/assets/scene/liyue/full-v001/environment-runtime-v002.json",
+      "sourcePath": "assets/scene/liyue/full-v001/environment-runtime-v002.json",
+      "sha256": "000ccaa3aee5bc08cfee287ba3b1e072051a4eed576ea183713969a08d55a939",
+      "committedSha256": "39d33d689f4cd8e6587eeea74d459d26ce71082fe593931583a8f1bad7b56281"
+    },
+    {
+      "path": "vendor/v3/assets/scene/liyue/time-plates-v001/background.json",
+      "sourcePath": "assets/scene/liyue/time-plates-v001/background.json",
+      "sha256": "0d4ae33636178dbea9aeffa231e5c3e41f8514fd3d46fbcb0422c2c8e6481062",
+      "committedSha256": "0d4ae33636178dbea9aeffa231e5c3e41f8514fd3d46fbcb0422c2c8e6481062"
+    },
+    {
+      "path": "vendor/v3/web/src/scenes/liyue/head.ts",
+      "sourcePath": "web/src/scenes/liyue/head.ts",
+      "sha256": "321544173ef7e5a45b30e2ad1818f242bb9937dd09fc22fbd1952e9a674aad0a",
+      "committedSha256": "321544173ef7e5a45b30e2ad1818f242bb9937dd09fc22fbd1952e9a674aad0a"
+    },
+    {
+      "path": "vendor/v3/web/src/style.css",
+      "sourcePath": "web/src/style.css",
+      "sha256": "86fa59cfb058c99333872ce085c1f3226568d8a0100cd14a0fdebf178d80e730",
+      "committedSha256": "e34831adb0c89530e7429eeefb4635aba4ebf3f342e5dd6429c4dc80be2512da"
+    },
+    {
+      "path": "vendor/v3/web/src/ui/wallpaper-clock.ts",
+      "sourcePath": "web/src/ui/wallpaper-clock.ts",
+      "sha256": "584cf4aec5638b64e723fef66784c0938955791287af3205c1530d9fdd5b8e09",
+      "committedSha256": "584cf4aec5638b64e723fef66784c0938955791287af3205c1530d9fdd5b8e09"
+    },
+    {
+      "path": "vendor/v3/web/src/wallpapers/registry.ts",
+      "sourcePath": "web/src/wallpapers/registry.ts",
+      "sha256": "a92e4c2fe35d9110430ef62efcff622b7a64c930e0d0bd75eb2342874369dfa1",
+      "committedSha256": "a92e4c2fe35d9110430ef62efcff622b7a64c930e0d0bd75eb2342874369dfa1"
+    }
+  ],
+  "assets": [
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0000.png",
+      "bytes": 997939,
+      "sha256": "d80ec368462cc6968d34f7f1c8a20b2d0344bbb52f6d08ca9a2ca87f491f12d6"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0001.png",
+      "bytes": 997599,
+      "sha256": "829d762f6eadb6fe677440cc74f5f57965537f8acfd778499c0d5a05a720ad24"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0002.png",
+      "bytes": 997268,
+      "sha256": "fd49077470c41838878c903a389adb2a579471a9630bde411a3dd0bce4d8c6ae"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0003.png",
+      "bytes": 996145,
+      "sha256": "901b950c1d63f2d319593436cf1aa71d7320abbdd2c6045f9c773fb483cf5130"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0004.png",
+      "bytes": 994770,
+      "sha256": "9d03156e052e08fd2c7e6c308208ee5973eeabf56b55580a3cbab5f6a2a7ca2a"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0005.png",
+      "bytes": 995067,
+      "sha256": "9a35bb16aa1c769e511b1e5d874e5f379483fb55aad884c6bbed14e376d03fa2"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0006.png",
+      "bytes": 994631,
+      "sha256": "29de5765da9c2f66d0330c4421a260bad822328e54c55859e6c7f63b6a8d32a2"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0007.png",
+      "bytes": 994422,
+      "sha256": "347b121aa66472699d8cf798ebe82fe73a6068133aa4ece71e749ea6d08de11f"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0008.png",
+      "bytes": 993352,
+      "sha256": "fd878f75a69c34cf4951559a0ab8443bde35fc40d68609a99e3b6fd8590d7107"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0009.png",
+      "bytes": 992371,
+      "sha256": "719bcb89257be4313866fdfc8c6ba77476dc02f0d952a72d122f5c2718964dc3"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0010.png",
+      "bytes": 992545,
+      "sha256": "9227d104c97110110acb4b2efc4b99921f72014f1b1712906feda0a912443228"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0011.png",
+      "bytes": 992908,
+      "sha256": "44f6d2d7b31e4d3cc187955209d5ac9f030106efd4c023ec9cd5fa5a91403b40"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0012.png",
+      "bytes": 992770,
+      "sha256": "ae665c644899b8d264803521ecec18e95c23a59c35fd2c039b9a459ba79faa06"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0013.png",
+      "bytes": 992815,
+      "sha256": "6b023a49e21b812bfef146f7a2fa5b9440628a52c814be157d14278be86b637c"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0014.png",
+      "bytes": 991949,
+      "sha256": "095ecf8c6a5c6cf921f0f9d0b35004087f665d1bf7be304a8d458915f34cee26"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0015.png",
+      "bytes": 991458,
+      "sha256": "fca443f80d042d4c3edb038412f37a53fd97cd50403a8d3798a25502e03ac4c6"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0016.png",
+      "bytes": 991077,
+      "sha256": "1376a10e58f24d50193c24358f1313001c218614cfccb75740942334f4da7af6"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0017.png",
+      "bytes": 991151,
+      "sha256": "c66b7ecb4995aac3ca7e09c3b50968da01b199c7aa9c357b9914a339c1a30063"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0018.png",
+      "bytes": 991284,
+      "sha256": "50fc0c3911583c7b569be488d74403e86f6329695f10872f93aa4af7a06aad49"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0019.png",
+      "bytes": 991065,
+      "sha256": "d945ac528625be28927782f53be88ef837c1102bd8cf761ef954cfba0701342c"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0020.png",
+      "bytes": 990367,
+      "sha256": "e2a85113f0bf3ff385f3bc060759602454c53ebd6a4657c13653d05e75be752e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0021.png",
+      "bytes": 989664,
+      "sha256": "d37b975192925febc22d44e265ee77dc115a6e733db07842d75f0d6d717f4b68"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0022.png",
+      "bytes": 989468,
+      "sha256": "e8749bb0f33dd8105a6f04ebf5b165871bfb35c8c5deba16755a8db1cf69bd6e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0023.png",
+      "bytes": 989089,
+      "sha256": "22c07b8b9d693dbf98f00f973a56ac2cf7140c0b03ca020b305d61adde613dde"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0024.png",
+      "bytes": 989887,
+      "sha256": "888dec3f995706ca0e7d8e9416fa94bb61ba034e1024d16743b368d2d6204eaa"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0025.png",
+      "bytes": 989811,
+      "sha256": "1cac4980242f42422db3c283bb3b5c9884c6701d8ec52e48eb90967ad353a15e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0026.png",
+      "bytes": 989360,
+      "sha256": "06404a8dee6a551b3fb19b368120e9a3f2d351d3c7738cc628033565712111cc"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0027.png",
+      "bytes": 989226,
+      "sha256": "4ef2371e80cc9866d36100b247ea6dc7da9fcac750e00e82ea3f193a19b831de"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0028.png",
+      "bytes": 989059,
+      "sha256": "ff2f5f74bdb544677bacd4a33ff4fab7d67f3a0205aa276d3bf75a7ab0c0324e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0029.png",
+      "bytes": 988864,
+      "sha256": "987864d8d33c457eae48801c7cecf5bf490d309aeceddaaf18ba6e2e9a0e1df3"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0030.png",
+      "bytes": 988498,
+      "sha256": "389a6cb019c6a96b02951b2541ffad4a794448748eea57a9d7375a8ca211321f"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0031.png",
+      "bytes": 988536,
+      "sha256": "2c76d0f7e6d6ee8060d32ec06c8cb62f4f91a21144d9c19681f01f03a6cbf26e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0032.png",
+      "bytes": 988443,
+      "sha256": "1085a3d90d90e2a853241e86410865aedd4831a04f633a3500355e1d9eb380af"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0033.png",
+      "bytes": 988442,
+      "sha256": "b178df54a239e4af0479026a3e5e407675ea888e53c85c5e3647fb61aa9d1aef"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0034.png",
+      "bytes": 988353,
+      "sha256": "c464ef847d83a49b6c568bcaae2b5af5c5ea30f24a71705fec4c872bb2de8c89"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0035.png",
+      "bytes": 988086,
+      "sha256": "8195804bcec909014edbb9ddc3be3d1892325b27d880757fd0cc745b6b0797a7"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0036.png",
+      "bytes": 989189,
+      "sha256": "9985df89c913ad3956d3c893276bcf030cd81417c9eaee23b8e718f434504eb3"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0037.png",
+      "bytes": 989690,
+      "sha256": "27596bf682678c1ff8c57f3c945094453fdfc6b1ad1663ad9e8b72532d66ce2f"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0038.png",
+      "bytes": 989926,
+      "sha256": "d0a0209b260b2d4fd2f04f856ada2a88087f91f07a6a36cdea83010beaa641ac"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0039.png",
+      "bytes": 990319,
+      "sha256": "4fdce6055a9b662c9e9e823e264692be2ce297914575a3f7066162a99555031d"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0040.png",
+      "bytes": 990006,
+      "sha256": "1c8ea1d7c30cab25a364ffe63cf820c30b6761d8e4109be50d15916cbdcf6574"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0041.png",
+      "bytes": 990766,
+      "sha256": "a82e9335d93f47c14eb2dba6370a91e69b75a89b65d850aeb2b9565afe6d8718"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0042.png",
+      "bytes": 990897,
+      "sha256": "38ffe224dcc50d813c6e157f86afe4942bfe3f9180116d660f1e380cea10bd7e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0043.png",
+      "bytes": 991686,
+      "sha256": "a4e14409fa5a9a01fca1b7bbd74e3a6bdd578e2a15169b6e7d1c4384f87bffc3"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0044.png",
+      "bytes": 992060,
+      "sha256": "e892a2f15f3a6b8600c386e69d31680caa9183c3d2ad9c91170854e8c71c14ef"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0045.png",
+      "bytes": 994816,
+      "sha256": "9c4e862c848d95d756beb079ca3f00cb2f77c29426e1fb7bc48555452ad31b9d"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0046.png",
+      "bytes": 995269,
+      "sha256": "466f4654ebb2908271767a25374defab2349fa36665c976d97e26e781390ba81"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0047.png",
+      "bytes": 995637,
+      "sha256": "9b8ec308a70445b62561ad794989e9ee065a59f0a0c2e9075581f5c228c02f3f"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0048.png",
+      "bytes": 996641,
+      "sha256": "c4073c8e2dc527c48b267205d09dd824c668e7b13b57a926ab246990134f9f33"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0049.png",
+      "bytes": 998042,
+      "sha256": "6fdd5fbb8d9d7c82451dd311150ec2440e12e67240e657e9a47fe6f24806b952"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0050.png",
+      "bytes": 998352,
+      "sha256": "d5d6a67963ea97cabfa9356fc5ca3601c146981632e1fc7b540f4c79ba7eddfe"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0051.png",
+      "bytes": 999510,
+      "sha256": "faf623a6725fad45a44fb6d31cc19b8d180c47ead16fd5ada3ec496f76b3e071"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0052.png",
+      "bytes": 1000062,
+      "sha256": "1c810eac3c4a2656ae77bd612844266031e2b8254b68c68bfbea06ffa82deb0f"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0053.png",
+      "bytes": 1000248,
+      "sha256": "21b58ac842e04640a99df1d2279603005fac85cd2b5bcae06d14897f04b3532e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0054.png",
+      "bytes": 999225,
+      "sha256": "6f33b2eb72a6d786827e61cb3566ad6d0690b0e8cc6f7deefdb044af173e3453"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0055.png",
+      "bytes": 998267,
+      "sha256": "f77182543700d6f7a8b8775aacbb2a84d6e6b3485e78630943fe009e9cfebf8e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0056.png",
+      "bytes": 997202,
+      "sha256": "312f3256a5f436d5f70e5f182e3d2431f57945f288f8abb3066723865460d059"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0057.png",
+      "bytes": 996801,
+      "sha256": "403bcd5403c60ce954ada4db76d7663ce0c88243187454b7653232cf83ddfdf3"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0058.png",
+      "bytes": 995805,
+      "sha256": "fb9e0f98210e8199339378bd924b478fa78364a324b7abebaf4218f1160908ce"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0059.png",
+      "bytes": 994952,
+      "sha256": "9e8aa3d7c76e5abae619988515b2d17b4a0ccff6e1aa0babdacd5015aef5068c"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0060.png",
+      "bytes": 992923,
+      "sha256": "b0bf2a9f2fad3a4d659309cad3abec8151f204973288c77a25b07fb130090c67"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0061.png",
+      "bytes": 991866,
+      "sha256": "0d3ceab03835f1872fc7151ce1a9dcb1e4e57ff5075943f75c5c60ee491c9fda"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0062.png",
+      "bytes": 991560,
+      "sha256": "2f45741b2c99af62aa4b93be0351a89a613a4e0e59bf0832eed985e032b1db3d"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0063.png",
+      "bytes": 990901,
+      "sha256": "a27e271a0c2776d1dd3bb1ce51d5f3de58e1220f5225febebeae03951e358785"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0064.png",
+      "bytes": 990058,
+      "sha256": "22f17137294af6fd3e469aa7f66b2c1310cce8f5ab70ced2b9e3633c2391c0ac"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0065.png",
+      "bytes": 989562,
+      "sha256": "b0717c8141eab24277d9be28d2c28623c034e429fbb7e7ae84159e1066bcb135"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0066.png",
+      "bytes": 989454,
+      "sha256": "6807db7a55ba3e543cb84e9746c3f8423be4cf47999feedc2974e89478bf7918"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0067.png",
+      "bytes": 988668,
+      "sha256": "7aa66162621f978183046db1b335d794da3575bd0b4547497e7955a1e51ea4a4"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0068.png",
+      "bytes": 988374,
+      "sha256": "f934cc7d1cda85a90442e60bccfdb449f7f0f7dd9fd99c507ce40016d478e983"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0069.png",
+      "bytes": 987436,
+      "sha256": "49130f2cacda46d8cb02c85e1d89500de3745ee0eded7f0c9428befb17e5dcee"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0070.png",
+      "bytes": 988532,
+      "sha256": "9186e5a7cf0f6e6fe1426b0b39e2a081aa38e77589decf9185570444630bc381"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0071.png",
+      "bytes": 988754,
+      "sha256": "bd405548d58506a11d586016afba3c1dd75259841430a30072481fde97a551d1"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0072.png",
+      "bytes": 988766,
+      "sha256": "b418d98164293bd6d93d4b68e0aba49b7a4d937772cbed97616c0e3c8ec4a7ef"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0073.png",
+      "bytes": 988517,
+      "sha256": "64a51dd59a57bafdea0e50d61f8d8a18c8e59d0f4a0a05cc52af53cf05d03e8b"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0074.png",
+      "bytes": 988270,
+      "sha256": "6c874f966f037cfbfc4af829a2e6f5f2e8af0af0fc7dfed01132312f8e1a27f3"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0075.png",
+      "bytes": 988652,
+      "sha256": "87ee5a92f995d9f629af2192b1377ea3b1c5aa47798aac1ac0c92491c7b38e80"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0076.png",
+      "bytes": 989235,
+      "sha256": "c902b097c722a125f43f4f5581669cd11cb69333e8fa09e042fff3f584189183"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0077.png",
+      "bytes": 988888,
+      "sha256": "3640d329697340773cb0233cca9bc5a71ab254b91216edc380c29ab91e615025"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0078.png",
+      "bytes": 988886,
+      "sha256": "6d6dec64e36ffefb8e71368a5e10630ac962cff2aed929006b53001e9ef1058e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0079.png",
+      "bytes": 988809,
+      "sha256": "bcd677cde25d907fa9a58f45fab53adc330543f61bf77e3b27450456c24cbbc6"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0080.png",
+      "bytes": 988474,
+      "sha256": "c24e4fb7a6d45c187f3d8909d7d47f698dcee9680ae07a647bd4ca8c4e3c925f"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0081.png",
+      "bytes": 988992,
+      "sha256": "aa86628314fe63df1551388613cf0a06074ee0c82a1497bfd9601da17ea11949"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0082.png",
+      "bytes": 988784,
+      "sha256": "ff8ec662a3614af7ee0d0e3713e76f2d7d8bed265b8fa7c9036ae28be74bdc35"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0083.png",
+      "bytes": 988943,
+      "sha256": "d221dec307e1e75bea4a90ef71cace69cb63f68d630c7d59449904608ce2a837"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0084.png",
+      "bytes": 989181,
+      "sha256": "adc1031b83e08e4e9f73444a55e3a133bf64f017328bca8affa2bad09bbb84f6"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0085.png",
+      "bytes": 989026,
+      "sha256": "6cf3958f27b027ebf4381ade9c2c866b2a8e8b66a74b1e57a94cdd57c9c1890e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0086.png",
+      "bytes": 989019,
+      "sha256": "89f5f0eadcf3e6602a29579e566224a8514169f063cd07e0b9c1508dde800c8f"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0087.png",
+      "bytes": 988996,
+      "sha256": "7c4e2e9ac5c7ed47bc06261005c5f1d55a77e76ba6725376603b6259ca331767"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0088.png",
+      "bytes": 988935,
+      "sha256": "26b5ba5d5cff0ca700acc9f3d5258721d47dbd7dbc828c4a3d549936883d4069"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0089.png",
+      "bytes": 988797,
+      "sha256": "5266231601f87fa6ca243025cbb813bca117db43e3c52720586f5752f59d5850"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0090.png",
+      "bytes": 988395,
+      "sha256": "63adb15dd346de2f248ba846804b1a5f0e579fd5ed3ab31ada3138bbc7e28111"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0091.png",
+      "bytes": 988783,
+      "sha256": "00a9cc8644c2b202e62d34689696932a62cb513339663d222fe3e34b6b902e5c"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0092.png",
+      "bytes": 988512,
+      "sha256": "b5e7269112fdc110d864a64e25b2569543bb42e312fda833fd0899543c9d4d13"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0093.png",
+      "bytes": 988674,
+      "sha256": "321981cd682078c09ca6910b9d0baa4d666c2bfc312ffb87dee2b8ef7e770833"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0094.png",
+      "bytes": 988798,
+      "sha256": "43970c67389f349dc30445e22f846e548ed00188663e75e4a7d7be0e81226de9"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0095.png",
+      "bytes": 989021,
+      "sha256": "67a1f8d036f1d584bbba32eb27f5547cb6dc942b0bff20d4d1532839fad54fd7"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0096.png",
+      "bytes": 987876,
+      "sha256": "e89b2f16dca4f2e14f9901d16ff089034a771f2c384456c609c18c9e4e5df4f6"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0097.png",
+      "bytes": 988727,
+      "sha256": "91c24db6622c268c5413a31ebec3ab6879e871fe233043555c82d0febe71ddda"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0098.png",
+      "bytes": 989555,
+      "sha256": "8344c0dd50549fa02ff871d7cf702c6b1ee29fcff1d91017d861078afae23fb1"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0099.png",
+      "bytes": 990380,
+      "sha256": "c741e650839a732e16bbae3727040aab7375ea8518d66db07307e399c8662440"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0100.png",
+      "bytes": 990372,
+      "sha256": "1d999c07daabd09885079f0c7f682eb4a4685660215bffc10ede2797b54ab39e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0101.png",
+      "bytes": 991631,
+      "sha256": "8bb0dc62e92f6f33b57b41d81a152d37f9e7c945bb550f78456c7f4a5214c25d"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0102.png",
+      "bytes": 992139,
+      "sha256": "ae28580d14be4f227f0f5e2278588fafaa6aebe393eb4f6a6a792ac99b384ab8"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0103.png",
+      "bytes": 992954,
+      "sha256": "6ad9e8a9f1b6ae9c177172894115edefd1a51d4aa56ef382ce000478f291a4d5"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0104.png",
+      "bytes": 993129,
+      "sha256": "e3e21101c64abfec1d72b5c7913ba4accfee4bfcf3a1103a1eaa35ea95fdf767"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0105.png",
+      "bytes": 996685,
+      "sha256": "d64d646759e8f5d7b4e78dc3fec2aeab0e01abcbe52540200835d36b068851cb"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0106.png",
+      "bytes": 997014,
+      "sha256": "12fcf39e9726f46b389b9110b0f4dd8a7a948322833359e93b16569311424ed1"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0107.png",
+      "bytes": 997409,
+      "sha256": "00b0c797b573862dd7d07ef90e76556e663c3149bc9fc37a85db59fe98bf58e6"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0108.png",
+      "bytes": 998687,
+      "sha256": "962afd63cec17cfe6c8cd4569166c74e842352ad76789e8efaa1f3c7c42f1b71"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0109.png",
+      "bytes": 998978,
+      "sha256": "88315feaa6de7dd5c723430ef5eebb54646cd45ce741db22b13539077d62a83b"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0110.png",
+      "bytes": 999891,
+      "sha256": "f0143adde50e587f7a0246c9590d15383cda47015ad94d805b7d53f495bbb42c"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0111.png",
+      "bytes": 1000149,
+      "sha256": "7d40696c35237931782f1a871bd42c78be78a6760db4aa59cec5c2c0d55a8819"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0112.png",
+      "bytes": 1001067,
+      "sha256": "9d10148ae3681a0580fb5dbd8da8916a295f4d1673ca6f860d503ba75a925d76"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0113.png",
+      "bytes": 1000330,
+      "sha256": "0276f9c0b733ba55efffc2f5819375df63490fee0169ae9255be6ed53e46ca3e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0114.png",
+      "bytes": 999675,
+      "sha256": "ef75b6243161895bb14aa3bee5f7d730b0298d97a3f593c4cc3b97b214b6541e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0115.png",
+      "bytes": 998594,
+      "sha256": "04a528c4253dbfc445047752f26e076104758fb6ff61b0e11afbcde09218f531"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0116.png",
+      "bytes": 998067,
+      "sha256": "412da1f4d60fdf55f6388f3b4a2051d11aa92f95d9bb3d657977368e48fb78e4"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0117.png",
+      "bytes": 996574,
+      "sha256": "5f25c0cae1f532a8ef1fcd7a4714f5a5854dc48d50b577885dd46ea73011f2db"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0118.png",
+      "bytes": 996434,
+      "sha256": "8e8fa09ad87112df10258dcfa4c01e8c909f07db787732423f736267eab800ab"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0119.png",
+      "bytes": 996011,
+      "sha256": "7d5cc46030ba854430f03fb9025aa7f953554391b309b53d6f92db62b594d3c1"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0120.png",
+      "bytes": 993748,
+      "sha256": "176707b58a7b21068d5da0d214b5b53a5e8258f8d2ed99308bf87670407a91b8"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0121.png",
+      "bytes": 993031,
+      "sha256": "9896466ce7368dd1c7827c0d53fd41b509351db7046b81e53eaf2b3e0f0bbc73"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0122.png",
+      "bytes": 992802,
+      "sha256": "47c6765c2ba81e93e797a4cc8a09cfc6b60f830fb6a3e1d46d44a943555ec11e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0123.png",
+      "bytes": 992497,
+      "sha256": "3ca27804adf4f2981fbee290750bf8d2bb1286860fd16fadbf509a03a4cb9cf1"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0124.png",
+      "bytes": 991531,
+      "sha256": "e8e00b6c21a2a3924cda279c5f3b49c8d08d4d734b9d84a8b23d26bb8f2589b0"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0125.png",
+      "bytes": 991189,
+      "sha256": "f07432da551617567e9dad9c1f86a4fcb2ada13f0a7ba6fc4292b92edd1214fe"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0126.png",
+      "bytes": 991846,
+      "sha256": "f231d5dfec9d8ca2f5983948bb5b161cedecb9e969721356957eae2160ab8b45"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0127.png",
+      "bytes": 992159,
+      "sha256": "d107a10017c5d7c2f54e323286ea5150905cbbb9d6c6d25f7dbad7a3b17e3924"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0128.png",
+      "bytes": 991687,
+      "sha256": "6d0819bdedd123fd39968eaee217dee5610ad9970bfce284b058864451dc54cb"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0129.png",
+      "bytes": 991745,
+      "sha256": "271711d61b4cc208488b9531f5bfc8e8415071f0db6e78368b6f72d335adae47"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0130.png",
+      "bytes": 991321,
+      "sha256": "cf9168a09d2d891b28f0ce66c109baabfd65a9075bd9c376c8acf3d940f790ba"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0131.png",
+      "bytes": 991818,
+      "sha256": "39d88c7a59acef873eb9df2d5ba8a4f43ed1c58e7d1432877daf851f7692de5b"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0132.png",
+      "bytes": 992166,
+      "sha256": "d6d887ac321509a9e54283b3fb400e9172b3f2294b0dfb03389d2ed03135377a"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0133.png",
+      "bytes": 992257,
+      "sha256": "4ae0fadd506e014490fb97789efb29dc83f11e4d195ae26ea9d870b7e75acf6e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0134.png",
+      "bytes": 992171,
+      "sha256": "62ec347e3380c4dcee167f12f378cefe1f2fdce773fd5623ee1a74e0776b9e89"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0135.png",
+      "bytes": 992416,
+      "sha256": "42908a87e2f58161a95ac90914a5c31876c1ac4466bbbb61693dc0cd0489c203"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0136.png",
+      "bytes": 993730,
+      "sha256": "733ba5b2fc3777b86c5c47decb1fb5247bb74e36a8a5b53975219e86c70bf015"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0137.png",
+      "bytes": 993628,
+      "sha256": "732404dad9f0f47b0b4d3843b7f09c5150ac0608837ed5071bf9b8ddfcb3a614"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0138.png",
+      "bytes": 993600,
+      "sha256": "0d6531b06360d9b39ee56ef27596f573cb00ef03b20995cfbd885541cd460cb4"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0139.png",
+      "bytes": 993725,
+      "sha256": "b3ccc0e8ca63329aa6a1cc0f8c07e95290084ea6542bcb72e3bba1b8dbc3fbb7"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0140.png",
+      "bytes": 993691,
+      "sha256": "cd7d7b39a306dba8d8c2ec8af9c67726d43558918a93b65981ce71905b6bf1c5"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0141.png",
+      "bytes": 994469,
+      "sha256": "c9ef304f639c8b194334b5d21567d5d4fcfc347aa15f8b56790120f2121cca43"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0142.png",
+      "bytes": 994430,
+      "sha256": "26a8670574926dda44ddf82f2e28fa4fd3e0232a3454179fc344ec3b0207e2de"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0143.png",
+      "bytes": 994999,
+      "sha256": "fafbe47d8f1588b61c6290b4b54ad61c105dfd45712cd63a9de16f52b5025a71"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0144.png",
+      "bytes": 995606,
+      "sha256": "ddcab17f60c948ed685b539c8f0ac5537e918af87ed05017f992c2c798a270c6"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0145.png",
+      "bytes": 996413,
+      "sha256": "adf635b4188bafac7f3a8f2b3d374b85c693e9b93006bee40a879b93e3f8eba9"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0146.png",
+      "bytes": 996468,
+      "sha256": "2d703c9cdb7492a40d03355327c846c3fb85a3e7d0b49b532f44dc2004de32df"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0147.png",
+      "bytes": 996162,
+      "sha256": "b40484552c6e6b8671e428b3374b07d57c136a83a0b724cfcff76650bba4b843"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0148.png",
+      "bytes": 995756,
+      "sha256": "b9911630e7b10deceebb59e505cd1d7b7b95041358bfab2f682ed3621f50f811"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0149.png",
+      "bytes": 996264,
+      "sha256": "b0ddb09f7b1175f2ed3a4a2a1a50d011d09374dd00fff0b3d1263202670d999a"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0150.png",
+      "bytes": 995405,
+      "sha256": "847ac2f03d6ffbcf1370c9ef6c1637bfaa82f5d9b9640b18d132586cacff26d7"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0151.png",
+      "bytes": 995223,
+      "sha256": "1d6696a1a6851598f0f32ddcbab8cf7e1f6e9f8354266a96d535c81b802bbbab"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0152.png",
+      "bytes": 995103,
+      "sha256": "2648ec8766a3d2873290ff2a03478d0b317b5bc4408faa3651c4f769353b9bf8"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0153.png",
+      "bytes": 994511,
+      "sha256": "eb643c445b8265a4b57bfc4a235e65f6f7e5832108acda4d866988e8d8c43890"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0154.png",
+      "bytes": 994218,
+      "sha256": "b60e7353c6b3d807a8ecd7c46b6c7482e07c0046381877e80d736116d7bbaea6"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0155.png",
+      "bytes": 994621,
+      "sha256": "d413dd5c9539e49937e223bdbed70692920af9a90936bce013edc8a6f77a1ad2"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0156.png",
+      "bytes": 995117,
+      "sha256": "9d0245446300f7da6583fef904f69b82a9f60372e3d65cd85dfe22df5801636e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0157.png",
+      "bytes": 995412,
+      "sha256": "b5874c31d299520d86409d971a3487504571bd3ad4c802533adb0ea61dd6c925"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0158.png",
+      "bytes": 996268,
+      "sha256": "ed66521034a595ec93c3ea6c2e177cf90d18a7815ade17ca5839fbe892dc8d71"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0159.png",
+      "bytes": 996469,
+      "sha256": "5febb7d1d5f6810e7875ca4ce2cc36d537f2d6c8ecef40cf81dcd46b8e0fe7e3"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0160.png",
+      "bytes": 997276,
+      "sha256": "0a811a6d2cf3e27fae83c92d4c52c10422653dcd6cfc5e133f2dbfdc31387574"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0161.png",
+      "bytes": 997697,
+      "sha256": "361d16793f662df285a728ff1f7a2f61f2dd07dc7d2f4eedeb2ad8f7aee970cc"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0162.png",
+      "bytes": 998093,
+      "sha256": "4d58947e4076a9fcd1414061eab0b281d85d098a579934f111073378a0bb0ec6"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0163.png",
+      "bytes": 999164,
+      "sha256": "734d51f7b7385bbcdb1ce63aa4f1c6e0ad703ba5a3c4473c835e3f36329a7583"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0164.png",
+      "bytes": 999142,
+      "sha256": "c65438d25b5ceb3296145a27ec892ef8a79a678ef96513722686baca7e536120"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0165.png",
+      "bytes": 1002621,
+      "sha256": "1458a2448a75fac65bbed198a9795074f7100f124449498d4bc9c0adc5d5e8e4"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0166.png",
+      "bytes": 1003025,
+      "sha256": "804d2c52927fb8cc122173719958d662d3ae2041d405a8f7cc166e7ae26ee782"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0167.png",
+      "bytes": 1003369,
+      "sha256": "e3d4d640fb6c92b3c89ea085af4b92259a3d64a743451a1e952a77eb093ff3aa"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0168.png",
+      "bytes": 1004084,
+      "sha256": "168920cc43accac5fe73e65c039ad5a51391d5e9313709a005c27534636b5974"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0169.png",
+      "bytes": 1004778,
+      "sha256": "e11e802a96bba0187836656e06ce7bbb0d9b8136ad28ea3ab92c2f037d86e4af"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0170.png",
+      "bytes": 1005309,
+      "sha256": "4a16de348b05e938fd790391f7d6ea2f9375c28e1c96b4113205414eaf4baac8"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0171.png",
+      "bytes": 1006063,
+      "sha256": "37592db603dc079a18ced4276dd7e6bfeb3eb9391a7683c08dc12309da51980b"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0172.png",
+      "bytes": 1006708,
+      "sha256": "83b4c165bd4afbac2dbe4d38f190f3560a0f38c7d0d1f26383c06978b91d75e4"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0173.png",
+      "bytes": 1008064,
+      "sha256": "0bf7f4b8fc1aa8ab6d809b412aac5cfad6740950076331c8a78cfe2530d04a8a"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0174.png",
+      "bytes": 1007395,
+      "sha256": "3307f6e9c23399637028fb924c5f347f79f7398b711a9f0845ec9e985cf41870"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0175.png",
+      "bytes": 1007408,
+      "sha256": "d8e8bab175d9e6ea94d5301747a22a86fad340f9ef138a8ea2076579fa3226fd"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0176.png",
+      "bytes": 1006487,
+      "sha256": "cd2aa8b0d1554d81c2f781b38170ab533234d401cbc6066a9f6688044c9e5ab0"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0177.png",
+      "bytes": 1005795,
+      "sha256": "237ce490872ab9529ee6d856664605b3cadfc0b1ad89d14ee447fcc42ca7e43d"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0178.png",
+      "bytes": 1004880,
+      "sha256": "cfc260e4a727af218c5d806ce0524457d0539e4c54831f2997375594f342df12"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0179.png",
+      "bytes": 1004815,
+      "sha256": "b4aeed4e42bb2de599ac8f2c8d0d0e7d6259f94e5cd03e1f4fe81852b6881e36"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0180.png",
+      "bytes": 1001907,
+      "sha256": "8ef0e1c9e94089501d13735104accff38fb97f853519d50831e10ac353fe4331"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0181.png",
+      "bytes": 1001374,
+      "sha256": "7a6dad0077c835d6b5705dad626787956452b28d95c955cc9bd08010f957a4f2"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0182.png",
+      "bytes": 1000683,
+      "sha256": "401da380bb85d2e3ebeedb9aa0f28ecc0bb5b7b2e48f69320aa1e98047afde92"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0183.png",
+      "bytes": 999912,
+      "sha256": "21abe0dcd79d1bde3ce96f2e8120a86919b8dd40cc0a8bba06b2509f15a5ffae"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0184.png",
+      "bytes": 999581,
+      "sha256": "0ae4e41180662cd1175a7b866830e84a7285339fa6dd69cc550bba19fc861fa9"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0185.png",
+      "bytes": 998844,
+      "sha256": "18251697e620b72eb9589d07a9b80e3d8d0581339d41e7957a33f7d49d906d83"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0186.png",
+      "bytes": 999211,
+      "sha256": "3243746f0ffdaf20d7d36bd263454cb437caa5d4ea69c6b9d6e1abd9758d1d7d"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0187.png",
+      "bytes": 998320,
+      "sha256": "7d4031a1a7302ed7b96512c22507911d6ce2c941c8154f6fb5c358a1c527788b"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0188.png",
+      "bytes": 998293,
+      "sha256": "816225bdf5b08dcc436797440bf34b2c7b3c4f2b5cbce81da485c7b75ea3f386"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0189.png",
+      "bytes": 997219,
+      "sha256": "c2b736ca9756c9cc8dcb05d2ce95eca1e7b8a370875f4cf6b032a053626d32b4"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0190.png",
+      "bytes": 998258,
+      "sha256": "06bb6a16fa12e09d04c24215d0b7b4b5b1a4171f55be3851abf27497ca62a0b2"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0191.png",
+      "bytes": 998263,
+      "sha256": "ff864b86e158d94693bfa05d4c7937941665ccb22d47a91b52f938cded1c9390"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0192.png",
+      "bytes": 998584,
+      "sha256": "68730043b617db6771e16437a36c590af9106722ff9273d1b6aed0a200be9048"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0193.png",
+      "bytes": 998471,
+      "sha256": "ce757b978f79931132980c207c2e8344b967d9a6c2a874bfac53a9aa436c2b4f"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0194.png",
+      "bytes": 998384,
+      "sha256": "843883eddb641cb3646c0a116ba8ad40000d50b97d9039200881584220d34afa"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0195.png",
+      "bytes": 998008,
+      "sha256": "6c9ba258c5d60e89c6e80137a08a3762810ef09ab0465d05d345a31d57604d08"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0196.png",
+      "bytes": 998216,
+      "sha256": "4e8ee1fdb2316d4a73e9a3548b3b4ff345d85daa33bb1d9600930a69ecb20763"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0197.png",
+      "bytes": 998453,
+      "sha256": "8ccf2564f7ce89c7d2e37fc0b8f7537c2a718b8f41776edca6eb0e12315a1795"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0198.png",
+      "bytes": 998241,
+      "sha256": "692e052a88e57cb3b0f2c592ec9843641456d85ba82d9411faf96159acaa7276"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0199.png",
+      "bytes": 998205,
+      "sha256": "e2fc1921163d7e2cfd0e46dddb504ffb49b8da58b0fa49602fbdf88abea3c005"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0200.png",
+      "bytes": 998654,
+      "sha256": "1006cc04e1e75b6862fb210978d32cd2ecb391b82e8188e3638f719b574c68ee"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0201.png",
+      "bytes": 998648,
+      "sha256": "720330af726337d70e518d066123bfc6242641bcabb2a60c0fd809b5fcbc0fe5"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0202.png",
+      "bytes": 998881,
+      "sha256": "712fb50f737e784b6a4a7bba66e9faa1e0c8a7b295363867d8cfaeffb0f5f763"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0203.png",
+      "bytes": 998760,
+      "sha256": "6f0e80e565e81cd1523c59c6aaac902035d84fdf305722f659c0f3c582bbc2e3"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0204.png",
+      "bytes": 998769,
+      "sha256": "d876adf21ba7e7213df9048c7ee79dede14984faafa75c508e3f8b4f71e1dafc"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0205.png",
+      "bytes": 998503,
+      "sha256": "d96489ddc59b72ce57a8e56b2cb147420f7310d2625e627de7ec1dcce806da61"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0206.png",
+      "bytes": 998132,
+      "sha256": "5602d962bc1d3307e6ee327bb562fd1e66a32794edc9ea22db81d3cd56d21cdc"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0207.png",
+      "bytes": 997727,
+      "sha256": "8069b386f38f2493d86b86423868a1de3853ce7d0cc6b4d330fa7eff4e7fbb19"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0208.png",
+      "bytes": 997892,
+      "sha256": "856e7c2d8a8eacd46a99b45097e18eb33a36f08245a198858e69ccea3af8e903"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0209.png",
+      "bytes": 998593,
+      "sha256": "bc4379f383daef1a6b82c27f92e164157a6a60383e937889944bfd7cbd68e2a4"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0210.png",
+      "bytes": 997871,
+      "sha256": "6d90e6e7fa2bea63791929770086a55bb16885be9c0481fea80708e182c10fbb"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0211.png",
+      "bytes": 997872,
+      "sha256": "2ecfe1a1804b6fc7153c337c1a7ad20af166c19f0d8858d3f2b882ef32f5a986"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0212.png",
+      "bytes": 997976,
+      "sha256": "16fa8c83973aecadca3799f52ca975dfd0397c6f06342df39d6289d780331508"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0213.png",
+      "bytes": 997847,
+      "sha256": "5a2783f716fd0701de99652c55f367996e544a6b76591c2d9d9fad4942df2c47"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0214.png",
+      "bytes": 997651,
+      "sha256": "a2c29c62526419f9e835d2a178b58ccd79a254883f9a8b88795b1265ee576a78"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0215.png",
+      "bytes": 997465,
+      "sha256": "33f8998e9364b0401f1336d520c78af50100b27b9e57c3b5bb16e936eadc1f98"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0216.png",
+      "bytes": 996548,
+      "sha256": "c6fd33ce9d0d7d6755d2bd5e69e1c84265016983cd11d9b24c8d912296fda13c"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0217.png",
+      "bytes": 996822,
+      "sha256": "006c8e4ce4d370301799674e2c84909e259b26393c45dd8e49a8dbe657100d81"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0218.png",
+      "bytes": 997136,
+      "sha256": "baf6b1bf42691e47aa031dd78bf05ff4e7c20090d879918738e785fb4119ed76"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0219.png",
+      "bytes": 997864,
+      "sha256": "f51ee956cde7ba81bc60a425ebdf1e358dec25496c38ce0ee71707f3068949bd"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0220.png",
+      "bytes": 997931,
+      "sha256": "16ceea4c86ff0ab677d899fbecffeabf0be21f74b0b0b8773ecae281e7998b89"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0221.png",
+      "bytes": 998241,
+      "sha256": "2b9e5d00ab5b28a89b61134e1aacc11f962ef474a1406cd4d66d81797054ff40"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0222.png",
+      "bytes": 998514,
+      "sha256": "14988ce2dea66e7d62d4a125b1de1f6d885313e460d05d9ae5fb68cdd7d04022"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0223.png",
+      "bytes": 999138,
+      "sha256": "48102146d46720bf708a1b619dad74081b8c054cc69530730ba91f70914d6bbd"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0224.png",
+      "bytes": 999634,
+      "sha256": "488a5852d51a6b4101741a2388055813fa01dde6d173baad1cec53585677e4dc"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0225.png",
+      "bytes": 1002191,
+      "sha256": "7b9de25fb82967f39c8a2748f324dacbbdecaf5feea321ffd3c7c7c41ac6434c"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0226.png",
+      "bytes": 1002626,
+      "sha256": "db8be7e7a6c17a47ad6518aa3947da0eb45e5e05f052204fd6e8f89b7ac324e4"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0227.png",
+      "bytes": 1002955,
+      "sha256": "07e2fa75345dffe66915037d13428629228c57f4e102123439e648966ddd2216"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0228.png",
+      "bytes": 1004555,
+      "sha256": "cfbfda8f271c933f3f865c96fd1803638b49f971766b95aaafb2ea4f3c544ccf"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0229.png",
+      "bytes": 1005111,
+      "sha256": "547e3edc3d80a044fa12515598d0ab7aeafdb0244809b21b44619ba52495cd0a"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0230.png",
+      "bytes": 1005424,
+      "sha256": "ca1d9ab23cf52bc1db9d1b7eb309db7b298f15d7799119ea30326a16a2c9e113"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0231.png",
+      "bytes": 1005553,
+      "sha256": "d1064d13a243a93b7dc6d6cb9ae66c22d206a7502bfb1f932b7e98d5f409177a"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0232.png",
+      "bytes": 1006157,
+      "sha256": "7d4b449c4ab150f52d33922d9d51a9889969248146d98eb115fe55b769e8abca"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0233.png",
+      "bytes": 1005659,
+      "sha256": "09d4f8474756c4fd6d0d173c629bf76dabb4bd11a6bf61e79b7ff6cfd8751377"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0234.png",
+      "bytes": 1004777,
+      "sha256": "9f6e9948d1aeee06f7fd4a330ee42eea96cf69b33680856a749c5ab05ee661c4"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0235.png",
+      "bytes": 1003721,
+      "sha256": "4e2e630109aa627e061af51e099a2ad981ffa936d412854beb154b3d86d24e9e"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0236.png",
+      "bytes": 1002824,
+      "sha256": "47a16fe430b730cb17186991fb36c92bc8a7e75f3a0c97845b655c5d994d7db4"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0237.png",
+      "bytes": 1001297,
+      "sha256": "aa8ef1ec1c10fcb37ab1cc908d150169618d54c2087e24fbbc997cced37b66a2"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0238.png",
+      "bytes": 1000656,
+      "sha256": "72eb052a54b7f0c44cd0ed82aa7842d5563276232c72af4a4696c95b5b1920eb"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/frame-0239.png",
+      "bytes": 1000380,
+      "sha256": "a8f33e83d6a16afd842fbf0880017eadab87b3f965927f8ecd4b744e8d527dc8"
+    },
+    {
+      "path": "content/assets/characters/xiao/full-v016/tiles-v001/manifest.json",
+      "bytes": 88411,
+      "sha256": "8c1d4c0531ecfb06d530870db8fadc1cee80e1f829575806d8cc80e2835f52b8"
+    }
+  ]
+}
