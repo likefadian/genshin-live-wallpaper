@@ -1,10 +1,10 @@
-# GenshinEXE
+# GenshinWallpaper
 
 Windows x64 动态壁纸软件，当前本地版本 `0.1.3`。已接入 GitHub Releases 手动更新，以及 V3 用户确认的共用引擎优化和无损动态分块传输。使用原魈 / 璃月灯火（full-v016），保留原动态头发、自然闭眼、身体接触、四时段背景、实时受光、粒子、灯光、Bloom 和时间日期。
 
 ## 安装与观看
 
-打开 `release/github-updates-v001/GenshinEXE-Setup-0.1.3-x64.exe`，选择安装目录并完成安装。支持当前用户安装，无需管理员权限；旧版升级继续沿用用户设置。首次启动打开设置，壁纸位于主显示器的桌面图标后；切换到桌面即可观看。运行无需 Node.js、AE、Vite、.NET 或 WebView2，首次安装后可离线使用。
+打开 `release/genshinwallpaper-v001/GenshinWallpaper-Setup-0.1.3-x64.exe`，选择安装目录并完成安装。支持当前用户安装，无需管理员权限；旧版升级继续沿用用户设置。首次启动打开设置，壁纸位于主显示器的桌面图标后；切换到桌面即可观看。运行无需 Node.js、AE、Vite、.NET 或 WebView2，首次安装后可离线使用。
 
 默认使用无损分块：每帧解码/上传的原始RGBA像素从约14.82 MiB降到6 MiB，8帧缓存的像素估算为48 MiB（另有在途解码及GPU资源）。这些是资源尺寸计算，不是进程总内存、功耗或风扇降幅。原完整图集继续保留，因此安装包比0.1.0更大。显卡选择沿用原逻辑；0.1.1强制核显试验保留在独立Git候选分支。
 
@@ -48,7 +48,7 @@ npm.cmd run dist:installer
 
 本地验收使用专用旧候选 `0.1.3-verify.0` 和受限 loopback 更新源；需要显式 `--verify-update`、专用配置目录及 `GENSHINEXE_VERIFY_UPDATE_URL`，独立下载缓存不会覆盖正式缓存。该候选只用于本地测试，不是发布版本。实际结果见 [docs/verification.md](docs/verification.md)。正常用户运行始终读取内置 GitHub 配置。
 
-用户已创建仓库并授权本地接入；本轮未上传、未创建 Release、未发布。通过真实 GitHub 附件下载并升级的远端验收，要在用户批准发布后继续完成。
+用户已批准以 GenshinWallpaper 名称公开发布 v0.1.3 的安装器、blockmap 与更新清单，源码继续单独交付。发布记录及实际远端验收结果见 [docs/status.md](docs/status.md)。软件改名继续沿用稳定安装标识和 `%APPDATA%/GenshinEXE` 设置目录。
 
 ## 后续阶段与当前限制
 

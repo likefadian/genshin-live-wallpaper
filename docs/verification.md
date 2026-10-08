@@ -1,4 +1,13 @@
-# 本地必要验证 · 2026-10-07
+# 必要验证 · 2026-10-08
+
+## GenshinWallpaper 正式命名
+
+- 8/8 核心检查通过，改名后的网页与 NSIS 构建 exit0；安装器 Windows ProductName 为 GenshinWallpaper。
+- 实际覆盖安装到同一 `.local-install` 目录 exit0，旧 GenshinEXE.exe 已移除，新 GenshinWallpaper.exe 正常运行。实际 Windows 窗口及侧栏名称完整，品牌文字没有溢出。
+- 原 `%APPDATA%/GenshinEXE/settings.json` 与安装前备份 SHA-256 相同，为 `df3f21938feaf19156876936abafec4eb051ebf70ae427f6e092ac7aa91c1e20`。实际打包版读取该设置，桌面挂载成功，tiles / RTX4060，加载和渲染错误为空。
+- 正式名称安装器、blockmap 与 latest.yml 全部重新生成，清单中的 URL、字节数与 SHA-512 按新文件核对；没有把旧安装器改文件名后上传。
+
+下列保留改名前的必要验证记录。
 
 仅验证桌面软件、已接受的网页优化接入，以及本轮手动更新链路。未重跑 V3 角色视觉矩阵、原生导出或长期性能。
 

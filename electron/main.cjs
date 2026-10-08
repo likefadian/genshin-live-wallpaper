@@ -8,7 +8,7 @@ const {createLog}=require('./runtime-log.cjs');
 const {createUpdateController}=require('./update-controller.cjs');
 const {resolveUpdateSource}=require('./update-source.cjs');
 
-app.setName('GenshinEXE');app.setAppUserModelId('com.genshinexe.wallpaper');
+app.setName('GenshinWallpaper');app.setAppUserModelId('com.genshinexe.wallpaper');
 const userData=process.env.GENSHINEXE_PROFILE?resolve(process.env.GENSHINEXE_PROFILE):join(app.getPath('appData'),'GenshinEXE');
 mkdirSync(userData,{recursive:true});app.setPath('userData',userData);
 for(const flag of ['disable-renderer-backgrounding','disable-background-timer-throttling','disable-backgrounding-occluded-windows'])app.commandLine.appendSwitch(flag);
@@ -60,7 +60,7 @@ async function connectDesktop(){
 }
 function createWallpaper(){
  const bounds=screen.getPrimaryDisplay().bounds;
- const window=new BrowserWindow({...bounds,title:'GenshinEXE 动态壁纸',frame:false,thickFrame:false,transparent:false,show:false,focusable:false,resizable:false,movable:false,skipTaskbar:true,backgroundColor:'#102027',webPreferences:{preload:join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true,backgroundThrottling:false}});
+ const window=new BrowserWindow({...bounds,title:'GenshinWallpaper 动态壁纸',frame:false,thickFrame:false,transparent:false,show:false,focusable:false,resizable:false,movable:false,skipTaskbar:true,backgroundColor:'#102027',webPreferences:{preload:join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true,backgroundThrottling:false}});
  wallpaperWindow=window;telemetry=null;appliedRevision=-1;wallpaperStatus='loading';renderError='';attachment=null;
  window.setIgnoreMouseEvents(true);secureWindow(window,'wallpaper');
  window.webContents.once('did-finish-load',()=>{if(desktopStatus==='attached')window.showInactive();broadcast();});
@@ -72,7 +72,7 @@ function replaceWallpaper(){
 }
 function openSettings(){
  if(settingsWindow&&!settingsWindow.isDestroyed()){settingsWindow.show();settingsWindow.focus();return;}
- const window=new BrowserWindow({width:800,height:820,minWidth:740,minHeight:650,title:'GenshinEXE · 壁纸设置',icon,show:false,autoHideMenuBar:true,backgroundColor:'#10262c',webPreferences:{preload:join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true}});
+ const window=new BrowserWindow({width:800,height:820,minWidth:740,minHeight:650,title:'GenshinWallpaper · 壁纸设置',icon,show:false,autoHideMenuBar:true,backgroundColor:'#10262c',webPreferences:{preload:join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true}});
  settingsWindow=window;secureWindow(window,'settings');window.once('ready-to-show',()=>{window.show();window.focus();});window.loadFile(join(__dirname,'settings','index.html'));
  window.on('closed',()=>{if(settingsWindow===window)settingsWindow=null;});
 }
@@ -84,9 +84,9 @@ function trayMenu(){return Menu.buildFromTemplate([
  {type:'separator'},
  {label:'开机启动',type:'checkbox',checked:loginEnabled(),enabled:app.isPackaged,click:item=>{app.setLoginItemSettings({openAtLogin:item.checked,path:process.execPath,args:['--background']});broadcast(false);}},
  {label:'打开日志文件夹',click:()=>shell.openPath(log.directory)},
- {type:'separator'},{label:'退出 GenshinEXE',click:quit},
+ {type:'separator'},{label:'退出 GenshinWallpaper',click:quit},
 ]);}
-function createTray(){tray=new Tray(nativeImage.createFromPath(join(__dirname,'assets','tray.png')).resize({width:20,height:20}));tray.setToolTip('GenshinEXE · 璃月灯火');tray.setContextMenu(trayMenu());tray.on('double-click',openSettings);tray.on('click',openSettings);}
+function createTray(){tray=new Tray(nativeImage.createFromPath(join(__dirname,'assets','tray.png')).resize({width:20,height:20}));tray.setToolTip('GenshinWallpaper · 璃月灯火');tray.setContextMenu(trayMenu());tray.on('double-click',openSettings);tray.on('click',openSettings);}
 async function boot(){
  if(process.platform!=='win32')throw Error('目前支持 Windows x64');
  if(!existsSync(join(web,'index.html')))throw Error('缺少本地壁纸资源，请先构建网页');
@@ -151,7 +151,7 @@ process.on('uncaughtExceptionMonitor',error=>log.write('main-exception',{message
 process.on('unhandledRejection',error=>log.write('unhandled-rejection',{message:String(error)}));
 if(!app.requestSingleInstanceLock()){app.quit();}else{
  app.on('second-instance',(_event,argv)=>{if(argv.includes('--quit')){quit();return;}if(server&&!argv.includes('--background'))openSettings();});
- app.whenReady().then(()=>process.argv.includes('--quit')?app.quit():boot()).catch(error=>{log.write('startup-error',{message:error.message,stack:error.stack});dialog.showErrorBox('GenshinEXE 启动失败',error.message+'\n日志：'+log.directory);app.quit();});
+ app.whenReady().then(()=>process.argv.includes('--quit')?app.quit():boot()).catch(error=>{log.write('startup-error',{message:error.message,stack:error.stack});dialog.showErrorBox('GenshinWallpaper 启动失败',error.message+'\n日志：'+log.directory);app.quit();});
  app.on('window-all-closed',()=>{});
  app.on('before-quit',()=>{
   if(quitting)return;quitting=true;clearInterval(monitor);clearTimeout(boundsTimer);

@@ -1,4 +1,15 @@
-# GenshinEXE 状态 · 2026-10-07
+# GenshinWallpaper 状态 · 2026-10-08
+
+## GenshinWallpaper 0.1.3 · 正式命名与发布准备
+
+用户已授权向 `likefadian/genshin-live-wallpaper` 公开发布稳定版 `v0.1.3`，名称为 `GenshinWallpaper v0.1.3`。公开附件仅为安装器、blockmap 与 latest.yml；源码不上传或推送。
+
+- 软件窗口、侧栏、托盘、快捷方式、Windows 产品名及安装器均改为 GenshinWallpaper；保留稳定 appId、包名、更新缓存和旧版设置目录，实际覆盖安装后旧 EXE 已移除。
+- 改名后的 NSIS 构建与实际安装 exit0；8/8 核心检查通过。原用户设置 SHA-256 完全一致。实际窗口已查看，品牌文字完整，壁纸运行且桌面挂载成功，tiles、RTX4060，渲染错误为空。
+- 本轮产物在 `release/genshinwallpaper-v001/`，安装器名为 `GenshinWallpaper-Setup-0.1.3-x64.exe`；本地源码交付为 `release/GenshinWallpaper-Source-0.1.3.zip`。正式清单随改名后的安装器重新生成。
+- GitHub 账号授权已完成，正在上传和核对正式附件；尚未记录公开发布成功。现场材料保存在 `work/genshinwallpaper-v001/`。
+
+下列内容保留改名前各轮验收记录。
 
 当前本地版本 **0.1.3 / Windows x64 / 主显示器**，已接入用户选择的 GitHub 更新源，通过软件内下载、校验和NSIS重启升级，最终正常实例恢复原用户设置并继续运行。尚未上传、创建 Release 或发布；0.1.2的原始交付继续保留。
 

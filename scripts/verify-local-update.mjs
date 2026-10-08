@@ -3,7 +3,7 @@ import {createReadStream,readFileSync,statSync} from 'node:fs';
 import {basename,dirname,join,resolve} from 'node:path';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),yaml=require('js-yaml');
-const installer=resolve(process.argv[2]||'release/github-updates-v001/GenshinEXE-Setup-0.1.3-x64.exe');
+const installer=resolve(process.argv[2]||'release/github-updates-v001/GenshinWallpaper-Setup-0.1.3-x64.exe');
 const baseline=process.argv[3]?resolve(process.argv[3]):null;
 const metadata=readFileSync(join(dirname(installer),'latest.yml'));
 const document=yaml.load(metadata);

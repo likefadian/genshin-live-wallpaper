@@ -3,7 +3,8 @@ $taskRoot = [System.IO.Path]::GetFullPath((Split-Path -Parent $PSScriptRoot))
 $taskPackage = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $taskRoot 'package.json') | ConvertFrom-Json
 $taskRelease = Join-Path $taskRoot 'release'
 New-Item -ItemType Directory -Path $taskRelease -Force | Out-Null
-$taskOutput = Join-Path $taskRelease ("GenshinEXE-Source-" + $taskPackage.version + '.zip')
+$taskProduct = $taskPackage.build.productName
+$taskOutput = Join-Path $taskRelease ($taskProduct + '-Source-' + $taskPackage.version + '.zip')
 if (Test-Path -LiteralPath $taskOutput) { throw "Source archive already exists: $taskOutput" }
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -22,7 +23,7 @@ try {
       if (-not $taskAbsolute.StartsWith($taskRoot + '\', [StringComparison]::OrdinalIgnoreCase)) { throw 'Source path outside project' }
       if (($taskFile.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) { throw 'Reparse links are not included' }
       $taskRelative = $taskAbsolute.Substring($taskRoot.Length + 1).Replace('\','/')
-      [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($taskArchive, $taskAbsolute, ('GenshinEXE/' + $taskRelative), [System.IO.Compression.CompressionLevel]::Optimal) | Out-Null
+      [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($taskArchive, $taskAbsolute, ($taskProduct + '/' + $taskRelative), [System.IO.Compression.CompressionLevel]::Optimal) | Out-Null
       $taskCount++
     }
   }
