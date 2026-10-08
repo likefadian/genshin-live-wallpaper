@@ -7,6 +7,16 @@
 - 原 `%APPDATA%/GenshinEXE/settings.json` 与安装前备份 SHA-256 相同，为 `df3f21938feaf19156876936abafec4eb051ebf70ae427f6e092ac7aa91c1e20`。实际打包版读取该设置，桌面挂载成功，tiles / RTX4060，加载和渲染错误为空。
 - 正式名称安装器、blockmap 与 latest.yml 全部重新生成，清单中的 URL、字节数与 SHA-512 按新文件核对；没有把旧安装器改文件名后上传。
 
+## GitHub 正式发布与实际远端升级
+
+- 稳定版 `v0.1.3` 于 `2026-10-08T00:53:38Z` 正式发布并设为 Latest，Release ID `406289761`。发布前核对三个附件的服务端 SHA-256、字节数、上传状态及中文说明，全部匹配本地文件。公开 latest/download/latest.yml 实际下载后的 SHA-256 也相同。
+- 正式附件为 `GenshinWallpaper-Setup-0.1.3-x64.exe`（739230542 字节）、对应 blockmap（769295 字节）及 latest.yml（1021 字节）。安装器 SHA-256 为 `e7c0bde7eaeab7558ecd25b2d6ebbb1419a2684595174cb8f93dd4a291babf3c`。
+- 实际旧测试版 `0.1.3-verify.0` 使用正常用户目录和内置 GitHub 源；没有 loopback 地址、验收覆盖源或调试端口。通过真实软件按钮检查到 `availableVersion=0.1.3`，中文说明与发布正文相同。
+- 实际 GitHub 下载从0推进到739230542字节，完成状态为 downloaded / 100%。缓存安装器的 SHA-256 和 SHA-512 与本地已发布安装器完全相同，未复用本地验收服务的下载结果。旧测试版未发布，旧 blockmap 返回 HTTP 404 后正确退回完整下载；未验收远端差分节省量。
+- 真实“重启并安装”按钮与原生确认触发 `quitAndInstall`，`2026-10-08T01:01:25.084Z` 日志记录运行 GitHub 下载缓存中的安装器，参数 `--updated,/S,--force-run`；旧版退出，`01:01:44.881Z` 自动启动新版。实际主进程为 `.local-install/GenshinWallpaper.exe --updated`，ASAR版本0.1.3，旧 GenshinEXE.exe 已移除。
+- 原用户设置文件与升级前备份 SHA-256 一致，仍为 `df3f21938feaf19156876936abafec4eb051ebf70ae427f6e092ac7aa91c1e20`。新版读取同一设置目录，壁纸 running / attached、tiles、RTX4060，加载与渲染错误为空；已查看自动重启后的实际 Windows 窗口和正式名称。
+- 软件源码未上传或推送；公共 tag 只指向原公开仓库 README 的 `ee188bb2c22b9577e6d11b72e22f81c4df5e4b6b`。本地软件改名提交为 `e4591611746404afcf9351f6ce56cd2c93369aab`，源码 ZIP 继续单独交付。新源码 ZIP 579 个条目逐一核对匹配，随后仅更新发布记录文档并再次核对更新条目。
+
 下列保留改名前的必要验证记录。
 
 仅验证桌面软件、已接受的网页优化接入，以及本轮手动更新链路。未重跑 V3 角色视觉矩阵、原生导出或长期性能。
@@ -57,4 +67,4 @@
 
 ## 未验收范围
 
-多显示器、不同机器、开机重登、主动重启 Explorer 恢复、1.5/2倍长期性能；独立内容包安装和真实GitHub远端升级。本地EXE未签名，已配置发布源但尚未公开发布。
+多显示器、不同机器、开机重登、主动重启 Explorer 恢复、1.5/2倍长期性能、独立内容包安装，以及远端差分节省量。EXE未签名；GitHub正式发布与完整远端升级已实际完成。

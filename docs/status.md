@@ -1,13 +1,16 @@
 # GenshinWallpaper 状态 · 2026-10-08
 
-## GenshinWallpaper 0.1.3 · 正式命名与发布准备
+## GenshinWallpaper 0.1.3 · 已公开发布
 
 用户已授权向 `likefadian/genshin-live-wallpaper` 公开发布稳定版 `v0.1.3`，名称为 `GenshinWallpaper v0.1.3`。公开附件仅为安装器、blockmap 与 latest.yml；源码不上传或推送。
 
 - 软件窗口、侧栏、托盘、快捷方式、Windows 产品名及安装器均改为 GenshinWallpaper；保留稳定 appId、包名、更新缓存和旧版设置目录，实际覆盖安装后旧 EXE 已移除。
 - 改名后的 NSIS 构建与实际安装 exit0；8/8 核心检查通过。原用户设置 SHA-256 完全一致。实际窗口已查看，品牌文字完整，壁纸运行且桌面挂载成功，tiles、RTX4060，渲染错误为空。
 - 本轮产物在 `release/genshinwallpaper-v001/`，安装器名为 `GenshinWallpaper-Setup-0.1.3-x64.exe`；本地源码交付为 `release/GenshinWallpaper-Source-0.1.3.zip`。正式清单随改名后的安装器重新生成。
-- GitHub 账号授权已完成，正在上传和核对正式附件；尚未记录公开发布成功。现场材料保存在 `work/genshinwallpaper-v001/`。
+- GitHub 稳定版已于 2026-10-08 08:53:38（北京时间）正式发布并设为 Latest：[GenshinWallpaper v0.1.3](https://github.com/likefadian/genshin-live-wallpaper/releases/tag/v0.1.3)。发布前核对三个附件的服务端 SHA-256、大小、上传状态和中文说明，全部与本地一致；公开 latest/download/latest.yml 下载后也完全匹配。
+- 实际软件通过内置 GitHub 源检查后状态为 `current`。旧测试版 `0.1.3-verify.0` 使用正常用户目录和内置 GitHub 源，真实检查到 v0.1.3，完整下载 739230542 字节安装器，SHA-256 / SHA-512 与公开附件完全相同。通过真实 Windows 按钮和原生确认执行 NSIS 后，自动重启到 `GenshinWallpaper.exe --updated` / v0.1.3，原用户设置 SHA-256 不变，壁纸正常播放。
+- 本次旧测试版没有公开 blockmap，差分请求 HTTP 404 后正确退回完整下载；未据此宣称远端差分节省量。现场材料保存在 `work/genshinwallpaper-v001/`。
+- 本地源码 ZIP 的 579 个条目与工作目录逐一 SHA-256 匹配，未包含依赖、缓存或用户数据。公开仓库继续只有原 README 提交和版本附件，没有上传软件源码。
 
 下列内容保留改名前各轮验收记录。
 
@@ -70,8 +73,8 @@ Windows11家庭中文版22631 x64，RTX4060 / AMD780M，2560×1600 / 缩放175%�
 
 **独立壁纸包：未开始。** 下一阶段实现可读包配置、引擎/版本兼容、资源根目录、损坏包拒绝、原子安装和本地注册；当前注册仍编译进引擎，不能热安装外部角色包或任意原画混搭。
 
-**软件远程更新：已选定来源并接入，本地真实升级通过。** 源为 GitHub Releases；真正从GitHub附件下载并升级仍待用户批准发布后验证。当前尚无已公开的安装器或更新清单。0.1.2及更早版本没有更新器，需要先手动安装0.1.3。
+**软件远程更新：已接入并公开首个稳定版。** 源为 GitHub Releases；具体远端验收结果见本页顶部。0.1.2及更早版本没有更新器，需要先手动安装0.1.3。
 
-仓库已由用户创建，上传和发布权限仍待具体文件就绪后集中确认。源码 ZIP 单独交付，不自动上传或推送；壁纸包为后续阶段。**本轮未上传、未发布。**
+用户已批准 v0.1.3 的三个安装与更新附件公开发布。源码 ZIP 单独交付，不上传或推送；壁纸包为后续阶段。
 
-本地 EXE 未签名；多显示器、其他机器、开机重登、主动重启 Explorer 和高采样长期性能未验收。此阶段不是整个远程更新项目的最终完成。
+EXE 未签名；多显示器、其他机器、开机重登、主动重启 Explorer 和高采样长期性能未验收。GitHub 软件更新的首个正式发布与真实远端升级已完成，独立壁纸包仍为后续阶段。

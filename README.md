@@ -1,8 +1,10 @@
 # GenshinWallpaper
 
-Windows x64 动态壁纸软件，当前本地版本 `0.1.3`。已接入 GitHub Releases 手动更新，以及 V3 用户确认的共用引擎优化和无损动态分块传输。使用原魈 / 璃月灯火（full-v016），保留原动态头发、自然闭眼、身体接触、四时段背景、实时受光、粒子、灯光、Bloom 和时间日期。
+Windows x64 动态壁纸软件，当前正式版本 `0.1.3`。已接入 GitHub Releases 手动更新，以及 V3 用户确认的共用引擎优化和无损动态分块传输。使用原魈 / 璃月灯火（full-v016），保留原动态头发、自然闭眼、身体接触、四时段背景、实时受光、粒子、灯光、Bloom 和时间日期。
 
 ## 安装与观看
+
+从 [GitHub Releases](https://github.com/likefadian/genshin-live-wallpaper/releases/tag/v0.1.3) 下载 `GenshinWallpaper-Setup-0.1.3-x64.exe`。本地源码包为 `release/GenshinWallpaper-Source-0.1.3.zip`，不包含依赖、缓存或用户数据。
 
 打开 `release/genshinwallpaper-v001/GenshinWallpaper-Setup-0.1.3-x64.exe`，选择安装目录并完成安装。支持当前用户安装，无需管理员权限；旧版升级继续沿用用户设置。首次启动打开设置，壁纸位于主显示器的桌面图标后；切换到桌面即可观看。运行无需 Node.js、AE、Vite、.NET 或 WebView2，首次安装后可离线使用。
 
