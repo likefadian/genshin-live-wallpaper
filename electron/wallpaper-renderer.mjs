@@ -3,6 +3,7 @@ import {WallpaperRuntime} from '../vendor/v3/web/src/render/wallpaper-runtime.ts
 import {createWallpaperClock} from '../vendor/v3/web/src/ui/wallpaper-clock.ts';
 import {createVideoRuntime} from './video-runtime.mjs';
 import {createWallpaperController} from './wallpaper-controller.mjs';
+import {createAbortableScene} from './scene-runtime.mjs';
 
 const bridge=window.genshinDesktop,host=document.getElementById('stage'),status=document.getElementById('status');
 const clock=createWallpaperClock(document.getElementById('wallpaper-clock'),document.getElementById('clock-time'),document.getElementById('clock-date'),document.getElementById('clock-year'));
@@ -14,7 +15,7 @@ async function createScene(entry,{onError,signal}){
  const destroy=()=>{if(closed)return;closed=true;clearInterval(timer);runtime?.destroy();container.remove();signal.removeEventListener('abort',destroy);};
  signal.addEventListener('abort',destroy,{once:true});
  try{
-  runtime=await WallpaperRuntime.create(container,selected.character,selected.scene,selected.wallpaper);
+  runtime=await createAbortableScene(WallpaperRuntime,container,selected.character,selected.scene,selected.wallpaper,{signal});
   if(signal.aborted){runtime.destroy();throw new DOMException('已取消场景加载','AbortError');}
   host.style.setProperty('--focus',(selected.wallpaper.presentation?.focus??[.5,.5]).map(v=>v*100+'%').join(' '));
   runtime.onFrame=(_now,snapshot)=>{if(snapshot.loadError)onError(Error(snapshot.loadError));};

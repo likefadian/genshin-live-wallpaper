@@ -10,6 +10,8 @@ npm.cmd run wallpaper:author -- --file "D:\壁纸\夜景.mp4" --id night --name 
 
 命令实际检查视频能否解码，生成静态封面，将副本保存到 content/official-videos/official-video-night，并登记 catalog.json。原文件保留。ID 使用 1–80 个小写英文字母、数字或连字符；已有 ID 不覆盖。导入失败时清理本次副本，保留此前清单。
 
+同一个官方目录一次执行一条录入命令；并发命令会明确提示稍后重试，避免覆盖已登记作品。正常成功或失败都会释放 catalog.json.lock。若进程被强制结束，确认没有录入进程后再删除该锁文件并重试。
+
 之后运行 npm.cmd run prepare:web 检查并构建目录，运行 npm.cmd run dist:installer 生成下一版安装器。随正常软件更新交付后，新作品自动出现在用户的“官方壁纸”区，用户此前导入的视频和当前选择继续保留。文件缺失、ID 重复或清单错误会阻止构建。
 
 作者录入命令只修改本地项目资源。发布安装包继续沿用项目现有 GitHub Release 流程。使用 --catalog-root work/某目录 可以验收作者流程，该目录不会加入正式资源。

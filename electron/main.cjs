@@ -202,7 +202,7 @@ ipcMain.on('wallpaper:applied',(event,payload)=>{
 ipcMain.on('wallpaper:error',(event,payload)=>{
  if(event.sender!==wallpaperWindow?.webContents||event.senderFrame!==event.sender.mainFrame||payload?.wallpaperId!==store.settings.wallpaperId||payload?.revision!==store.revision)return;
  renderError=String(payload.message).slice(0,3000);wallpaperStatus='error';log.write('wallpaper-error',{message:renderError});
- if(library.get(store.settings.wallpaperId)?.kind==='video'){selectionWarning='视频播放失败，已切回内置场景：'+renderError;updateSettings({wallpaperId:catalog.defaultWallpaperId});}else broadcast(false);
+ if(library.snapshot().wallpapers.some(item=>item.id===store.settings.wallpaperId&&item.kind==='video')){selectionWarning='视频播放失败，已切回内置场景：'+renderError;updateSettings({wallpaperId:catalog.defaultWallpaperId});}else broadcast(false);
 });
 process.on('uncaughtExceptionMonitor',error=>log.write('main-exception',{message:error.message,stack:error.stack}));
 process.on('unhandledRejection',error=>log.write('unhandled-rejection',{message:String(error)}));

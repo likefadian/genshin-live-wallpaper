@@ -58,6 +58,27 @@ try{
  assert.equal(video.paused,true);assert.equal(video.volume,.35);assert.equal(video.fit,'contain');assert.equal(video.speed,1.2);assert.equal(video.clock,true);await pause(250);assert.ok(Math.abs(await wallpaper.eval('document.querySelector("video").currentTime')-video.time)<.04);record('暂停、音量、比例、速度和时钟同步');
  await api('resetSettings');s=await applied(local.id);assert.equal(s.settings.videoVolume,0);assert.equal(s.settings.wallpaperId,local.id);record('恢复控制默认值保留所选视频');
  await api('selectWallpaper','xiao-liyue-full');await api('selectWallpaper',local.id);await api('updateSettings',{videoVolume:.35});await applied(local.id);await pause(500);assert.equal(await wallpaper.eval('document.querySelectorAll("canvas").length'),0);record('快速切换和加载中改设置保留最后选择');
+ await wallpaper.eval(`(()=>{
+  const probe=window.__mp4SceneProbe={started:false,aborted:false,contexts:[]},originalFetch=window.fetch,originalContext=HTMLCanvasElement.prototype.getContext;
+  window.fetch=(input,options)=>{
+   if(!probe.started&&String(input).endsWith('/manifest.json')){
+    probe.started=true;
+    return new Promise((resolve,reject)=>{
+     const abort=()=>{probe.aborted=true;reject(new DOMException('验收中取消','AbortError'));};options.signal.addEventListener('abort',abort,{once:true});
+     probe.release=()=>{options.signal.removeEventListener('abort',abort);originalFetch(input,options).then(resolve,reject);};
+    });
+   }
+   return originalFetch(input,options);
+  };
+  HTMLCanvasElement.prototype.getContext=function(type,...args){const result=originalContext.call(this,type,...args);if(type==='webgl2'&&result&&!probe.contexts.includes(result))probe.contexts.push(result);return result;};
+  probe.restore=()=>{window.fetch=originalFetch;HTMLCanvasElement.prototype.getContext=originalContext;if(!probe.aborted)probe.release?.();};
+ })()`);
+ try{
+  await api('selectWallpaper','xiao-liyue-full');await until(()=>wallpaper.eval('window.__mp4SceneProbe.started'),'场景初始化读取');
+  await api('selectWallpaper',local.id);await applied(local.id);
+  const released=await wallpaper.eval('({aborted:window.__mp4SceneProbe.aborted,count:window.__mp4SceneProbe.contexts.length,lost:window.__mp4SceneProbe.contexts.every(context=>context.isContextLost())})');
+  assert.equal(released.aborted,true);assert.ok(released.count>0);assert.equal(released.lost,true);record('初始化中切换立即取消实际读取并释放 WebGL 上下文');
+ }finally{await wallpaper.eval('window.__mp4SceneProbe.restore()');}
  await wallpaper.eval('document.querySelector("video").currentTime=document.querySelector("video").duration-.2');await pause(1200);assert.ok(await wallpaper.eval('document.querySelector("video").currentTime')<4);record('视频尾部循环播放');
  assert.equal(await settings.eval('document.querySelectorAll("canvas,video").length'),0);assert.equal(await settings.eval('document.querySelector("[data-tab=light]").hidden'),true);
  assert.ok(await settings.eval('document.getElementById("portrait").naturalWidth>0'));await capture(settings,'library-800');await capture(wallpaper,'wallpaper-video');
@@ -74,7 +95,14 @@ try{
   await stop();const catalog=JSON.parse(readFileSync(manifest,'utf8'));catalog.wallpapers=catalog.wallpapers.filter(item=>item.id!==first.id);writeFileSync(manifest,JSON.stringify(catalog));await runScript('prepare-web.mjs');
   await launch();s=await applied('xiao-liyue-full');assert.ok(s.libraryWarnings.length);assert.ok(s.catalog.wallpapers.some(item=>item.id===local.id));record('新版移除当前官方视频时回退并保留本地作品');
  }
- await stop();const media=join(profile,'wallpapers/local',local.id,'video.mp4');assert.ok(relative(work,media)&&!relative(work,media).startsWith('..'));renameSync(media,media+'.missing');
+ const media=join(profile,'wallpapers/local',local.id,'video.mp4');assert.ok(relative(work,media)&&!relative(work,media).startsWith('..'));
+ await api('selectWallpaper',local.id);await applied(local.id);wallpaper??=await target('wallpaper');renameSync(media,media+'.missing');
+ try{
+  await wallpaper.eval('document.querySelector("video").dispatchEvent(new Event("error"))');
+  s=await until(async()=>{const value=await state();return value.wallpaperStatus==='error'||value.settings.wallpaperId==='xiao-liyue-full'?value:false;},'运行中缺失文件错误');
+  assert.equal(s.settings.wallpaperId,'xiao-liyue-full');await applied('xiao-liyue-full');assert.ok(s.libraryWarnings.length);record('运行中文件丢失的有效播放错误触发回退');
+ }finally{renameSync(media+'.missing',media);}
+ await api('selectWallpaper',local.id);await applied(local.id);await stop();renameSync(media,media+'.missing');
  await launch();s=await applied('xiao-liyue-full');assert.ok(s.libraryWarnings.length);record('缺失文件回退内置场景');renameSync(media+'.missing',media);
  await api('selectWallpaper',local.id);await applied(local.id);enqueue('confirm',{response:1});assert.equal((await api('removeWallpaper',local.id)).libraryBusy,false);assert.equal((await state()).settings.wallpaperId,local.id);record('取消移除保留所选视频');
  enqueue('confirm',{response:0});await api('removeWallpaper',local.id);s=await applied('xiao-liyue-full');assert.ok(!s.catalog.wallpapers.some(item=>item.id===local.id));assert.ok(!existsSync(media));record('移除当前视频后切回内置场景');

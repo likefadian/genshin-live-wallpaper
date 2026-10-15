@@ -2,7 +2,7 @@ import {spawn} from 'node:child_process';
 import {parseArgs} from 'node:util';
 import {randomUUID} from 'node:crypto';
 import {copyFile} from 'node:fs/promises';
-import {existsSync,mkdirSync,readFileSync,writeFileSync,statSync,lstatSync,realpathSync,rmSync,unlinkSync} from 'node:fs';
+import {existsSync,mkdirSync,readFileSync,writeFileSync,statSync,lstatSync,realpathSync,rmSync,unlinkSync,openSync,closeSync} from 'node:fs';
 import {resolve,join,relative,isAbsolute,extname} from 'node:path';
 import library from '../electron/library.cjs';
 const {atomicJson,decodeThumbnail,validateOfficialVideoCatalog}=library,project=resolve(import.meta.dirname,'..');
@@ -11,7 +11,10 @@ async function main(){
  if(!values.file||!values.id||!values.name?.trim()||!values.author?.trim()||!/^[a-z\d-]{1,80}$/.test(values.id))throw Error('请填写 --file MP4、--id 小写英文标识、--name 名称、--author 作者');
  const source=resolve(values.file);if(extname(source).toLowerCase()!=='.mp4'||!statSync(source).isFile()||statSync(source).size===0)throw Error('请选择有效的 MP4 文件');
  const root=resolve(values['catalog-root']||join(project,'content/official-videos')),file=join(root,'catalog.json'),id='official-video-'+values.id,target=join(root,id);
- mkdirSync(root,{recursive:true});const catalog=existsSync(file)?JSON.parse(readFileSync(file,'utf8')):{schemaVersion:1,wallpapers:[]};validateOfficialVideoCatalog(catalog,root);
+ mkdirSync(root,{recursive:true});const lockFile=file+'.lock';let lock;
+ try{lock=openSync(lockFile,'wx');}catch(error){if(error.code==='EEXIST')throw Error('正在录入官方壁纸，请稍后重试。若录入进程已退出，请删除 '+lockFile+' 后重试。');throw error;}
+ try{
+ const catalog=existsSync(file)?JSON.parse(readFileSync(file,'utf8')):{schemaVersion:1,wallpapers:[]};validateOfficialVideoCatalog(catalog,root);
  if(catalog.wallpapers.some(row=>row.id===id)||existsSync(target))throw Error('作品 ID 已存在，请使用新的 --id');
  const resultFile=join(project,'.cache','official-probe-'+randomUUID()+'.json');mkdirSync(join(project,'.cache'),{recursive:true});let created=false;
  try{
@@ -28,5 +31,6 @@ async function main(){
   if(created){const rel=relative(realpathSync(root),realpathSync(target));if(!rel||rel.startsWith('..')||isAbsolute(rel)||lstatSync(target).isSymbolicLink())throw Error('作品暂存目录无法安全清理：'+error.message);rmSync(target,{recursive:true,force:true});}
   throw error;
  }finally{if(existsSync(resultFile))unlinkSync(resultFile);}
+ }finally{closeSync(lock);unlinkSync(lockFile);}
 }
 main().catch(error=>{console.error(error.message);process.exitCode=1;});

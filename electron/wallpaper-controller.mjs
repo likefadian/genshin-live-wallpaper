@@ -15,7 +15,7 @@ export function createWallpaperController({createScene,createVideo,onReady=()=>{
     if(!runtime)return null;
     if(disposed||token!==generation){runtime.destroy();return null;}
     current={entry,runtime};onReady(entry,runtime);return runtime;
-   }).catch(error=>{report(error);return null;}).finally(()=>{if(token===generation)pending=null;});
+   }).catch(error=>{if(!disposed&&token===generation)desired=null;report(error);return null;}).finally(()=>{if(token===generation)pending=null;});
    return pending;
   },
   destroy(){if(disposed)return;disposed=true;generation++;current?.runtime.destroy();current=null;cancel?.abort();},
