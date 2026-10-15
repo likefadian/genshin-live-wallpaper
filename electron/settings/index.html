@@ -1,13 +1,22 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' http://127.0.0.1:*; connect-src 'none'; object-src 'none'"><title>GenshinWallpaper · 壁纸设置</title><link rel="stylesheet" href="style.css"></head><body>
 <div class="shell">
  <aside class="sidebar"><div class="brand"><img src="../assets/genshinexe.svg" alt=""><div>GenshinWallpaper<small>让风景留在桌面</small></div></div>
-  <div class="character"><img id="portrait" alt="魈"><div class="character-caption"><span>守护璃月的风</span><strong id="character-name">魈</strong><p id="scene-name">璃月 · 灯火</p></div></div>
-  <nav aria-label="设置分类"><button class="tab active" data-tab="light" aria-selected="true"><span>☀</span>光影与时间</button><button class="tab" data-tab="motion" aria-selected="false"><span>≈</span>动效与画面</button><button class="tab" data-tab="app" aria-selected="false"><span>◇</span>软件设置</button></nav>
+  <div id="character-card" class="character"><img id="portrait" alt="当前壁纸"><div class="character-caption"><span id="character-tagline">守护璃月的风</span><strong id="character-name">魈</strong><p id="scene-name">璃月 · 灯火</p></div></div>
+  <nav aria-label="设置分类"><button class="tab active" data-tab="library" aria-selected="true"><span>▧</span>壁纸库</button><button class="tab" data-tab="light" aria-selected="false"><span>☀</span>光影与时间</button><button class="tab" data-tab="motion" aria-selected="false"><span>≈</span>动效与画面</button><button class="tab" data-tab="app" aria-selected="false"><span>◇</span>软件设置</button></nav>
   <div class="side-bottom"><span class="version" id="version">v0.1.0 · 本地版</span><p>关闭此窗口，壁纸仍会继续。</p><button id="quit" class="text-button">退出壁纸软件 ↗</button></div>
  </aside>
- <main class="main"><header><div class="eyebrow">WALLPAPER / SETTINGS</div><div class="heading"><h1 id="section-title">光影与时间</h1><span id="live-status" class="status-chip">正在连接</span></div><p class="intro" id="section-intro">从晨光到夜色，让璃月与你的时间相遇。</p></header>
+ <main class="main"><header><div class="eyebrow">WALLPAPER / SETTINGS</div><div class="heading"><h1 id="section-title">壁纸库</h1><span id="live-status" class="status-chip">正在连接</span></div><p class="intro" id="section-intro">挑选一处风景，或导入你收藏的 MP4 动态壁纸。</p></header>
  <div id="error" class="error" role="alert" hidden></div>
- <section id="panel-light" class="panel">
+ <section id="panel-library" class="panel">
+  <div id="library-warning" class="error" role="status" hidden></div>
+  <div class="library-heading"><div><h2>官方壁纸</h2><p class="hint">随软件更新，遇见新的风景。</p></div><span id="official-count" class="library-count"></span></div>
+  <div id="official-wallpapers" class="wallpaper-grid"></div>
+  <div class="library-heading local-heading"><div><h2>我的导入</h2><p class="hint">保存视频副本，随时切换桌面。</p></div><button id="import-wallpaper" class="small-button primary-button">＋ 导入 MP4</button></div>
+  <p id="import-status" class="hint import-status" role="status" hidden></p>
+  <div id="local-wallpapers" class="wallpaper-grid"></div>
+  <div id="local-empty" class="library-empty"><span>收藏的风景，也可以成为桌面</span><p>导入 MP4 视频后，点击“使用壁纸”开始播放。<br>默认静音循环，音量可在“动效与画面”中调整。</p></div>
+ </section>
+ <section id="panel-light" class="panel" hidden>
   <div class="card"><div class="label-row"><h2>昼夜时刻</h2><output id="time-label">--:--</output></div><div id="presets" class="presets"></div>
    <input id="minutes" type="range" min="0" max="1439" step="1" aria-label="固定昼夜时刻"><div class="time-ticks"><span>00:00</span><span>12:00</span><span>23:59</span></div>
    <label class="select-row">时间模式<select id="timeMode"><option value="local">跟随本地时间</option><option value="manual">固定时刻</option><option value="cycle">连续昼夜预览</option></select></label>
@@ -19,14 +28,15 @@
   </div>
  </section>
  <section id="panel-motion" class="panel" hidden>
-  <div class="card"><div class="label-row"><h2>风与动效</h2><button id="toggle-motion" class="small-button">暂停动画</button></div>
+  <div class="card"><div class="label-row"><h2>播放与动效</h2><button id="toggle-motion" class="small-button">暂停动画</button></div>
    <label class="range-row" for="speed">播放速度<output id="speed-label">1.0×</output></label><input id="speed" type="range" min=".5" max="1.5" step=".1">
-   <label class="switch-row">粒子与氛围<input id="particles" type="checkbox"></label><label class="switch-row">自然风速变化<input id="wind" type="checkbox"></label>
-   <p class="hint">暂停动画后，时钟和昼夜光照仍可变化。</p>
+   <label class="switch-row scene-only">粒子与氛围<input id="particles" type="checkbox"></label><label class="switch-row scene-only">自然风速变化<input id="wind" type="checkbox"></label>
+   <div class="video-only" hidden><label class="range-row" for="videoVolume">视频音量<output id="videoVolume-label">静音</output></label><input id="videoVolume" type="range" min="0" max="1" step=".01"><p class="hint">视频会循环播放；没有音轨的视频保持安静。</p></div>
+   <p class="hint scene-only">暂停动画后，时钟和昼夜光照仍可变化。</p>
   </div>
   <div class="card"><h2>桌面画面</h2><label class="switch-row">显示时间与日期<input id="showClock" type="checkbox"></label>
    <label class="select-row">显示方式<select id="fit"><option value="cover">铺满屏幕</option><option value="contain">显示完整画面</option></select></label>
-   <label class="select-row">画质<select id="quality"><option value="1">原生 · 推荐</option><option value="1.5">1.5 倍采样</option><option value="2">2 倍采样</option></select></label>
+   <label class="select-row scene-only">画质<select id="quality"><option value="1">原生 · 推荐</option><option value="1.5">1.5 倍采样</option><option value="2">2 倍采样</option></select></label>
    <p class="hint">当前壁纸显示在主显示器，鼠标可直接操作桌面图标。</p>
   </div>
  </section>

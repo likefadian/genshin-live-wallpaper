@@ -7,6 +7,8 @@ const {attachDesktop,checkDesktop,nativeHandle}=require('./desktop-host.cjs');
 const {createLog}=require('./runtime-log.cjs');
 const {createUpdateController}=require('./update-controller.cjs');
 const {resolveUpdateSource}=require('./update-source.cjs');
+const {WallpaperLibrary,validateOfficialVideoCatalog}=require('./library.cjs');
+const {probeVideo}=require('./video-probe.cjs');
 
 app.setName('GenshinWallpaper');app.setAppUserModelId('com.genshinexe.wallpaper');
 const userData=process.env.GENSHINEXE_PROFILE?resolve(process.env.GENSHINEXE_PROFILE):join(app.getPath('appData'),'GenshinEXE');
@@ -16,17 +18,30 @@ const log=createLog(userData);
 const web=app.isPackaged?join(process.resourcesPath,'wallpaper'):resolve(__dirname,'..','web');
 const hostScript=app.isPackaged?join(process.resourcesPath,'wallpaper-host.ps1'):join(__dirname,'wallpaper-host.ps1');
 const icon=join(__dirname,'assets','genshinexe.ico');
-let store,catalog,server,wallpaperWindow,settingsWindow,tray,updateController,installConfirmation=false,quitting=false,attachment,attaching,attachTarget,monitor,boundsTimer;
+let store,catalog,library,server,wallpaperWindow,settingsWindow,tray,updateController,installConfirmation=false,quitting=false,attachment,attaching,attachTarget,monitor,boundsTimer;
 let desktopStatus='connecting',wallpaperStatus='loading',desktopError='',renderError='',telemetry=null,appliedRevision=-1,recoveries=0;
+let importStatus={status:'idle',message:''},libraryOperation=false,selectionWarning='';
+const officialWarnings=[],appliedWaiters=new Set();
 function loginEnabled(){return app.isPackaged&&app.getLoginItemSettings({path:process.execPath,args:['--background']}).openAtLogin;}
-function snapshot(){const update=updateController?.snapshot();return {...store.snapshot(),version:app.getVersion(),packaged:app.isPackaged,catalog,serverUrl:server?.url,desktopStatus,wallpaperStatus,desktopError,renderError,appliedRevision,telemetry,openAtLogin:loginEnabled(),updateStatus:update?.status||'idle',update};}
+function snapshot(){const update=updateController?.snapshot(),contents=library?.snapshot();return {...store.snapshot(),version:app.getVersion(),packaged:app.isPackaged,catalog:{...catalog,wallpapers:contents?.wallpapers||catalog.wallpapers},libraryWarnings:[...officialWarnings,...(contents?.warnings||[]),...(selectionWarning?[selectionWarning]:[])],importStatus,libraryBusy:libraryOperation,serverUrl:server?.url,desktopStatus,wallpaperStatus,desktopError,renderError,appliedRevision,telemetry,openAtLogin:loginEnabled(),updateStatus:update?.status||'idle',update};}
 function broadcast(includeWallpaper=true){
  if(!store)return;
  const current=snapshot();
  for(const window of [includeWallpaper&&wallpaperWindow,settingsWindow])if(window&&!window.isDestroyed())window.webContents.send('state:changed',current);
  log.state({...current,wallpaperHandle:wallpaperWindow&&!wallpaperWindow.isDestroyed()?nativeHandle(wallpaperWindow):null,attachment});return current;
 }
-function updateSettings(patch){store.update(patch);tray?.setContextMenu(trayMenu());return broadcast();}
+function updateSettings(patch){
+ const previous=store.settings.wallpaperId;store.update(patch);
+ if(previous!==store.settings.wallpaperId){telemetry=null;appliedRevision=-1;wallpaperStatus='loading';renderError='';}
+ tray?.setContextMenu(trayMenu());tray?.setToolTip(('GenshinWallpaper · '+(library.get(store.settings.wallpaperId)?.name||'动态壁纸')).slice(0,128));return broadcast();
+}
+function waitForApplied(id){
+ if(store.settings.wallpaperId===id&&appliedRevision===store.revision)return Promise.resolve();
+ return new Promise((resolve,reject)=>{
+  const check=()=>{if(store.settings.wallpaperId===id&&appliedRevision===store.revision){clearTimeout(timer);appliedWaiters.delete(check);resolve();}};
+  const timer=setTimeout(()=>{appliedWaiters.delete(check);reject(Error('壁纸切换尚未完成，请稍后重试移除'));},15000);appliedWaiters.add(check);
+ });
+}
 function secureWindow(window,kind){
  window.setMenuBarVisibility(false);
  window.webContents.setWindowOpenHandler(()=>({action:'deny'}));
@@ -60,7 +75,7 @@ async function connectDesktop(){
 }
 function createWallpaper(){
  const bounds=screen.getPrimaryDisplay().bounds;
- const window=new BrowserWindow({...bounds,title:'GenshinWallpaper 动态壁纸',frame:false,thickFrame:false,transparent:false,show:false,focusable:false,resizable:false,movable:false,skipTaskbar:true,backgroundColor:'#102027',webPreferences:{preload:join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true,backgroundThrottling:false}});
+ const window=new BrowserWindow({...bounds,title:'GenshinWallpaper 动态壁纸',frame:false,thickFrame:false,transparent:false,show:false,focusable:false,resizable:false,movable:false,skipTaskbar:true,backgroundColor:'#102027',webPreferences:{preload:join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true,backgroundThrottling:false,autoplayPolicy:'no-user-gesture-required'}});
  wallpaperWindow=window;telemetry=null;appliedRevision=-1;wallpaperStatus='loading';renderError='';attachment=null;
  window.setIgnoreMouseEvents(true);secureWindow(window,'wallpaper');
  window.webContents.once('did-finish-load',()=>{if(desktopStatus==='attached')window.showInactive();broadcast();});
@@ -86,12 +101,17 @@ function trayMenu(){return Menu.buildFromTemplate([
  {label:'打开日志文件夹',click:()=>shell.openPath(log.directory)},
  {type:'separator'},{label:'退出 GenshinWallpaper',click:quit},
 ]);}
-function createTray(){tray=new Tray(nativeImage.createFromPath(join(__dirname,'assets','tray.png')).resize({width:20,height:20}));tray.setToolTip('GenshinWallpaper · 璃月灯火');tray.setContextMenu(trayMenu());tray.on('double-click',openSettings);tray.on('click',openSettings);}
+function createTray(){tray=new Tray(nativeImage.createFromPath(join(__dirname,'assets','tray.png')).resize({width:20,height:20}));tray.setToolTip(('GenshinWallpaper · '+library.get(store.settings.wallpaperId).name).slice(0,128));tray.setContextMenu(trayMenu());tray.on('double-click',openSettings);tray.on('click',openSettings);}
 async function boot(){
  if(process.platform!=='win32')throw Error('目前支持 Windows x64');
  if(!existsSync(join(web,'index.html')))throw Error('缺少本地壁纸资源，请先构建网页');
  store=new SettingsStore(join(userData,'settings.json'));catalog=JSON.parse(readFileSync(join(web,'catalog.json'),'utf8'));
- server=await startAssetServer(web);log.write('startup',{version:app.getVersion(),electron:process.versions.electron,packaged:app.isPackaged,web,displays:screen.getAllDisplays().map(d=>({id:d.id,bounds:d.bounds,scaleFactor:d.scaleFactor}))});
+ const videos=validateOfficialVideoCatalog({schemaVersion:catalog.schemaVersion,wallpapers:catalog.wallpapers.filter(item=>item.kind==='video')},web,{strict:false});officialWarnings.push(...videos.warnings);
+ catalog.wallpapers=catalog.wallpapers.filter(item=>item.kind==='scene').map(item=>({...item,source:'official'})).concat(videos.wallpapers);
+ if(!catalog.wallpapers.some(item=>item.id===catalog.defaultWallpaperId&&item.kind==='scene'))throw Error('缺少默认内置场景');
+ library=new WallpaperLibrary({directory:join(userData,'wallpapers'),officialWallpapers:catalog.wallpapers,probeVideo});
+ if(!library.get(store.settings.wallpaperId)){selectionWarning='上次使用的壁纸已不可用，已切回内置场景。';store.update({wallpaperId:catalog.defaultWallpaperId});}
+ server=await startAssetServer(web,{resolveMedia:(id,kind)=>library.resolveMedia(id,kind)});log.write('startup',{version:app.getVersion(),electron:process.versions.electron,packaged:app.isPackaged,web,displays:screen.getAllDisplays().map(d=>({id:d.id,bounds:d.bounds,scaleFactor:d.scaleFactor}))});
  const source=resolveUpdateSource(),{autoUpdater,NsisUpdater}=require('electron-updater');
  const updater=source.kind==='local-verification'?new NsisUpdater(source.feed):autoUpdater;
  if(source.kind==='local-verification'){
@@ -120,8 +140,40 @@ function assertSender(event,settingsOnly=false){
  if(event.senderFrame!==event.sender.mainFrame||!windows.some(w=>w&&!w.isDestroyed()&&w.webContents===event.sender))throw Error('此窗口无法使用桌面控制接口');
 }
 ipcMain.handle('state:get',event=>{assertSender(event);return snapshot();});
-ipcMain.handle('settings:update',(event,patch)=>{assertSender(event,true);return updateSettings(patch);});
-ipcMain.handle('settings:reset',event=>{assertSender(event,true);return updateSettings(DEFAULT_SETTINGS);});
+ipcMain.handle('settings:update',(event,patch)=>{assertSender(event,true);if(patch&&Object.hasOwn(patch,'wallpaperId'))throw Error('请从壁纸库选择壁纸');return updateSettings(patch);});
+ipcMain.handle('settings:reset',event=>{assertSender(event,true);const {wallpaperId,...defaults}=DEFAULT_SETTINGS;return updateSettings(defaults);});
+ipcMain.handle('library:import',async event=>{
+ assertSender(event,true);if(libraryOperation)throw Error('正在处理壁纸，请稍候');
+ libraryOperation=true;importStatus={status:'choosing',message:'请选择 MP4 视频'};broadcast(false);
+ try{
+  const result=await dialog.showOpenDialog(settingsWindow,{title:'导入 MP4 壁纸',filters:[{name:'MP4 视频',extensions:['mp4']}],properties:['openFile']});
+  if(result.canceled||!result.filePaths.length)importStatus={status:'idle',message:''};
+  else{
+   importStatus={status:'importing',message:'正在复制视频并生成缩略图…'};broadcast(false);
+   await library.importLocal(result.filePaths[0]);importStatus={status:'done',message:'导入成功，点击“使用壁纸”应用到桌面。'};
+  }
+ }catch(error){importStatus={status:'error',message:'导入失败：'+error.message};log.write('wallpaper-import-error',{message:error.message});}
+ finally{libraryOperation=false;broadcast(false);}
+ return snapshot();
+});
+ipcMain.handle('library:select',(event,id)=>{
+ assertSender(event,true);if(libraryOperation)throw Error('正在处理壁纸，请稍候');
+ if(typeof id!=='string'||!library.get(id))throw Error('壁纸不可用，请重新导入');
+ selectionWarning='';return updateSettings({wallpaperId:id});
+});
+ipcMain.handle('library:remove',async(event,id)=>{
+ assertSender(event,true);if(libraryOperation)throw Error('正在处理壁纸，请稍候');
+ const entry=library.snapshot().wallpapers.find(item=>item.id===id&&item.source==='local');if(!entry)throw Error('只能移除本地导入的壁纸');
+ libraryOperation=true;broadcast(false);
+ try{
+  const result=await dialog.showMessageBox(settingsWindow,{type:'question',title:'移除本地壁纸',message:'移除“'+entry.name+'”？',detail:'只删除软件保存的副本，你下载的原始视频会保留。',buttons:['移除壁纸','取消'],defaultId:1,cancelId:1,noLink:true});
+  if(result.response===0&&!quitting){
+   if(store.settings.wallpaperId===id){updateSettings({wallpaperId:catalog.defaultWallpaperId});await waitForApplied(catalog.defaultWallpaperId);}
+   await library.removeLocal(id);
+  }
+ }finally{libraryOperation=false;broadcast(false);}
+ return snapshot();
+});
 ipcMain.handle('app:login',(event,enabled)=>{assertSender(event,true);if(!app.isPackaged||typeof enabled!=='boolean')throw Error('请在安装版中设置开机启动');app.setLoginItemSettings({openAtLogin:enabled,path:process.execPath,args:['--background']});tray.setContextMenu(trayMenu());return broadcast(false);});
 ipcMain.handle('app:logs',event=>{assertSender(event,true);return shell.openPath(log.directory);});
 ipcMain.handle('wallpaper:reconnect',event=>{assertSender(event,true);recoveries=0;replaceWallpaper();});
@@ -143,10 +195,15 @@ ipcMain.handle('update:install',async event=>{
  }finally{installConfirmation=false;}
 });
 ipcMain.on('wallpaper:applied',(event,payload)=>{
- if(event.sender!==wallpaperWindow?.webContents||event.senderFrame!==event.sender.mainFrame||payload?.revision!==store.revision)return;
+ if(event.sender!==wallpaperWindow?.webContents||event.senderFrame!==event.sender.mainFrame||payload?.revision!==store.revision||payload?.wallpaperId!==store.settings.wallpaperId)return;
  telemetry=payload;appliedRevision=payload.revision;wallpaperStatus=payload.loadError?'error':store.settings.motion?'running':'paused';renderError=String(payload.loadError||'');broadcast(false);
+ if(!payload.loadError)for(const check of appliedWaiters)check();
 });
-ipcMain.on('wallpaper:error',(event,message)=>{if(event.sender!==wallpaperWindow?.webContents||event.senderFrame!==event.sender.mainFrame)return;renderError=String(message).slice(0,3000);wallpaperStatus='error';log.write('wallpaper-error',{message:renderError});broadcast(false);});
+ipcMain.on('wallpaper:error',(event,payload)=>{
+ if(event.sender!==wallpaperWindow?.webContents||event.senderFrame!==event.sender.mainFrame||payload?.wallpaperId!==store.settings.wallpaperId||payload?.revision!==store.revision)return;
+ renderError=String(payload.message).slice(0,3000);wallpaperStatus='error';log.write('wallpaper-error',{message:renderError});
+ if(library.get(store.settings.wallpaperId)?.kind==='video'){selectionWarning='视频播放失败，已切回内置场景：'+renderError;updateSettings({wallpaperId:catalog.defaultWallpaperId});}else broadcast(false);
+});
 process.on('uncaughtExceptionMonitor',error=>log.write('main-exception',{message:error.message,stack:error.stack}));
 process.on('unhandledRejection',error=>log.write('unhandled-rejection',{message:String(error)}));
 if(!app.requestSingleInstanceLock()){app.quit();}else{

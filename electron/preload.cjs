@@ -8,6 +8,9 @@ if(isWallpaper){
 }else{
  api.updateSettings=patch=>ipcRenderer.invoke('settings:update',patch);
  api.resetSettings=()=>ipcRenderer.invoke('settings:reset');
+ api.importWallpaper=()=>ipcRenderer.invoke('library:import');
+ api.selectWallpaper=id=>ipcRenderer.invoke('library:select',id);
+ api.removeWallpaper=id=>ipcRenderer.invoke('library:remove',id);
  api.setOpenAtLogin=enabled=>ipcRenderer.invoke('app:login',enabled);
  api.reconnect=()=>ipcRenderer.invoke('wallpaper:reconnect');
  api.openLogs=()=>ipcRenderer.invoke('app:logs');
