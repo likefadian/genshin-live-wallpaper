@@ -6,6 +6,19 @@ const {tmpdir}=require('node:os');
 const {SettingsStore}=require('../electron/settings.cjs');
 const {startAssetServer}=require('../electron/asset-server.cjs');
 
+test('旧设置迁移到魈和静音，壁纸选择与音量跨启动保留',()=>{
+ const dir=mkdtempSync(join(tmpdir(),'genshinexe-media-settings-'));
+ try{
+  const file=join(dir,'settings.json');writeFileSync(file,JSON.stringify({settings:{exposure:.2}}));
+  const store=new SettingsStore(file);assert.equal(store.settings.wallpaperId,'xiao-liyue-full');assert.equal(store.settings.videoVolume,0);
+  store.update({wallpaperId:'official-video-night',videoVolume:.35});
+  const saved=new SettingsStore(file);assert.equal(saved.settings.wallpaperId,'official-video-night');assert.equal(saved.settings.videoVolume,.35);assert.equal(saved.settings.exposure,.2);
+  const before=readFileSync(file,'utf8');
+  for(const patch of [{wallpaperId:'../secret'},{wallpaperId:''},{videoVolume:-.1},{videoVolume:Infinity},{videoVolume:1.1}])assert.throws(()=>store.update(patch));
+  assert.equal(readFileSync(file,'utf8'),before);
+ }finally{const target=require('node:path').resolve(dir);assert.ok(target.startsWith(require('node:path').resolve(tmpdir())+require('node:path').sep));rmSync(target,{recursive:true});}
+});
+
 test('用户设置跨启动保存，无效修改不覆盖已保存状态',()=>{
  const dir=mkdtempSync(join(tmpdir(),'genshinexe-settings-'));
  try{

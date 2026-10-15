@@ -4,16 +4,18 @@ const {dirname}=require('node:path');
 const DEFAULT_SETTINGS=Object.freeze({
  timeMode:'local',minutes:720,exposure:0,light:1,shadow:1,
  motion:true,speed:1,particles:true,lamps:true,rim:true,wind:true,bloom:true,grade:true,
- showClock:true,fit:'cover',quality:1,
+ showClock:true,fit:'cover',quality:1,wallpaperId:'xiao-liyue-full',videoVolume:0,
 });
-const ranges={minutes:[0,1439],exposure:[-.8,.8],light:[.5,1.5],shadow:[0,1.3],speed:[.5,1.5]};
+const ranges={minutes:[0,1439],exposure:[-.8,.8],light:[.5,1.5],shadow:[0,1.3],speed:[.5,1.5],videoVolume:[0,1]};
 const choices={timeMode:['local','manual','cycle'],fit:['cover','contain'],quality:[1,1.5,2]};
 function validatePatch(patch){
  if(!patch||typeof patch!=='object'||Array.isArray(patch))throw TypeError('设置必须是对象');
  const checked={};
  for(const [key,value] of Object.entries(patch)){
   if(!Object.hasOwn(DEFAULT_SETTINGS,key))throw TypeError('未知设置项：'+key);
-  if(ranges[key]){
+  if(key==='wallpaperId'){
+   if(typeof value!=='string'||!/^[a-z0-9][a-z0-9-]{0,99}$/.test(value))throw TypeError('壁纸 ID 无效');
+  }else if(ranges[key]){
    const [min,max]=ranges[key];
    if(!Number.isFinite(value)||value<min||value>max)throw TypeError('设置超出范围：'+key);
   }else if(choices[key]){
