@@ -13,5 +13,5 @@ const info=JSON.parse(readFileSync(good.output,'utf8'));assert.equal(info.width,
 const png=Buffer.from(info.thumbnailDataURL.split(',')[1],'base64');assert.equal(png.readUInt32BE(16),360);assert.equal(png.readUInt32BE(20),203);writeFileSync(join(work,'probe-thumbnail.png'),png);
 for(const name of ['broken','audio-only']){const result=run('probe-'+name,join(work,name+'.mp4'));assert.notEqual(result.status,0);assert.match(result.stderr,/视频|MP4|解码/);}
 const timeout=run('probe-timeout',join(work,'fixture.mp4'),['--timeout-ms','1']);assert.notEqual(timeout.status,0);assert.match(timeout.stderr,/超时/);
-if(process.argv[2]){const actual=run('probe-user',process.argv[2]);assert.equal(actual.status,0,actual.stderr);const data=JSON.parse(readFileSync(actual.output,'utf8'));assert.equal(data.width,2560);assert.equal(data.height,1440);assert.ok(Math.abs(data.duration-15.65)<.1);writeFileSync(join(work,'user-thumbnail.png'),Buffer.from(data.thumbnailDataURL.split(',')[1],'base64'));}
-console.log('MP4 探测通过：首帧缩略图、损坏文件、仅音频、超时清理'+(process.argv[2]?'、用户 2K60 视频':''));
+if(process.argv[2]){const actual=run('probe-user',process.argv[2]);assert.equal(actual.status,0,actual.stderr);const data=JSON.parse(readFileSync(actual.output,'utf8'));assert.ok(data.width>0&&data.height>0&&Number.isFinite(data.duration)&&data.duration>0);writeFileSync(join(work,'user-thumbnail.png'),Buffer.from(data.thumbnailDataURL.split(',')[1],'base64'));}
+console.log('MP4 探测通过：首帧缩略图、损坏文件、仅音频、超时清理'+(process.argv[2]?'、用户视频':''));

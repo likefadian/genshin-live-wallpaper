@@ -1,5 +1,39 @@
 # 必要验证 · 2026-10-15
 
+## 0.1.4 MP4 壁纸候选
+
+| 需求 | 实际检查与结果 |
+|---|---|
+| 本地导入与保存 | 单元检查覆盖同名中文文件、重启清单、原文件保留、写入 / 探测失败回滚；真实 Electron 导入用户 2K60 MP4 成功 |
+| 解码与缩略图 | 有画面、尺寸、时长和首帧；拒绝损坏、仅音频文件，1ms 超时会关闭检查窗口 |
+| 资源边界 | GET / HEAD / Range 的完整、尾部、开放区间与 416 错误；未登记、删除条目和越界路径不可读取 |
+| 运行对象释放 | 异步旧实例与迟到错误不覆盖新选择；桌面切到 MP4 后 video=1、canvas=0，设置页 video=0、canvas=0 |
+| 桌面操作 | 19 项流程通过：取消 / 重复导入、损坏拒绝、主动应用、暂停 / 音量 / 速度 / 比例 / 时钟、尾部循环、快速切换、关闭设置、重启、文件缺失回退、取消与确认移除 |
+| 官方随版本交付 | 在专用构建副本中使用作者命令，构建 MP4 和 PNG；新增第二官方作品保留本地选择；官方播放正常且不能从本地移除；移除当前官方条目回退 |
+| 设置界面 | 检查 800×820 与最小 740×650 截图，无水平溢出；静态缩略图，视频时隐藏场景专用项 |
+| 本地安装候选 | 0.1.4 NSIS 构建成功；实际打包 EXE 原生入口导入、桌面挂载、播放及重启恢复通过，未执行 NSIS 覆盖安装 |
+
+核心 `npm.cmd test`：24/24。用户视频：H.264、2560×1440、60 fps、15.65 秒、39405825 字节，SHA-256 为 `e6a1dd4f6a973a5b3c72a021fea16fe7311decde60c871ce5c0569a7596ced82`。原文件与软件副本哈希一致，自动移除测试后原文件不变。该文件没有加入官方资源。
+
+实际打包版来自 `release/win-unpacked/GenshinWallpaper.exe`，从 `C:/Windows/Temp` 启动，无调试参数、无验收更新源。`version=0.1.4 / packaged=true / desktopStatus=attached / wallpaperStatus=running / renderError=''`，资源根为打包目录的 `resources/wallpaper`，视频来自专用用户目录。重启继续同一视频并推进，专用实例已退出。
+
+本轮设备范围为 Windows 11 x64、主显示器、175% 缩放；没有执行 0.1.3 → 0.1.4 的 NSIS 覆盖升级，没有覆盖多设备或长期性能。
+
+现场记录：`work/mp4-wallpapers/e2e-1792055922746/results.json` 及截图、`delivery-1792055995816/results.json`、`packaged-results.json`、`packaged-playing.json`、`packaged-restarted.json`。安装器及校验结果以 `packaged-results.json` 为准，后续修复重建会更新该文件。
+
+复现先安装开发依赖、运行 prepare:web；只有生成测试视频需要 PATH 中的 ffmpeg，软件运行无需 ffmpeg：
+
+```powershell
+node scripts/prepare-video-fixtures.mjs
+node scripts/verify-video-probe.mjs "D:\你的壁纸.mp4"
+node scripts/verify-mp4.mjs "D:\你的壁纸.mp4"
+node scripts/verify-official-delivery.mjs
+npm.cmd test
+npm.cmd run dist:installer
+```
+
+自动桌面脚本使用专用 profile 和显式 loopback 调试端口 9257，独立开发入口仅替换原生对话框；安装包不包含该测试入口。实际打包版采用正常原生入口验证，正常启动不开放调试端口。
+
 ## 2026-10-15 · main 合并与 SSH 源码推送
 
 - codex/github-updates 的正式 0.1.3 已快进合并到 main。远程此前为独立 README 初始化提交，保留该历史并采用正式版本的完整 README，生成合并提交 0c3601b8060d83573fe5c986e48cf5c95775993a。

@@ -3,7 +3,7 @@ import {spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {mkdirSync,readFileSync,writeFileSync,existsSync,renameSync} from 'node:fs';
 import {resolve,join,relative} from 'node:path';
-const root=resolve(import.meta.dirname,'..'),work=join(root,'work/mp4-wallpapers/e2e-'+Date.now()),profile=join(work,'profile'),queue=join(work,'dialogs.json'),port=9257;
+const root=resolve(process.env.GENSHINEXE_VERIFY_PROJECT||join(import.meta.dirname,'..')),work=join(root,'work/mp4-wallpapers/e2e-'+Date.now()),profile=join(work,'profile'),queue=join(work,'dialogs.json'),port=9257;
 const source=resolve(process.argv[2]||join(root,'work/mp4-wallpapers/fixture.mp4')),sourceHash=createHash('sha256').update(readFileSync(source)).digest('hex');
 mkdirSync(work,{recursive:true});writeFileSync(queue,JSON.stringify({open:[],confirm:[]}));
 const pause=ms=>new Promise(done=>setTimeout(done,ms)),checks=[];
@@ -32,6 +32,10 @@ async function capture(client,name){const shot=await client.call('Page.captureSc
 async function stop(){
  try{if(settings)await api('quit');}catch{}settings?.close();wallpaper?.close();settings=wallpaper=null;
  if(child&&child.exitCode===null){await Promise.race([new Promise(done=>child.once('exit',done)),pause(5000)]);if(child.exitCode===null)child.kill();}
+}
+async function runScript(name,args=[]){
+ const command=spawn(process.execPath,[join(root,'scripts',name),...args],{cwd:root,windowsHide:true,stdio:['ignore','pipe','pipe']});let output='';for(const pipe of [command.stdout,command.stderr])pipe.on('data',data=>output+=data);
+ await new Promise((done,fail)=>{command.once('error',fail);command.once('exit',code=>code===0?done():fail(Error(name+' 失败：'+output)));});
 }
 try{
  await launch();assert.equal(await settings.eval('typeof window.genshinDesktop.importWallpaper'),'function','设置窗口需要 MP4 导入接口');
@@ -62,6 +66,14 @@ try{
  const runningTime=await wallpaper.eval('document.querySelector("video").currentTime');await settings.eval('setTimeout(()=>window.close(),0)');settings.close();settings=null;await pause(600);
  assert.ok(await wallpaper.eval('document.querySelector("video").currentTime')>runningTime+.2);
  const second=spawn(join(root,'node_modules/electron/dist/electron.exe'),[join(root,'scripts/verify-mp4-app.cjs')],{cwd:root,windowsHide:true,env:{...process.env,GENSHINEXE_PROFILE:profile,GENSHINEXE_TEST_DIALOG_QUEUE:queue},stdio:'ignore'});await new Promise(done=>second.once('exit',done));settings=await target('settings');await applied(local.id);record('关闭设置继续播放，再次打开保持选择');
+ if(process.env.GENSHINEXE_VERIFY_OFFICIAL==='1'){
+  const manifest=join(root,'content/official-videos/catalog.json'),first=JSON.parse(readFileSync(manifest,'utf8')).wallpapers[0];assert.ok(first);
+  await stop();await runScript('import-official-video.mjs',['--file',source,'--id','delivery-two','--name','构建验收二','--author','验收作者']);await runScript('prepare-web.mjs');await launch();s=await applied(local.id);
+  assert.equal(s.catalog.wallpapers.filter(item=>item.kind==='video'&&item.source==='official').length,2);assert.ok(s.catalog.wallpapers.some(item=>item.id===local.id));record('新版新增官方视频同时保留本地视频和选择');
+  await api('selectWallpaper',first.id);s=await applied(first.id);assert.equal(s.telemetry.kind,'video');await assert.rejects(()=>api('removeWallpaper',first.id),/本地/);record('官方视频可播放且不可通过本地移除入口删除');
+  await stop();const catalog=JSON.parse(readFileSync(manifest,'utf8'));catalog.wallpapers=catalog.wallpapers.filter(item=>item.id!==first.id);writeFileSync(manifest,JSON.stringify(catalog));await runScript('prepare-web.mjs');
+  await launch();s=await applied('xiao-liyue-full');assert.ok(s.libraryWarnings.length);assert.ok(s.catalog.wallpapers.some(item=>item.id===local.id));record('新版移除当前官方视频时回退并保留本地作品');
+ }
  await stop();const media=join(profile,'wallpapers/local',local.id,'video.mp4');assert.ok(relative(work,media)&&!relative(work,media).startsWith('..'));renameSync(media,media+'.missing');
  await launch();s=await applied('xiao-liyue-full');assert.ok(s.libraryWarnings.length);record('缺失文件回退内置场景');renameSync(media+'.missing',media);
  await api('selectWallpaper',local.id);await applied(local.id);enqueue('confirm',{response:1});assert.equal((await api('removeWallpaper',local.id)).libraryBusy,false);assert.equal((await state()).settings.wallpaperId,local.id);record('取消移除保留所选视频');

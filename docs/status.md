@@ -1,5 +1,17 @@
 # GenshinWallpaper 状态 · 2026-10-15
 
+## 2026-10-15 · MP4 壁纸本地候选 0.1.4
+
+在 codex/mp4-wallpapers 完成本地 MP4 导入、实际解码检查、静态缩略图、壁纸库、视频 / 实时场景切换、控制与重启恢复。维护方可用作者命令录入官方 MP4，随版本交付；当前正式官方视频清单为空，用户提供的下载视频仅用于本地验收。
+
+- 核心 24/24，通过实际 Electron 解码检查与 19 项桌面流程；专用构建副本额外通过官方新增、官方播放 / 禁止本地移除、移除当前官方作品的三项验证。本地作品和选择在目录变化后保留。
+- 用户提供的 MP4 为 2560×1440 / H.264 / 60 fps / 15.65 秒，实际导入副本、播放、循环、控制、快速切换、关闭设置、重启及移除均通过；原文件 SHA-256 保持不变。
+- NSIS 构建 exit0：release/GenshinWallpaper-Setup-0.1.4-x64.exe，匹配的 latest.yml 与 blockmap 已生成。构建 --publish never，尚未推送此功能或创建公开 0.1.4 Release。
+- 实际运行 release/win-unpacked/GenshinWallpaper.exe，版本 0.1.4 / packaged=true / attached，使用专用 profile 从 C:/Windows/Temp 启动。原生入口已导入用户视频并播放，退出重启后仍为原作品、无渲染错误；验收实例已退出。
+- 本轮验证打包目录中的真实 EXE 与资源，没有运行 NSIS 覆盖现有安装，因此未验收 0.1.3 → 0.1.4 实际覆盖升级。Windows 11 x64、主显示器、175% 缩放；多设备和长期性能未覆盖。
+
+操作见 [作者说明](author-wallpapers.md)，证据和复现命令见 [验收记录](verification.md)。下文保留原有阶段记录。
+
 ## 2026-10-15 · main 同步与源码公开提交
 
 用户在本会话明确授权将 codex/github-updates 合并到 main，并推送到项目的 GitHub 仓库。本次授权允许公开提交完整软件源码，取代下方历史发布阶段仅上传安装附件的范围。

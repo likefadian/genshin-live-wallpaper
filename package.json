@@ -1,9 +1,9 @@
 {
   "name": "genshinexe",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": true,
   "author": "GenshinWallpaper",
-  "description": "Windows 动态壁纸 · 魈与璃月灯火",
+  "description": "Windows 动态壁纸 · 实时场景与 MP4 壁纸库",
   "main": "electron/main.cjs",
   "engines": {
     "node": ">=24"
@@ -75,8 +75,8 @@
       ],
       "signAndEditExecutable": true,
       "releaseInfo": {
-        "releaseName": "GenshinWallpaper v0.1.3",
-        "releaseNotesFile": "docs/releases/0.1.3.md"
+        "releaseName": "GenshinWallpaper v0.1.4",
+        "releaseNotesFile": "docs/releases/0.1.4.md"
       }
     },
     "nsis": {
