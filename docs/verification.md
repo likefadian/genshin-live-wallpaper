@@ -1,4 +1,12 @@
-# 必要验证 · 2026-10-08
+# 必要验证 · 2026-10-15
+
+## 2026-10-15 · main 合并与 SSH 源码推送
+
+- codex/github-updates 的正式 0.1.3 已快进合并到 main。远程此前为独立 README 初始化提交，保留该历史并采用正式版本的完整 README，生成合并提交 0c3601b8060d83573fe5c986e48cf5c95775993a。
+- git diff --exit-code codex/github-updates 0c3601b 返回 0，确认整棵文件树一致；npm.cmd test 的 8 项检查全部通过。
+- ssh -T 以 likefadian 成功认证；该命令正常提示 GitHub 不提供 shell，退出码 1 不代表认证失败。实际 git push -u origin main 使用同一 Windows OpenSSH 和现有密钥，返回 exit 0，远程 main 从 ee188bb 更新到 0c3601b。
+- git ls-remote 独立核对远程 main 的完整 SHA 与本地合并提交一致，工作区干净。公开 v0.1.3 标签仍指向此前的 ee188bb；原 Release 附件与更新清单沿用已有发布内容。
+- 上述推送由用户本轮明确授权，完整软件源码已公开。下方“源码未上传”的描述属于 2026-10-08 发布时的历史状态；MP4 功能仍只在独立分支中保存设计与计划。
 
 ## GenshinWallpaper 正式命名
 

@@ -1,6 +1,16 @@
-# GenshinWallpaper 状态 · 2026-10-08
+# GenshinWallpaper 状态 · 2026-10-15
 
-## GenshinWallpaper 0.1.3 · 已公开发布
+## 2026-10-15 · main 同步与源码公开提交
+
+用户在本会话明确授权将 codex/github-updates 合并到 main，并推送到项目的 GitHub 仓库。本次授权允许公开提交完整软件源码，取代下方历史发布阶段仅上传安装附件的范围。
+
+- main 从 0.1.0 快进到已发布的 0.1.3 / a2d588d，随后合并远程原有的 README 初始化历史。合并提交为 0c3601b8060d83573fe5c986e48cf5c95775993a，两个父提交分别为 a2d588d 与 ee188bb；合并后的文件树与 codex/github-updates 完全一致。
+- 使用本机现有 SSH 密钥，以 likefadian 账号成功认证。origin 为 git@github.com:likefadian/genshin-live-wallpaper.git；首次源码推送成功，上传 700 个对象、593.81 MiB，main 已跟踪 origin/main。远程查询确认 main 指向上述合并提交。
+- 合并后的现有 8 项测试全部通过。软件功能与版本仍为 0.1.3；本节只是记录此次 Git 同步。
+- codex/mp4-wallpapers 保留独立的 MP4 设计与实施计划提交，尚未进入功能实现；本次 main 合并来自 codex/github-updates。
+- 完整源码现已位于 [GitHub main](https://github.com/likefadian/genshin-live-wallpaper/tree/main)。下文保留此前各阶段的原始发布记录。
+
+## 2026-10-08 · GenshinWallpaper 0.1.3 已公开发布
 
 用户已授权向 `likefadian/genshin-live-wallpaper` 公开发布稳定版 `v0.1.3`，名称为 `GenshinWallpaper v0.1.3`。公开附件仅为安装器、blockmap 与 latest.yml；源码不上传或推送。
 
