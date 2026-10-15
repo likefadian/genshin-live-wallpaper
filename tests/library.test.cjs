@@ -69,3 +69,21 @@ test('非法媒体 ID 和删除操作不能越过作品目录或移除官方作�
  assert.equal(f.library.resolveMedia(f.library.snapshot().wallpapers.find(x=>x.source==='local').id,'../library.json'),null);
  assert.equal(fs.readFileSync(source,'utf8'),'video-bytes');
 });
+
+test('官方视频清单拒绝重复 ID、越界路径和缺失资源',t=>{
+ const f=fixture(t);assert.equal(typeof libraryModule.validateOfficialVideoCatalog,'function');
+ const root=join(f.root,'official'),id='official-video-night';fs.mkdirSync(join(root,id),{recursive:true});
+ fs.writeFileSync(join(root,id,'video.mp4'),'abc');fs.writeFileSync(join(root,id,'thumbnail.png'),Buffer.from(thumbnailDataURL.split(',')[1],'base64'));
+ const entry={id,name:'夜景',author:'作者',duration:3,width:640,height:360,size:3,media:id+'/video.mp4',thumbnail:id+'/thumbnail.png'};
+ const validate=rows=>libraryModule.validateOfficialVideoCatalog({schemaVersion:1,wallpapers:rows},root);
+ assert.equal(validate([entry]).wallpapers[0].kind,'video');
+ for(const rows of [[entry,entry],[{...entry,id:'../bad'}],[{...entry,media:'../private.mp4'}],[{...entry,media:join(f.root,'private.mp4')}],[{...entry,duration:NaN}],[{...entry,media:id+'/missing.mp4'}]])assert.throws(()=>validate(rows));
+ const isolated=libraryModule.validateOfficialVideoCatalog({schemaVersion:1,wallpapers:[entry,{...entry,id:'official-video-missing',media:'missing.mp4'}]},root,{strict:false});
+ assert.equal(isolated.wallpapers.length,1);assert.ok(isolated.warnings.length>0);
+});
+test('官方目录更新保留本地条目和用户的作品选择',async t=>{
+ const f=fixture(t),local=await f.library.importLocal(f.source('本地'));
+ const {SettingsStore}=require('../electron/settings.cjs'),store=new SettingsStore(join(f.root,'settings.json'));store.update({wallpaperId:local.id});
+ const next=new libraryModule.WallpaperLibrary({directory:f.directory,officialWallpapers:[scene,{id:'official-video-new',name:'新增',kind:'video',source:'official'}],probeVideo:async()=>metadata});
+ assert.equal(next.get(local.id).name,'夜景 壁纸');assert.equal(next.get('official-video-new').name,'新增');assert.equal(new SettingsStore(join(f.root,'settings.json')).settings.wallpaperId,local.id);
+});

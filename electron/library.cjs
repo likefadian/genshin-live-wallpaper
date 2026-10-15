@@ -20,6 +20,25 @@ function atomicJson(file,value){
  try{fs.writeFileSync(temporary,JSON.stringify(value,null,2)+'\n','utf8');fs.renameSync(temporary,file);}
  catch(error){try{if(fs.lstatSync(temporary).isFile())fs.unlinkSync(temporary);}catch{}throw error;}
 }
+function validateOfficialVideoCatalog(value,root,{strict=true}={}){
+ const wallpapers=[],warnings=[],seen=new Set();
+ const fail=message=>{if(strict)throw Error(message);warnings.push(message);};
+ if(value?.schemaVersion!==1||!Array.isArray(value.wallpapers)){fail('官方视频清单格式无效');return {wallpapers,warnings};}
+ for(const row of value.wallpapers){
+  try{
+   if(!/^official-video-[a-z\d-]{1,80}$/.test(row?.id)||seen.has(row.id))throw Error('官方壁纸 ID 无效或重复');
+   if(typeof row.name!=='string'||!row.name.trim()||typeof row.author!=='string'||!row.author.trim()||!dimensions(row))throw Error('官方壁纸名称、作者或视频信息无效');
+   for(const [key,extension] of [['media','.mp4'],['thumbnail','.png']]){
+    const path=row[key];
+    if(typeof path!=='string'||isAbsolute(path)||path.includes('\\')||path.includes(':')||path.split('/').includes('..')||extname(path).toLowerCase()!==extension||!regularInside(root,resolve(root,path)))throw Error('官方壁纸资源缺失或路径无效：'+row.id);
+   }
+   if(fs.statSync(resolve(root,row.media)).size!==row.size)throw Error('官方视频大小与清单不一致：'+row.id);
+   const thumbnail=fs.readFileSync(resolve(root,row.thumbnail));if(thumbnail.length>1024*1024||thumbnail.subarray(0,8).toString('hex')!=='89504e470d0a1a0a')throw Error('官方视频缩略图无效');
+   seen.add(row.id);wallpapers.push({id:row.id,kind:'video',source:'official',name:row.name.trim().slice(0,160),author:row.author.trim().slice(0,80),media:row.media,thumbnail:row.thumbnail,duration:row.duration,width:row.width,height:row.height,size:row.size});
+  }catch(error){fail(error.message);}
+ }
+ return {wallpapers,warnings};
+}
 class WallpaperLibrary{
  constructor({directory,officialWallpapers=[],probeVideo}){
   this.directory=resolve(directory);this.localRoot=join(this.directory,'local');this.file=join(this.directory,'library.json');
@@ -84,4 +103,4 @@ class WallpaperLibrary{
   catch(error){this.save(previous);throw error;}
  }
 }
-module.exports={WallpaperLibrary,atomicJson,decodeThumbnail,dimensions,regularInside};
+module.exports={WallpaperLibrary,atomicJson,decodeThumbnail,dimensions,regularInside,validateOfficialVideoCatalog};

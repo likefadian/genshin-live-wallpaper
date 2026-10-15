@@ -11,6 +11,7 @@
   "scripts": {
     "setup": "node scripts/install-electron.mjs",
     "prepare:web": "node scripts/prepare-web.mjs",
+    "wallpaper:author": "node scripts/import-official-video.mjs",
     "start": "npm run prepare:web && electron .",
     "start:ready": "electron .",
     "dist:installer": "node scripts/build-installer.mjs",
