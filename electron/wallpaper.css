@@ -1,1 +1,2 @@
 html,body{width:100%;height:100%;margin:0;overflow:hidden;pointer-events:none;user-select:none}#stage{pointer-events:none}#status{font-size:14px}[hidden]{display:none!important}
+.wallpaper-layer{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}.wallpaper-video{display:block;width:100%;height:100%;object-fit:cover;background:#071116}
