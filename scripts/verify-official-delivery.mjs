@@ -13,7 +13,7 @@ async function run(name,args=[],env={}){
  for(const pipe of [child.stdout,child.stderr])pipe.on('data',data=>{output+=data;if(name==='verify-mp4.mjs')process.stdout.write(data);});
  await new Promise((done,fail)=>{child.once('error',fail);child.once('exit',code=>code===0?done():fail(Error(output)));});return output;
 }
-await run('import-official-video.mjs',['--file',fixture,'--id','delivery-one','--name','构建验收一','--author','验收作者']);await run('prepare-web.mjs');
+await run('import-official-video.mjs',['--file',fixture,'--id','delivery-one','--name','构建验收一']);await run('prepare-web.mjs');
 const catalog=JSON.parse(readFileSync(join(project,'web/catalog.json'),'utf8')),official=catalog.wallpapers.find(entry=>entry.id==='official-video-delivery-one');assert.ok(official);
 for(const key of ['media','thumbnail'])assert.ok(existsSync(join(project,'web',official[key])));
 await run('verify-mp4.mjs',[fixture],{GENSHINEXE_VERIFY_PROJECT:project,GENSHINEXE_VERIFY_OFFICIAL:'1'});

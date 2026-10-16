@@ -7,8 +7,9 @@ import {resolve,join,relative,isAbsolute,extname} from 'node:path';
 import library from '../electron/library.cjs';
 const {atomicJson,decodeThumbnail,validateOfficialVideoCatalog}=library,project=resolve(import.meta.dirname,'..');
 async function main(){
+ // Keep accepting the old --author option for existing scripts; entries no longer use it.
  const {values}=parseArgs({options:{file:{type:'string'},id:{type:'string'},name:{type:'string'},author:{type:'string'},'catalog-root':{type:'string'}}});
- if(!values.file||!values.id||!values.name?.trim()||!values.author?.trim()||!/^[a-z\d-]{1,80}$/.test(values.id))throw Error('请填写 --file MP4、--id 小写英文标识、--name 名称、--author 作者');
+ if(!values.file||!values.id||!values.name?.trim()||!/^[a-z\d-]{1,80}$/.test(values.id))throw Error('请填写 --file MP4、--id 小写英文标识、--name 名称');
  const source=resolve(values.file);if(extname(source).toLowerCase()!=='.mp4'||!statSync(source).isFile()||statSync(source).size===0)throw Error('请选择有效的 MP4 文件');
  const root=resolve(values['catalog-root']||join(project,'content/official-videos')),file=join(root,'catalog.json'),id='official-video-'+values.id,target=join(root,id);
  mkdirSync(root,{recursive:true});const lockFile=file+'.lock';let lock;
@@ -24,7 +25,7 @@ async function main(){
    let error='';child.stderr.on('data',chunk=>{error=(error+chunk).slice(-4000);});child.once('error',reject);child.once('close',code=>code===0?done():reject(Error(error.trim()||'视频检查失败')));
   });
   const metadata=JSON.parse(readFileSync(resultFile,'utf8'));writeFileSync(join(target,'thumbnail.png'),decodeThumbnail(metadata.thumbnailDataURL));
-  const row={id,name:values.name.trim(),author:values.author.trim(),duration:metadata.duration,width:metadata.width,height:metadata.height,size:statSync(join(target,'video.mp4')).size,media:id+'/video.mp4',thumbnail:id+'/thumbnail.png'};
+  const row={id,name:values.name.trim(),duration:metadata.duration,width:metadata.width,height:metadata.height,size:statSync(join(target,'video.mp4')).size,media:id+'/video.mp4',thumbnail:id+'/thumbnail.png'};
   const next={schemaVersion:1,wallpapers:[...catalog.wallpapers,row]};validateOfficialVideoCatalog(next,root);atomicJson(file,next);
   console.log('已添加官方壁纸：'+row.name+' / '+id+'\n资源目录：'+target);
  }catch(error){

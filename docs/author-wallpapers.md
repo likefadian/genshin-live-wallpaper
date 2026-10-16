@@ -5,10 +5,12 @@
 准备 MP4 后，在项目目录执行：
 
 ```powershell
-npm.cmd run wallpaper:author -- --file "D:\壁纸\夜景.mp4" --id night --name "夜景" --author "GenshinWallpaper"
+npm.cmd run wallpaper:author -- --file "D:\壁纸\夜景.mp4" --id night --name "夜景"
 ```
 
 命令实际检查视频能否解码，生成静态封面，将副本保存到 content/official-videos/official-video-night，并登记 catalog.json。原文件保留。ID 使用 1–80 个小写英文字母、数字或连字符；已有 ID 不覆盖。导入失败时清理本次副本，保留此前清单。
+
+无需提供作者署名，壁纸卡片也不展示署名；界面按“官方壁纸 / 我的导入”区分来源。让开发助手录入时，只需提供本地 MP4 完整路径，需要自定义名称时一并说明，ID 由助手生成。已有带署名的旧版清单仍可读取。
 
 同一个官方目录一次执行一条录入命令；并发命令会明确提示稍后重试，避免覆盖已登记作品。正常成功或失败都会释放 catalog.json.lock。若进程被强制结束，确认没有录入进程后再删除该锁文件并重试。
 

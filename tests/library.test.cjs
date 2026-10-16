@@ -70,13 +70,14 @@ test('非法媒体 ID 和删除操作不能越过作品目录或移除官方作�
  assert.equal(fs.readFileSync(source,'utf8'),'video-bytes');
 });
 
-test('官方视频清单拒绝重复 ID、越界路径和缺失资源',t=>{
+test('官方视频无需作者署名，兼容旧记录并拒绝无效资源',t=>{
  const f=fixture(t);assert.equal(typeof libraryModule.validateOfficialVideoCatalog,'function');
  const root=join(f.root,'official'),id='official-video-night';fs.mkdirSync(join(root,id),{recursive:true});
  fs.writeFileSync(join(root,id,'video.mp4'),'abc');fs.writeFileSync(join(root,id,'thumbnail.png'),Buffer.from(thumbnailDataURL.split(',')[1],'base64'));
- const entry={id,name:'夜景',author:'作者',duration:3,width:640,height:360,size:3,media:id+'/video.mp4',thumbnail:id+'/thumbnail.png'};
+ const entry={id,name:'夜景',duration:3,width:640,height:360,size:3,media:id+'/video.mp4',thumbnail:id+'/thumbnail.png'};
  const validate=rows=>libraryModule.validateOfficialVideoCatalog({schemaVersion:1,wallpapers:rows},root);
  assert.equal(validate([entry]).wallpapers[0].kind,'video');
+ assert.equal(validate([{...entry,author:'旧版署名'}]).wallpapers[0].name,'夜景');
  for(const rows of [[entry,entry],[{...entry,id:'../bad'}],[{...entry,media:'../private.mp4'}],[{...entry,media:join(f.root,'private.mp4')}],[{...entry,duration:NaN}],[{...entry,media:id+'/missing.mp4'}]])assert.throws(()=>validate(rows));
  const isolated=libraryModule.validateOfficialVideoCatalog({schemaVersion:1,wallpapers:[entry,{...entry,id:'official-video-missing',media:'missing.mp4'}]},root,{strict:false});
  assert.equal(isolated.wallpapers.length,1);assert.ok(isolated.warnings.length>0);

@@ -4,7 +4,7 @@ import {mkdirSync,readFileSync,readdirSync,existsSync,writeFileSync} from 'node:
 import {resolve,join} from 'node:path';
 const project=resolve(import.meta.dirname,'..'),work=join(project,'work/mp4-wallpapers/author-concurrency-'+Date.now()),catalogRoot=join(work,'catalog'),source=join(project,'work/mp4-wallpapers/fixture.mp4');mkdirSync(work,{recursive:true});
 async function run(id,file=source){
- const child=spawn(process.execPath,[join(project,'scripts/import-official-video.mjs'),'--file',file,'--id',id,'--name',id,'--author','并发验收','--catalog-root',catalogRoot],{cwd:project,windowsHide:true,stdio:['ignore','pipe','pipe']});let output='';for(const pipe of [child.stdout,child.stderr])pipe.on('data',data=>output+=data);
+ const child=spawn(process.execPath,[join(project,'scripts/import-official-video.mjs'),'--file',file,'--id',id,'--name',id,'--catalog-root',catalogRoot],{cwd:project,windowsHide:true,stdio:['ignore','pipe','pipe']});let output='';for(const pipe of [child.stdout,child.stderr])pipe.on('data',data=>output+=data);
  return new Promise((done,fail)=>{child.once('error',fail);child.once('close',code=>done({id,code,output}));});
 }
 const results=await Promise.all([run('one'),run('two')]);

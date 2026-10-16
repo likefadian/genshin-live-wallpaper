@@ -6,7 +6,7 @@ function fail(error){actionError=String(error.message||error).replace(/^Error in
 function display(snapshot){
  if(state&&snapshot.revision<state.revision)return;
  state=snapshot;const s=state.settings,scene=state.catalog.wallpapers.find(item=>item.id===state.catalog.defaultWallpaperId),content=state.catalog.wallpapers.find(item=>item.id===s.wallpaperId)||scene,video=content.kind==='video';
- $('version').textContent='v'+state.version+' · 本地版';$('character-name').textContent=content.name;$('scene-name').textContent=video?content.author:content.sceneName;
+ $('version').textContent='v'+state.version+' · 本地版';$('character-name').textContent=content.name;$('scene-name').textContent=video?(content.source==='local'?'我的导入':'官方壁纸'):content.sceneName;
  $('character-tagline').textContent=video?'此刻的桌面':'守护璃月的风';$('character-card').classList.toggle('video-character',video);
  const portraitUrl=new URL(content.thumbnail,state.serverUrl+'/').href;if($('portrait').src!==portraitUrl)$('portrait').src=portraitUrl;
  $('portrait').alt=content.name;
@@ -51,7 +51,6 @@ function displayLibrary(){
    const picture=document.createElement('div');picture.className='wallpaper-picture';const image=document.createElement('img');image.src=new URL(entry.thumbnail,state.serverUrl+'/').href;image.alt='';image.loading='lazy';picture.append(image);
    const badge=document.createElement('span');badge.className='wallpaper-kind';badge.textContent=entry.kind==='video'?'MP4 视频':'实时场景';picture.append(badge);
    const body=document.createElement('div');body.className='wallpaper-body';const name=document.createElement('h3');name.textContent=entry.name;name.title=entry.name;body.append(name);
-   const author=document.createElement('p');author.className='wallpaper-author';author.textContent=entry.author;body.append(author);
    const metadata=document.createElement('p');metadata.className='wallpaper-meta';metadata.textContent=entry.available===false?'视频文件缺失，请重新导入':entry.kind==='video'?entry.width+' × '+entry.height+' · '+Math.round(entry.duration)+' 秒 · '+(entry.size/1048576).toFixed(1)+' MB':entry.sceneName;body.append(metadata);
    const actions=document.createElement('div');actions.className='wallpaper-actions';const select=document.createElement('button');select.className='small-button';select.textContent=current?'✓ 正在使用':'使用壁纸';select.dataset.libraryAction='select';select.dataset.unavailable=String(current||entry.available===false);select.onclick=()=>libraryAction('selectWallpaper',entry.id);actions.append(select);
    if(entry.source==='local'){const remove=document.createElement('button');remove.className='text-button remove-wallpaper';remove.textContent='移除';remove.setAttribute('aria-label','移除 '+entry.name);remove.dataset.libraryAction='remove';remove.onclick=()=>libraryAction('removeWallpaper',entry.id);actions.append(remove);}

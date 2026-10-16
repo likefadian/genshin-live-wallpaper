@@ -89,7 +89,7 @@ try{
  const second=spawn(join(root,'node_modules/electron/dist/electron.exe'),[join(root,'scripts/verify-mp4-app.cjs')],{cwd:root,windowsHide:true,env:{...process.env,GENSHINEXE_PROFILE:profile,GENSHINEXE_TEST_DIALOG_QUEUE:queue},stdio:'ignore'});await new Promise(done=>second.once('exit',done));settings=await target('settings');await applied(local.id);record('关闭设置继续播放，再次打开保持选择');
  if(process.env.GENSHINEXE_VERIFY_OFFICIAL==='1'){
   const manifest=join(root,'content/official-videos/catalog.json'),first=JSON.parse(readFileSync(manifest,'utf8')).wallpapers[0];assert.ok(first);
-  await stop();await runScript('import-official-video.mjs',['--file',source,'--id','delivery-two','--name','构建验收二','--author','验收作者']);await runScript('prepare-web.mjs');await launch();s=await applied(local.id);
+  await stop();await runScript('import-official-video.mjs',['--file',source,'--id','delivery-two','--name','构建验收二']);await runScript('prepare-web.mjs');await launch();s=await applied(local.id);
   assert.equal(s.catalog.wallpapers.filter(item=>item.kind==='video'&&item.source==='official').length,2);assert.ok(s.catalog.wallpapers.some(item=>item.id===local.id));record('新版新增官方视频同时保留本地视频和选择');
   await api('selectWallpaper',first.id);s=await applied(first.id);assert.equal(s.telemetry.kind,'video');await assert.rejects(()=>api('removeWallpaper',first.id),/本地/);record('官方视频可播放且不可通过本地移除入口删除');
   await stop();const catalog=JSON.parse(readFileSync(manifest,'utf8'));catalog.wallpapers=catalog.wallpapers.filter(item=>item.id!==first.id);writeFileSync(manifest,JSON.stringify(catalog));await runScript('prepare-web.mjs');

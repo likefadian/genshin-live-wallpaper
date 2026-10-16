@@ -27,14 +27,14 @@ function validateOfficialVideoCatalog(value,root,{strict=true}={}){
  for(const row of value.wallpapers){
   try{
    if(!/^official-video-[a-z\d-]{1,80}$/.test(row?.id)||seen.has(row.id))throw Error('官方壁纸 ID 无效或重复');
-   if(typeof row.name!=='string'||!row.name.trim()||typeof row.author!=='string'||!row.author.trim()||!dimensions(row))throw Error('官方壁纸名称、作者或视频信息无效');
+   if(typeof row.name!=='string'||!row.name.trim()||!dimensions(row))throw Error('官方壁纸名称或视频信息无效');
    for(const [key,extension] of [['media','.mp4'],['thumbnail','.png']]){
     const path=row[key];
     if(typeof path!=='string'||isAbsolute(path)||path.includes('\\')||path.includes(':')||path.split('/').includes('..')||extname(path).toLowerCase()!==extension||!regularInside(root,resolve(root,path)))throw Error('官方壁纸资源缺失或路径无效：'+row.id);
    }
    if(fs.statSync(resolve(root,row.media)).size!==row.size)throw Error('官方视频大小与清单不一致：'+row.id);
    const thumbnail=fs.readFileSync(resolve(root,row.thumbnail));if(thumbnail.length>1024*1024||thumbnail.subarray(0,8).toString('hex')!=='89504e470d0a1a0a')throw Error('官方视频缩略图无效');
-   seen.add(row.id);wallpapers.push({id:row.id,kind:'video',source:'official',name:row.name.trim().slice(0,160),author:row.author.trim().slice(0,80),media:row.media,thumbnail:row.thumbnail,duration:row.duration,width:row.width,height:row.height,size:row.size});
+   seen.add(row.id);wallpapers.push({id:row.id,kind:'video',source:'official',name:row.name.trim().slice(0,160),media:row.media,thumbnail:row.thumbnail,duration:row.duration,width:row.width,height:row.height,size:row.size});
   }catch(error){fail(error.message);}
  }
  return {wallpapers,warnings};
@@ -52,7 +52,7 @@ class WallpaperLibrary{
      if(!LOCAL_ID.test(item?.id)||!dimensions(item)||typeof item.name!=='string'||!item.name.trim()||this.entries.has(item.id)){
       this.warnings.push('已跳过一条无效的本地壁纸记录');continue;
      }
-     this.entries.set(item.id,{id:item.id,name:item.name.slice(0,160),kind:'video',source:'local',author:'本地导入',duration:item.duration,width:item.width,height:item.height,size:item.size,addedAt:typeof item.addedAt==='string'?item.addedAt:''});
+     this.entries.set(item.id,{id:item.id,name:item.name.slice(0,160),kind:'video',source:'local',duration:item.duration,width:item.width,height:item.height,size:item.size,addedAt:typeof item.addedAt==='string'?item.addedAt:''});
     }
    }catch{this.warnings.push('本地壁纸清单损坏，已保留媒体文件，可重新导入。');}
   }
@@ -89,7 +89,7 @@ class WallpaperLibrary{
    const metadata=await this.probeVideo(target),size=fs.statSync(target).size;
    if(!dimensions({...metadata,size}))throw Error('视频画面或时长无效');
    fs.writeFileSync(join(directory,'thumbnail.png'),decodeThumbnail(metadata.thumbnailDataURL));
-   const entry={id,kind:'video',source:'local',name:basename(filePath,extname(filePath)).slice(0,160)||'未命名壁纸',author:'本地导入',duration:metadata.duration,width:metadata.width,height:metadata.height,size,addedAt:new Date().toISOString()};
+   const entry={id,kind:'video',source:'local',name:basename(filePath,extname(filePath)).slice(0,160)||'未命名壁纸',duration:metadata.duration,width:metadata.width,height:metadata.height,size,addedAt:new Date().toISOString()};
    const next=new Map(this.entries);next.set(id,entry);this.save(next);return this.get(id);
   }catch(error){try{this.removeDirectory(directory);}catch{this.warnings.push('暂存视频清理失败，可在日志中检查。');}throw error;}
   finally{this.busy=false;}
