@@ -1,5 +1,16 @@
 # 必要验证 · 2026-10-21
 
+## 2026-10-21 · 0.1.5 合并与正式发布
+
+- main 从 ed0095c 快进合并 codex/v3-sunflower-0.1.5 至 af30f6243b6dde95efde1ccfaba6d1f3ffcbb9a6；合并后的 npm.cmd test 31/31。当前代码与此前独立审查、桌面/安装验收的功能提交相同，无产品代码追加。v0.1.5 注释标签与 main 通过现有 SSH 原子推送，git ls-remote 确认两者均指向 af30f62。
+- 发布预检重新流式计算三个本地附件 SHA-256 / SHA-512，与已验收清单一致；latest.yml 的版本、大小、安装器 SHA-512、中文说明匹配。ASAR 中 22 个生产文件与 Git 提交一致，文本仅归一化 CRLF；当前 main 的 renderer 重新编译结果与待发布 desktop.js 字节相同。
+- 草稿上传后，三个附件 state=uploaded、size、GitHub 服务端 SHA-256 与本地逐项完全一致；Release body 与 docs/releases/0.1.5.md 一致。正式发布为稳定 v0.1.5 / draft=false / prerelease=false，并设为 Latest，Release ID 419239791，published_at=2026-10-21T06:55:37Z。
+- 安装器 1179261271 字节，SHA-256 `f7f098c8a5a8ee274b6731c39be4a05cb7f7d4db82acd30715a368e43d1e28e7`；blockmap 1225205 字节，SHA-256 `6212e4250751a9b7ba9f82fffd53050d9d9d3e65f1a3b003477bde22dd058dc8`；latest.yml 1225 字节，SHA-256 `8fd4fd077fc0ea27e9af75acb08d6e01fec1324e4e60e786c5f343c36933100b`。
+- 发布后从公开 Latest 地址下载清单，version=0.1.5 且哈希相同；公开 blockmap 下载后哈希匹配；安装器 HEAD 为 200、长度正确。没有重复下载完整 1.10 GiB 安装器。
+- 使用归档的真实 0.1.3 打包 EXE，在独立 profile 和显式 loopback 9264 下调用其 checkUpdate，得到 status=available / availableVersion=0.1.5 / source.kind=github，说明包含光遇，progress=null。没有调用 downloadUpdate / installUpdate，专用实例已退出。先前本机实际 NSIS 覆盖安装记录继续有效；本轮未重复完整远端升级或差分链路。
+
+证据：`work/publish-0.1.5-2026-10-21` 中 preflight.mjs、local-artifacts.json、github-draft-verified.json、github-published.json、public-checks.json、public-latest.yml 和 old-client-update.json。发布链接见 [v0.1.5](https://github.com/likefadian/genshin-live-wallpaper/releases/tag/v0.1.5)。
+
 ## 2026-10-21 · 光遇网页场景 / 0.1.5 本机更新
 
 - `npm.cmd test`：31/31。固定午后检查先复现错误（全局连续昼夜产生 105 分钟而非 720），接入 time policy 后通过；三种时间模式、切回动态场景恢复跟随/连续昼夜、计时器释放和用户参数保留均检查。来源同步检查覆盖已提交的 extra/config、新旧图集与分块关联、拒绝工作区修改、拒绝已提交但来源序列不匹配的分块；验证失败不写入目标。

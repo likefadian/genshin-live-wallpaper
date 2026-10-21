@@ -1,12 +1,12 @@
 # GenshinWallpaper
 
-Windows x64 动态壁纸软件，当前公开稳定版本 `0.1.4`，本地开发候选为 `0.1.5`。支持本地 MP4 动态壁纸与维护方随版本提供的官方壁纸。0.1.5 新增《光遇 · 向日葵午后》暖阳网页场景，原魈 / 璃月灯火（full-v016）继续支持实时受光、昼夜、粒子、灯光、Bloom 和时间日期。软件内可手动检查 GitHub Releases 更新。
+Windows x64 动态壁纸软件，当前稳定版本 `0.1.5`。支持本地 MP4 动态壁纸与维护方随版本提供的官方壁纸。官方库包含《光遇 · 向日葵午后》暖阳网页场景，原魈 / 璃月灯火（full-v016）继续支持实时受光、昼夜、粒子、灯光、Bloom 和时间日期。软件内可手动检查 GitHub Releases 更新。
 
 ## 安装与观看
 
-从 [GitHub Releases](https://github.com/likefadian/genshin-live-wallpaper/releases/tag/v0.1.4) 下载 `GenshinWallpaper-Setup-0.1.4-x64.exe`。使用 0.1.3 的用户也可在软件设置中检查、下载并安装新版本。完整源码位于本仓库 main 和对应的版本标签。
+从 [GitHub Releases](https://github.com/likefadian/genshin-live-wallpaper/releases/tag/v0.1.5) 下载 `GenshinWallpaper-Setup-0.1.5-x64.exe`。使用 0.1.3 及后续版本的用户也可在软件设置中检查、下载并安装新版本。完整源码位于本仓库 main 和对应的版本标签。
 
-本地新候选安装器为 `release/GenshinWallpaper-Setup-0.1.5-x64.exe`，公开版本安装器仍为 0.1.4。选择安装目录并完成安装，支持当前用户安装，无需管理员权限；旧版升级继续沿用用户设置。首次启动打开壁纸库，壁纸位于主显示器的桌面图标后；切换到桌面即可观看。运行无需 Node.js、AE、Vite、.NET 或 WebView2，首次安装后可离线使用。
+本地安装器为 `release/GenshinWallpaper-Setup-0.1.5-x64.exe`。选择安装目录并完成安装，支持当前用户安装，无需管理员权限；旧版升级继续沿用用户设置。首次启动打开壁纸库，壁纸位于主显示器的桌面图标后；切换到桌面即可观看。运行无需 Node.js、AE、Vite、.NET 或 WebView2，首次安装后可离线使用。
 
 默认使用无损独立分块。0.1.5 同步上游预读缓存修复，以实际分块尺寸安排 128 MiB 解码缓存预算：魈为 21 帧 / 126 MiB，光遇为 18 帧 / 123.75 MiB，另有在途解码及 GPU 资源。这些是像素尺寸计算，不是进程总内存或功耗。安装包保留基础完整帧、所有分块与校验清单，完整原图集继续保存在 `content/` 源码中。显卡选择沿用原逻辑。
 
@@ -55,7 +55,7 @@ npm.cmd run dist:installer
 
 正式更新源为 [likefadian/genshin-live-wallpaper](https://github.com/likefadian/genshin-live-wallpaper) 的公开、稳定 GitHub Releases。设置的“软件”页提供检查更新、版本说明、下载进度和重启安装。下载完成并通过 SHA-512 校验后，仍需确认才退出壁纸并运行 NSIS。检查、下载失败可重试；普通退出不会自动安装。尚无正式发布时显示“尚无发布版本”，网络错误单独显示，不假报最新版。
 
-0.1.2 及更早版本没有更新器，需要手动安装新版。0.1.3 及后续版本可从软件内更新。每次 Release 需要匹配的安装 EXE、`latest.yml` 和 `.exe.blockmap`；新候选说明在 `docs/releases/0.1.5.md`。构建只在本地生成这些文件，始终 `--publish never`；发布在核对产物后另行执行。
+0.1.2 及更早版本没有更新器，需要手动安装新版。0.1.3 及后续版本可从软件内更新。每次 Release 需要匹配的安装 EXE、`latest.yml` 和 `.exe.blockmap`；当前版本说明在 `docs/releases/0.1.5.md`。构建只在本地生成这些文件，始终 `--publish never`；发布在核对产物后另行执行。
 
 本地验收使用专用旧候选 `0.1.3-verify.0` 和受限 loopback 更新源；需要显式 `--verify-update`、专用配置目录及 `GENSHINEXE_VERIFY_UPDATE_URL`，独立下载缓存不会覆盖正式缓存。该候选只用于本地测试，不是发布版本。实际结果见 [docs/verification.md](docs/verification.md)。正常用户运行始终读取内置 GitHub 配置。
 

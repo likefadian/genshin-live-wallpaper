@@ -1,5 +1,17 @@
 # GenshinWallpaper 状态 · 2026-10-21
 
+## 2026-10-21 · main 合并、GitHub 推送与 0.1.5 正式发布
+
+用户明确授权合并、推送并发布。main 从 ed0095c 快进至 `af30f6243b6dde95efde1ccfaba6d1f3ffcbb9a6`，与注释标签 v0.1.5 通过现有 SSH 一次原子推送成功；远端 main 和标签解析均核对一致。功能分支保留，后续提交仅更新发布文档。
+
+- [GenshinWallpaper v0.1.5](https://github.com/likefadian/genshin-live-wallpaper/releases/tag/v0.1.5) 于 2026-10-21 14:55:37（北京时间）正式发布并设为 Latest，Release ID 419239791，非草稿、非预发布。
+- 合并后的核心检查 31/31。发布预检确认安装包中的 22 个生产文件与该源码提交一致（文本只归一化 CRLF）；从当前 main 重新编译的桌面 bundle 与待发布文件字节完全相同。发布使用已实际安装验收过的 0.1.5 产物。
+- 三个附件均在草稿阶段上传并核对服务端 SHA-256、大小及 uploaded 状态，中文说明与源码文件一致。安装器 1179261271 字节，SHA-256 为 `f7f098c8a5a8ee274b6731c39be4a05cb7f7d4db82acd30715a368e43d1e28e7`；配套 blockmap 和 latest.yml 一同发布。
+- 发布后实际下载公开 latest.yml 和 blockmap，哈希与本地一致，latestVersion=0.1.5。安装器公开 HEAD 返回 200，content-length 正确。
+- 实际打包旧版 0.1.3 从独立 profile 启动，通过自身正式 GitHub 更新源检查到 availableVersion=0.1.5，中文说明包含光遇；未触发下载或安装，验收实例已退出。此前的本机 0.1.3→0.1.5 NSIS 覆盖安装已通过，本轮未重复远端完整下载或差分安装。
+
+证据位于 `work/publish-0.1.5-2026-10-21`：local-artifacts.json、github-draft-verified.json、github-published.json、public-checks.json、public-latest.yml、old-client-update.json。下方保留本地接入和安装阶段记录。
+
 ## 2026-10-21 · 光遇官方网页场景 / 本机 0.1.5
 
 用户确认 V3 最新网页版已完成后，在 `codex/v3-sunflower-0.1.5` 接入已接受提交 `ada791d53a07e02e5d53c0dd3e022eace5534505`。官方库新增《光遇 · 向日葵午后》暖阳完整版，1920×1080、30 fps、360 帧 / 12 秒；默认仍为魈。来源 V3 项目未改动，旧候选、AE 工程与预览视频未导入。
