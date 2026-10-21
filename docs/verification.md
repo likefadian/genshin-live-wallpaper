@@ -1,4 +1,16 @@
-# 必要验证 · 2026-10-16
+# 必要验证 · 2026-10-21
+
+## 2026-10-21 · main 合并与 0.1.4 正式发布
+
+- 先更新远端引用，确认 main 没有新增提交且工作区干净；main 快进合并功能分支至 08c4ff5，合并后的 npm.cmd test 27/27、git diff --check 通过。main 和注释标签 v0.1.4 以一次原子 SSH 推送成功，远端标签解析到相同源码提交。
+- 重新运行用户 MP4 的 21 项真实 Electron 流程、无署名作者并发命令检查，结果全部通过；原视频哈希不变。NSIS 正式构建 exit0，仍由本地构建命令 --publish never 生成，随后单独上传到发布草稿。
+- 安装器 / 清单版本均为 0.1.4；latest.yml 的安装器大小与 SHA-512、正式中文说明均与本地匹配。ASAR 中功能源码、网页 bundle、正式 GitHub 更新源逐项核对一致；未包含验收入口或用户测试视频。实际打包 EXE 从 C:/Windows/Temp 启动，在专用 profile 中视频运行、桌面挂载和重启恢复均通过。
+- 三个发布附件在草稿阶段完成上传后，逐项核对 GitHub 的 state=uploaded、size 和 SHA-256，与本地完全一致。发布结果为稳定 v0.1.4 / isDraft=false / isPrerelease=false / isLatest=true，发布时间 2026-10-21T01:06:47Z。
+- 安装器 739240083 字节，SHA-256 为 241421955de088aaf0611afa31a8084c2af44c9454208969ca01d91de5664ead；blockmap 769251 字节，SHA-256 为 3727cb1fd830864e77dea6139c2a45fdf9fa986da73c17d9b2a63629d2876836；latest.yml 1629 字节，SHA-256 为 f733fc33ffab407ba8e5ae07c3584363a9d4ff6153b643401b38a7e245f950c7。
+- 发布后从公开 latest/download 地址下载 latest.yml，文件哈希及 version=0.1.4 正确；公开 blockmap 实际下载哈希匹配。安装器 HEAD 为 200 且 content-length 与本地一致，未重复下载完整安装器。
+- 实际已安装 0.1.3 在专用 profile、显式 loopback 调试端口下，通过自身 checkUpdate 及正式 GitHub 源得到 status=available / availableVersion=0.1.4，中文 MP4 说明正确；没有调用下载或安装，专用实例已退出。此次不宣称完整升级和差分链路通过。
+
+现场证据在 work/publish-0.1.4-2026-10-21：local-artifacts.json、github-draft-verified.json、github-published.json、public-checks.json、public-latest.yml、packaged-playing.json、packaged-restarted.json、old-client-update.json。实际 MP4 流程在 work/mp4-wallpapers/e2e-1792544480103/results.json；作者并发在 author-concurrency-1792544480100/results.json。
 
 ## 2026-10-16 · 无署名官方录入
 

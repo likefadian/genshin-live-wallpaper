@@ -1,4 +1,16 @@
-# GenshinWallpaper 状态 · 2026-10-16
+# GenshinWallpaper 状态 · 2026-10-21
+
+## 2026-10-21 · 0.1.4 已合并 main 并正式发布
+
+用户明确授权合并 codex/mp4-wallpapers、推送 GitHub 并发布新版本。main 从 1f23325 快进到 08c4ff525cc6c6ae8a849dc9627b137f776f425d，源码和 v0.1.4 注释标签通过现有 SSH 一起推送；标签指向完整功能源码，后续提交仅补充发布记录。
+
+- [GenshinWallpaper v0.1.4](https://github.com/likefadian/genshin-live-wallpaper/releases/tag/v0.1.4) 于 2026-10-21 09:06:47（北京时间）正式发布，并设为 Latest，Release ID 419034066。
+- 公开附件为 GenshinWallpaper-Setup-0.1.4-x64.exe（739240083 字节）、对应 blockmap（769251 字节）和 latest.yml（1629 字节）。发布前，三个附件的服务端 SHA-256、大小和上传状态与本地完全一致；中文说明与源码文件一致。安装器 SHA-256：241421955de088aaf0611afa31a8084c2af44c9454208969ca01d91de5664ead。
+- 发布前重新执行合并后的核心检查 27/27、实际用户 MP4 桌面流程 21 项、作者并发录入检查，并重新构建 NSIS。实际打包 EXE 在专用用户目录播放视频、退出和重启恢复正常，packaged=true / attached，无渲染错误。
+- 发布后直接下载公开 latest/download/latest.yml 和 blockmap，哈希与本地一致；安装器公开 HEAD 返回 200，长度正确。实际已安装 0.1.3 使用内置 GitHub 正式源检查到 availableVersion=0.1.4，中文说明正确，专用验收实例已退出。
+- 没有触发旧版下载或覆盖安装；本次未重新验收完整远端下载、差分节省量或 0.1.3→0.1.4 实际安装升级。用户提供的下载视频未加入官方资源。
+
+证据保存在 work/publish-0.1.4-2026-10-21；桌面流程为 work/mp4-wallpapers/e2e-1792544480103，作者并发检查为 author-concurrency-1792544480100。下文保留各阶段原始记录。
 
 ## 2026-10-16 · 官方壁纸取消作者署名
 
