@@ -213,7 +213,8 @@ if(!app.requestSingleInstanceLock()){app.quit();}else{
  app.on('before-quit',()=>{
   if(quitting)return;quitting=true;clearInterval(monitor);clearTimeout(boundsTimer);
   updateController?.dispose();
-  if(store&&store.settings.timeMode==='cycle'&&telemetry&&Number.isFinite(telemetry.lightingMinutes)){
+  const current=catalog?.wallpapers.find(item=>item.id===store?.settings.wallpaperId);
+  if(store?.settings.timeMode==='cycle'&&current?.kind==='scene'&&current.controls?.timeMode!=='fixed'&&telemetry?.wallpaperId===current.id&&Number.isFinite(telemetry.lightingMinutes)){
    try{store.update({minutes:Math.min(1439,telemetry.lightingMinutes)});}catch(error){log.write('settings-save-error',{message:error.message});}
   }
   log.write('shutdown');server?.close().catch(error=>log.write('server-close-error',{message:error.message}));tray?.destroy();

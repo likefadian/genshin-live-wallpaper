@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "version": "warm-sun-web-v001",
+  "status": "exported",
+  "id": "extra-sky-sunflower-afternoon-motion",
+  "canvas": [
+    1920,
+    1080
+  ],
+  "crop": [
+    0,
+    0,
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "frameCount": 360,
+  "duration": 12,
+  "lightingMode": "baked-afternoon",
+  "atlasSize": [
+    3840,
+    2160
+  ],
+  "requiredChannels": [
+    "albedo",
+    "normal",
+    "material",
+    "shadow"
+  ],
+  "assetRoot": "assets/extra/sky/sunflower-afternoon/warm-sun-v001/",
+  "framePatches": {
+    "assetRoot": "assets/extra/sky/sunflower-afternoon/warm-sun-v001/tiles-v001/"
+  },
+  "pattern": "frame-{frame:04}.png",
+  "layout": {
+    "albedo": [
+      0,
+      0,
+      1920,
+      1080
+    ],
+    "normal": [
+      1920,
+      0,
+      1920,
+      1080
+    ],
+    "material": [
+      0,
+      1080,
+      1920,
+      1080
+    ],
+    "shadow": [
+      1920,
+      1080,
+      1920,
+      1080
+    ]
+  },
+  "sourceFrames": "extra/sky/sunflower-afternoon/exports/hd-warm-sun-v001/frames",
+  "sourceFrameManifest": "extra/sky/sunflower-afternoon/production/2026-10-21-warm-sun-web-v001/native-frame-manifest.json",
+  "aeProject": "extra/sky/sunflower-afternoon/ae/sky-sunflower-hd-warm-sun-v001.aep",
+  "aeProjectSha256": "de456ae907029897a296afaf036150c95087a2bd3332910a81f403f51b7dc591",
+  "manifest": "web/public/assets/extra/sky/sunflower-afternoon/warm-sun-v001/manifest.json",
+  "background": "assets/extra/sky/sunflower-afternoon/warm-sun-v001/background.png",
+  "thumbnail": "assets/extra/sky/sunflower-afternoon/warm-sun-v001/thumbnail.png",
+  "dataSemantics": {
+    "label": "固定受光兼容数据",
+    "normal": [
+      128,
+      128,
+      255
+    ],
+    "material": {
+      "id": 1,
+      "AO": 255,
+      "receiver": 0
+    },
+    "shadow": 0,
+    "trueDynamicNormals": false,
+    "inverseUV": false
+  },
+  "userApproval": {
+    "at": "2026-10-21T09:27:48+08:00",
+    "quote": "我确认候选可以了，做进网页场景吧",
+    "artifactVersion": "hd-warm-sun-v001",
+    "scope": "Accept latest warm-sun visual candidate and authorize integration into the existing webpage. Web playback is checked separately.",
+    "project": {
+      "path": "extra/sky/sunflower-afternoon/ae/sky-sunflower-hd-warm-sun-v001.aep",
+      "bytes": 132797257,
+      "sha256": "de456ae907029897a296afaf036150c95087a2bd3332910a81f403f51b7dc591",
+      "items": 1228,
+      "outputComp": "SKY_SUN_V001_OUTPUT_1080",
+      "sourceComp": "SKY_SUN_V001_SOURCE",
+      "savedReopened": true
+    },
+    "video": {
+      "path": "extra/sky/sunflower-afternoon/previews/hd-warm-sun-v001/sunflower-afternoon-warm-sun-1080.mp4",
+      "sha256": "69c063d19744fa0f3fd7b03c6a2b342950d3302488937a2f6c9071de58329115"
+    },
+    "frozenManifest": {
+      "path": "extra/sky/sunflower-afternoon/production/2026-10-20-warm-sun-v001/artifact-manifest.json",
+      "sha256": "618e0a732b0069b560d2478542c924863d6fa5beab833486db38f73f05691b12"
+    }
+  },
+  "outputComp": "SKY_SUN_V001_OUTPUT_1080",
+  "sourceComp": "SKY_SUN_V001_SOURCE"
+}

@@ -1,5 +1,22 @@
 # 必要验证 · 2026-10-21
 
+## 2026-10-21 · 光遇网页场景 / 0.1.5 本机更新
+
+- `npm.cmd test`：31/31。固定午后检查先复现错误（全局连续昼夜产生 105 分钟而非 720），接入 time policy 后通过；三种时间模式、切回动态场景恢复跟随/连续昼夜、计时器释放和用户参数保留均检查。来源同步检查覆盖已提交的 extra/config、新旧图集与分块关联、拒绝工作区修改、拒绝已提交但来源序列不匹配的分块；验证失败不写入目标。
+- `node scripts/verify-web-scenes.mjs` 实际 Electron 12 项通过。`GENSHINEXE_VERIFY_EXE` 指向实际打包 EXE，复用保存过 MP4 的专用 `GENSHINEXE_VERIFY_PROFILE` 后，同样 12 项通过。包含 617 交付资源 SHA-256、固定来源提交、排除旧候选、两个官方场景、MP4、能力控件/预设切换、三个时间模式、暂停、快速切换及重启。通过 Network 事件确认全部 360 个分块实际读取，观察到 12 秒循环回起点；固定午后始终 720，用户 cycle / minutes=1320 未被退出覆盖。
+- 实际打包程序采样为 30.0058 fps（按同一遥测窗口内 renderCount / animationSeconds 差计算），heldFrames 增量 0，cacheCapacity=18 / prefetchFrames=14 / frameTransport=tiles / renderSize=1920×1080；显卡为 RTX 4060 Laptop。截图在采样与暂停检查后抓取，避免截图捕获影响播放测量。暂停以立即冻结 animationSeconds、最后一帧落屏后跨新遥测周期 frame 不变为准。
+- `node scripts/verify-mp4.mjs <用户视频路径>` 21 项通过，含初始化中实际读取取消与 WebGL 释放，原视频哈希不变。与本次光遇交付无关的官方 MP4 清单仍为空。
+- `npm.cmd run dist:installer` exit0，强制 `--publish never`。安装器 1179261271 字节，SHA-256 `f7f098c8a5a8ee274b6731c39be4a05cb7f7d4db82acd30715a368e43d1e28e7`；blockmap 1225205 字节，SHA-256 `6212e4250751a9b7ba9f82fffd53050d9d9d3e65f1a3b003477bde22dd058dc8`；latest.yml 1225 字节，SHA-256 `8fd4fd077fc0ea27e9af75acb08d6e01fec1324e4e60e786c5f343c36933100b`。清单版本、安装器大小、SHA-512 与中文说明核对通过。
+- ASAR 中 main、settings.js、settings HTML 与当前源码字节相同，desktop.js 与本地构建字节相同，package.version=0.1.5；正式更新源正确，无 work/tests/验收入口。独立审查复核 43 个源码/配置与 ada791d 提交及索引一致，无未处理发现。
+- NSIS `/S` 实际覆盖安装到原 `.local-install`，exit0、ProductVersion=0.1.5.0；安装后 EXE 从 C:/Windows/Temp 使用专用 profile 启动并挂载，光遇动画推进、本地 MP4 保留，617 个安装资源 SHA-256 全部一致。验收实例已退出。
+- 正常安装版以 `--background`、无调试/验收参数运行，version=0.1.5 / packaged=true / attached / running / renderError 为空，官方库包含魈与光遇。正常设置文件升级前后 SHA-256 相同，保留原选择和参数。未发布到远端，未重复测试远端下载或差分更新；性能仅代表本机采样。
+
+分块交付约定：`content/` 保留魈 240 张、光遇 360 张完整图集及全部分块。当前桌面始终使用已配置的默认 tiles，且上游没有自动 full 回退；`prepare:web` 因此仅将每个场景的完整 frame-0000、两个 manifest、所有分块与静态资源放入安装树，排除 598 张冗余完整帧。若以后增加桌面 full 传输选项，必须同时恢复对应完整序列交付。该约定未改变像素、分辨率或显卡选择。
+
+证据目录：`work/web-scenes-1792550046605`（开发入口）、`work/web-scenes-1792550427647`（打包程序及截图）、`work/mp4-wallpapers/e2e-1792550212597`、`work/web-scenes-delivery-0.1.5`（artifacts.json / package-check.json / installed-playing.json / normal-installed-running.json）。正常启动实例继续运行，所有验收实例已退出。
+
+复现时先运行 `node scripts/prepare-video-fixtures.mjs` 与 `npm.cmd run prepare:web`，再运行 `node scripts/verify-web-scenes.mjs`。脚本使用专用 profile 与 loopback 9258；打包验收设置 `GENSHINEXE_VERIFY_EXE` 为本地真实 EXE，并将 `GENSHINEXE_VERIFY_PROFILE` 指向开发验收中已保存 MP4 的目录。正常运行不开放调试端口。
+
 ## 2026-10-21 · main 合并与 0.1.4 正式发布
 
 - 先更新远端引用，确认 main 没有新增提交且工作区干净；main 快进合并功能分支至 08c4ff5，合并后的 npm.cmd test 27/27、git diff --check 通过。main 和注释标签 v0.1.4 以一次原子 SSH 推送成功，远端标签解析到相同源码提交。

@@ -4,11 +4,11 @@ export interface PaintedShading {strength:number;thresholds:Pair;softness:number
 import {validateAtmosphere,type SceneAtmosphere,type WindProfile} from './atmosphere.ts';
 export interface CharacterPackage {schemaVersion:1;id:string;displayName?:string;canvas:Pair;crop:Rect;fps:number;frameCount:number;atlasSize:Pair;requiredChannels:readonly string[];assetRoot:string;pattern:string;framePatches?:{assetRoot:string};materials:MaterialSpec[];shading?:PaintedShading;wind?:WindProfile;shadow:{maxOffsetPixels:number;softnessPixels:number;ambientOcclusionStrength:number};aeProject:string}
 export interface LightKey {minutes:number;name:string;direction:Triple;keyColor:Triple;ambient:Triple;lampDirection:Triple;lampColor:Triple;exposure:number;backgroundTint:Triple;backgroundExposure:number}
-export interface SceneControls {initialMinutes:number;previewMinutesPerSecond:number;presets:readonly {name:string;minutes:number}[]}
+export interface SceneControls {initialMinutes:number;previewMinutesPerSecond:number;presets:readonly {name:string;minutes:number}[];timeMode?:'cycle'|'fixed'}
 import {validateEnvironment,type SceneEnvironment} from './scene-environment.ts';
 import {validateTimeBackground,type TimeBackground} from './time-background.ts';
 export interface ScenePackage {schemaVersion:1;id:string;canvas:Pair;background:{path:string;rect:Rect;timeOfDay?:TimeBackground};controls:SceneControls;keyframes:LightKey[];environment?:SceneEnvironment;atmosphere?:SceneAtmosphere}
-export interface WallpaperPackage {schemaVersion:1;id:string;displayName?:string;characterId:string;sceneId:string;canvas:Pair;preview:Rect;characterOrigin:Pair;drawOrder:readonly string[];scope:string;presentation?:{selectable:boolean;characterKey:string;sceneName:string;focus:Pair;thumbnail?:string}}
+export interface WallpaperPackage {schemaVersion:1;id:string;displayName?:string;characterId:string;sceneId:string;canvas:Pair;preview:Rect;characterOrigin:Pair;drawOrder:readonly string[];scope:string;presentation?:{selectable:boolean;characterKey:string;sceneName:string;focus:Pair;thumbnail?:string;clockDefaultVisible?:boolean}}
 function object(v:unknown,label:string):Record<string,any>{if(!v||typeof v!=='object'||Array.isArray(v))throw Error(label+' must be an object');return v as Record<string,any>}
 function numbers(v:unknown,length:number,label:string,positive=false){if(!Array.isArray(v)||v.length!==length||v.some(x=>!Number.isFinite(x)||(positive&&x<=0)))throw Error(label+' must have '+length+' finite values');return v as number[]}
 function schema(v:Record<string,any>,label:string){if(v.schemaVersion!==1)throw Error(label+' schemaVersion unsupported: '+v.schemaVersion);if(typeof v.id!=='string'||!v.id)throw Error(label+' id missing')}
@@ -22,7 +22,7 @@ export function validateCombination(character:unknown,scene:unknown,wallpaper:un
   if(p.characterId!==c.id||p.sceneId!==s.id)throw Error('wallpaper package ids mismatch');
   for(const [label,rect] of [['character crop',c.crop],['wallpaper preview',p.preview]] as const){numbers(rect,4,label);if(rect[0]<0||rect[1]<0||rect[2]<=0||rect[3]<=0||rect[0]+rect[2]>p.canvas[0]||rect[1]+rect[3]>p.canvas[1])throw Error(label+' outside canvas')}
   numbers(p.characterOrigin,2,'wallpaper characterOrigin');
-  if(p.presentation!==undefined){const view=object(p.presentation,'wallpaper presentation');text(view.characterKey,'presentation characterKey');text(view.sceneName,'presentation sceneName');const focus=numbers(view.focus,2,'presentation focus');if(focus.some(v=>v<0||v>1)||typeof view.selectable!=='boolean')throw Error('wallpaper presentation invalid')}
+  if(p.presentation!==undefined){const view=object(p.presentation,'wallpaper presentation');text(view.characterKey,'presentation characterKey');text(view.sceneName,'presentation sceneName');const focus=numbers(view.focus,2,'presentation focus');if(focus.some(v=>v<0||v>1)||typeof view.selectable!=='boolean')throw Error('wallpaper presentation invalid');if(view.clockDefaultVisible!==undefined&&typeof view.clockDefaultVisible!=='boolean')throw Error('presentation clockDefaultVisible must be boolean')}
   if(p.characterOrigin[0]<0||p.characterOrigin[1]<0||p.characterOrigin[0]+c.crop[2]>p.canvas[0]||p.characterOrigin[1]+c.crop[3]>p.canvas[1])throw Error('wallpaper characterOrigin outside canvas');
   if(!Number.isFinite(c.fps)||c.fps<=0||!Number.isSafeInteger(c.frameCount)||c.frameCount<=0)throw Error('character timing invalid');
   numbers(c.atlasSize,2,'character atlasSize',true);if(c.atlasSize[0]!==c.crop[2]*2||c.atlasSize[1]!==c.crop[3]*2)throw Error('character atlasSize mismatch');
@@ -36,7 +36,7 @@ export function validateCombination(character:unknown,scene:unknown,wallpaper:un
   const shadow=object(c.shadow,'character shadow');scalar(shadow.maxOffsetPixels,'shadow maxOffsetPixels');scalar(shadow.softnessPixels,'shadow softnessPixels');scalar(shadow.ambientOcclusionStrength,'shadow ambientOcclusionStrength',0,1);
   const background=object(s.background,'scene background');text(background.path,'scene background path');rect(background.rect,p.canvas,'scene background rect');
   if(background.timeOfDay!==undefined)validateTimeBackground(background.timeOfDay);
-  const controls=object(s.controls,'scene controls');scalar(controls.initialMinutes,'scene initialMinutes',0,1439);scalar(controls.previewMinutesPerSecond,'scene previewMinutesPerSecond',0,Infinity,true);
+  const controls=object(s.controls,'scene controls');scalar(controls.initialMinutes,'scene initialMinutes',0,1439);scalar(controls.previewMinutesPerSecond,'scene previewMinutesPerSecond',0,Infinity,true);if(controls.timeMode!==undefined&&!['cycle','fixed'].includes(controls.timeMode))throw Error('scene timeMode must be cycle or fixed');
   if(!Array.isArray(controls.presets)||!controls.presets.length)throw Error('scene presets missing');
   for(const preset of controls.presets){text(preset?.name,'scene preset name');scalar(preset?.minutes,'scene preset minutes',0,1439)}
   if(!Array.isArray(s.keyframes)||s.keyframes.length<2||s.keyframes[0].minutes!==0||s.keyframes.at(-1).minutes!==1440||s.keyframes.some((k:any,i:number)=>!Number.isFinite(k.minutes)||(i&&k.minutes<=s.keyframes[i-1].minutes)))throw Error('scene keyframes must span one day in order');

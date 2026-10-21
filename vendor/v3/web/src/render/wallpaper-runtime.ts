@@ -48,13 +48,17 @@ export class WallpaperRuntime {
   Object.assign(this.backgroundMaterial.uniforms,{uDawnBackground:{value:this.backgroundTexture},uDuskBackground:{value:this.backgroundTexture},uNightBackground:{value:this.backgroundTexture},uRegisteredBackground:{value:this.scenePackage.background.timeOfDay?1:0},uBackgroundWeights:{value:new THREE.Vector4(0,1,0,0)}});
   const b=this.scenePackage.background.rect;this.background=new THREE.Mesh(new THREE.PlaneGeometry(b[2],b[3]),this.backgroundMaterial);this.background.position.set(b[0]+b[2]/2,-b[1]-b[3]/2,-1);this.background.renderOrder=this.wallpaper.drawOrder.indexOf('scene');this.scene.add(this.background);
   this.latch=new FrameLatch({width:c.crop[2],height:c.crop[3],cropOrigin:[c.crop[0],c.crop[1]],fps:c.fps,frameCount:c.frameCount,requiredChannels:c.requiredChannels});
-  this.cache=new FrameCache(this.frameBuffers.capacity,index=>{
-   const file=c.pattern.replace('{frame:04}',String(index).padStart(4,'0'));
-   return this.decodeBitmap((this.patchPlan?c.framePatches!.assetRoot:c.assetRoot)+file,(this.patchPlan?.hashes??this.expectedHashes)[index],this.patchPlan?.packedSize??c.atlasSize);
-  },bitmap=>bitmap.close());
+  this.cache=this.createFrameCache();
   if(this.scenePackage.atmosphere){this.particles=new EnvironmentParticles(this.scene,this.scenePackage.atmosphere,this.wallpaper.canvas,this.scenePackage.environment!.lights,this.background.renderOrder,this.head.renderOrder);this.particles.setCharacter(this.atlas,this.wallpaper.characterOrigin,[c.crop[2],c.crop[3]]);this.bloom=new BloomPipeline(this.renderer,this.scenePackage.atmosphere,this.atlas,this.wallpaper.characterOrigin,[c.crop[2],c.crop[3]])}this.renderer.info.autoReset=false;this.renderer.debug.onShaderError=(gl,program,vs,fs)=>{this.shaderError=[gl.getProgramInfoLog(program),gl.getShaderInfoLog(vs),gl.getShaderInfoLog(fs)].filter(Boolean).join(' | ');console.error(this.shaderError)};document.addEventListener('visibilitychange',this.visibility);this.setViewport(false);
  }
  static async create(host:HTMLElement,character:unknown,scene:unknown,wallpaper:unknown,options:RuntimeOptions={}){const runtime=new WallpaperRuntime(host,character,scene,wallpaper,options);try{await runtime.initialize();return runtime}catch(error){runtime.destroy();throw error}}
+ private createFrameCache(){
+  const c=this.character;
+  return new FrameCache(this.frameBuffers.capacity,index=>{
+   const file=c.pattern.replace('{frame:04}',String(index).padStart(4,'0'));
+   return this.decodeBitmap((this.patchPlan?c.framePatches!.assetRoot:c.assetRoot)+file,(this.patchPlan?.hashes??this.expectedHashes)[index],this.patchPlan?.packedSize??c.atlasSize);
+  },(bitmap:ImageBitmap)=>bitmap.close());
+ }
  private async decodeBitmap(path:string,hash:string,size:readonly number[]){
   const start=performance.now(),response=await fetch(new URL(import.meta.env.BASE_URL+path,document.baseURI),{signal:this.abort.signal});if(!response.ok)throw Error(path+': HTTP '+response.status);
   const blob=await response.blob(),digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await blob.arrayBuffer())),v=>v.toString(16).padStart(2,'0')).join('');if(digest!==hash)throw Error(path+': SHA-256 mismatch');
@@ -64,7 +68,11 @@ export class WallpaperRuntime {
  }
  private async initializePatches(){
   if(!this.patchAtlas)return;const c=this.character,path=c.framePatches!.assetRoot+'manifest.json',response=await fetch(new URL(import.meta.env.BASE_URL+path,document.baseURI),{signal:this.abort.signal});if(!response.ok)throw Error('frame patches manifest HTTP '+response.status);
-  this.patchPlan=validateFramePatches(await response.json(),c,this.expectedHashes);this.frameBuffers.bytesPerFrame=this.patchPlan.packedSize[0]*this.patchPlan.packedSize[1]*4;
+  this.patchPlan=validateFramePatches(await response.json(),c,this.expectedHashes);
+  // Metadata arrives before any sequence load. Budget the images actually decoded,
+  // including prefetch headroom, rather than retaining the full quad's tiny cache.
+  this.frameBuffers=frameBufferPlan(this.patchPlan.packedSize,c.frameCount);
+  this.cache.dispose();this.cache=this.createFrameCache();
   const base=await this.decodeBitmap(c.assetRoot+c.pattern.replace('{frame:04}','0000'),this.expectedHashes[0],c.atlasSize);
   try{this.patchAtlas.initialize(this.patchPlan,base);this.atlasUploadCount++;this.atlasUploadBytesTotal+=c.atlasSize[0]*c.atlasSize[1]*4}finally{base.close()}
  }

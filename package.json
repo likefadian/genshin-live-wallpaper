@@ -1,6 +1,6 @@
 {
   "name": "genshinexe",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "author": "GenshinWallpaper",
   "description": "Windows 动态壁纸 · 实时场景与 MP4 壁纸库",
@@ -75,8 +75,8 @@
       ],
       "signAndEditExecutable": true,
       "releaseInfo": {
-        "releaseName": "GenshinWallpaper v0.1.4",
-        "releaseNotesFile": "docs/releases/0.1.4.md"
+        "releaseName": "GenshinWallpaper v0.1.5",
+        "releaseNotesFile": "docs/releases/0.1.5.md"
       }
     },
     "nsis": {

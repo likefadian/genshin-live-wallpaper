@@ -1,18 +1,18 @@
 # GenshinWallpaper
 
-Windows x64 动态壁纸软件，当前稳定版本 `0.1.4`。支持本地 MP4 动态壁纸与维护方随版本提供的官方壁纸，保留原魈 / 璃月灯火（full-v016）的实时受光、昼夜、粒子、灯光、Bloom 和时间日期。软件内可手动检查 GitHub Releases 更新。
+Windows x64 动态壁纸软件，当前公开稳定版本 `0.1.4`，本地开发候选为 `0.1.5`。支持本地 MP4 动态壁纸与维护方随版本提供的官方壁纸。0.1.5 新增《光遇 · 向日葵午后》暖阳网页场景，原魈 / 璃月灯火（full-v016）继续支持实时受光、昼夜、粒子、灯光、Bloom 和时间日期。软件内可手动检查 GitHub Releases 更新。
 
 ## 安装与观看
 
 从 [GitHub Releases](https://github.com/likefadian/genshin-live-wallpaper/releases/tag/v0.1.4) 下载 `GenshinWallpaper-Setup-0.1.4-x64.exe`。使用 0.1.3 的用户也可在软件设置中检查、下载并安装新版本。完整源码位于本仓库 main 和对应的版本标签。
 
-本地安装器为 `release/GenshinWallpaper-Setup-0.1.4-x64.exe`，历史 0.1.3 安装器保留在 `release/genshinwallpaper-v001/`。选择安装目录并完成安装，支持当前用户安装，无需管理员权限；旧版升级继续沿用用户设置。首次启动打开壁纸库，壁纸位于主显示器的桌面图标后；切换到桌面即可观看。运行无需 Node.js、AE、Vite、.NET 或 WebView2，首次安装后可离线使用。
+本地新候选安装器为 `release/GenshinWallpaper-Setup-0.1.5-x64.exe`，公开版本安装器仍为 0.1.4。选择安装目录并完成安装，支持当前用户安装，无需管理员权限；旧版升级继续沿用用户设置。首次启动打开壁纸库，壁纸位于主显示器的桌面图标后；切换到桌面即可观看。运行无需 Node.js、AE、Vite、.NET 或 WebView2，首次安装后可离线使用。
 
-默认使用无损分块：每帧解码/上传的原始RGBA像素从约14.82 MiB降到6 MiB，8帧缓存的像素估算为48 MiB（另有在途解码及GPU资源）。这些是资源尺寸计算，不是进程总内存、功耗或风扇降幅。原完整图集继续保留，因此安装包比0.1.0更大。显卡选择沿用原逻辑；0.1.1强制核显试验保留在独立Git候选分支。
+默认使用无损独立分块。0.1.5 同步上游预读缓存修复，以实际分块尺寸安排 128 MiB 解码缓存预算：魈为 21 帧 / 126 MiB，光遇为 18 帧 / 123.75 MiB，另有在途解码及 GPU 资源。这些是像素尺寸计算，不是进程总内存或功耗。安装包保留基础完整帧、所有分块与校验清单，完整原图集继续保存在 `content/` 源码中。显卡选择沿用原逻辑。
 
 关闭设置窗口不会退出壁纸。单击/双击任务栏托盘图标打开设置；右键托盘可暂停/恢复、重新连接、打开日志、设置开机启动或退出。软件设置页也提供退出按钮。完整退出后 Windows 原有桌面背景恢复。
 
-光影页支持晨/昼/昏/夜、固定时刻/跟随系统时间/连续昼夜、亮度/主光/阴影及增强开关。动效页支持暂停、速度、风、粒子、时钟、等比铺满/完整与三档采样画质。设置由主进程保存，软件更新沿用同一个目录：`%APPDATA%/GenshinEXE/settings.json`。日志在同级 `logs/`。
+设置页按壁纸能力显示控制。魈支持晨/昼/昏/夜、固定时刻/跟随系统时间/连续昼夜和实时光影；光遇保留固定午后光色，支持整体亮度、暂停、速度、时钟、显示比例和三档采样画质。切换壁纸保留用户的全局控制偏好。设置由主进程保存，软件更新沿用同一个目录：`%APPDATA%/GenshinEXE/settings.json`。日志在同级 `logs/`。
 
 ## MP4 壁纸
 
@@ -35,13 +35,13 @@ npm.cmd run dist:installer
 
 `setup` 显式安装 Electron（兼容 npm 的安装脚本策略），下载缓存留在本项目 `.cache/electron`。官方连接失败时使用镜像，但仍使用 Electron 包中的 SHA-256 校验。`prepare:web` 将已有正式资源复制到本地网页并构建桌面适配；不重新制作角色或导出 AE。打包从已安装并校验的 Electron 目录复制运行时，NSIS / 构建缓存位于 `.cache/electron-builder`，输出在 `release/`。构建命令强制 `--publish never`。
 
-必要核心检查为 `npm.cmd test`（设置、壁纸库、媒体 Range、播放器生命周期及软件更新）。MP4 实际检查为 `node scripts/verify-video-probe.mjs <MP4路径>` 和 `node scripts/verify-mp4.mjs <MP4路径>`；需先准备测试 fixture，见 [验收记录](docs/verification.md)。实际桌面检查记录在 [docs/status.md](docs/status.md)。诊断脚本只连接显式启用的本地 Chromium 调试端口，正常安装版不开放该端口。
+必要核心检查为 `npm.cmd test`（设置、壁纸库、媒体 Range、播放器生命周期、来源完整性及软件更新）。网页场景实际检查为 `node scripts/verify-web-scenes.mjs`；MP4 检查为 `node scripts/verify-video-probe.mjs <MP4路径>` 和 `node scripts/verify-mp4.mjs <MP4路径>`。需先准备测试 fixture，见 [验收记录](docs/verification.md)。实际桌面检查记录在 [docs/status.md](docs/status.md)。诊断脚本只连接显式启用的本地 Chromium 调试端口，正常安装版不开放该端口。
 
 ## 源码结构
 
 - `electron/`：主进程、设置状态、本地资源服务、Windows 桌面宿主、受限 preload 与独立设置窗口。
 - `vendor/v3/`：V3 渲染器、内容协议、注册及 JSON 的原样快照。`content/source.json` 记录首次来源；`content/engine-update.json` 记录本轮已接受提交及逐文件SHA-256。
-- `content/assets/`：正式 full-v016 的同帧多通道图集、无损 tiles-v001、场景资源与人物缩略图；运行帧哈希由 V3 加载器验证。
+- `content/assets/`：魈 full-v016 和光遇 warm-sun-v001 的同帧多通道图集、无损 tiles-v001、场景资源与缩略图；运行帧哈希由 V3 加载器验证。
 - `content/official-videos/`：维护方录入的 MP4、静态封面与官方清单，随版本构建交付。
 - `scripts/`：导入、网页构建、安装包构建、源码包与可选本地诊断。
 - `web/`：可重建的内置网页产物，随安装包进入 `resources/wallpaper`。
@@ -49,13 +49,13 @@ npm.cmd run dist:installer
 
 首次导入使用 `node scripts/import-v3.mjs <V3项目路径>`，当前已导入，无需重复执行。导入脚本拒绝覆盖现有来源记录。扩展实时角色仍需制作并注册兼容组合；支持导入 MP4，不支持其他引擎场景包热安装或任意原画混搭。
 
-本轮开发同步使用 `node scripts/sync-v3-engine.mjs <V3项目路径> f407ea7`，要求来源与已确认提交一致，保留首次导入记录。软件源码ZIP已包含同步结果；独立重建和安装运行均不需要V3目录或Git。
+本轮开发同步使用 `node scripts/sync-v3-engine.mjs <V3项目路径> ada791d53a07e02e5d53c0dd3e022eace5534505`，从已确认 registry 收集可选场景的资源，验证 Git 内容、完整序列和分块的关联哈希。保留首次导入记录，不携带未引用候选或 AE 工程。同步结果已嵌入本项目；独立重建和安装运行均不需要 V3 目录或 Git。
 
 ## 软件更新
 
 正式更新源为 [likefadian/genshin-live-wallpaper](https://github.com/likefadian/genshin-live-wallpaper) 的公开、稳定 GitHub Releases。设置的“软件”页提供检查更新、版本说明、下载进度和重启安装。下载完成并通过 SHA-512 校验后，仍需确认才退出壁纸并运行 NSIS。检查、下载失败可重试；普通退出不会自动安装。尚无正式发布时显示“尚无发布版本”，网络错误单独显示，不假报最新版。
 
-0.1.2 及更早版本没有更新器，需要手动安装新版。0.1.3 及后续版本可从软件内更新。每次 Release 需要匹配的安装 EXE、`latest.yml` 和 `.exe.blockmap`；当前说明在 `docs/releases/0.1.4.md`。构建只在本地生成这些文件，始终 `--publish never`；发布在核对产物后另行执行。
+0.1.2 及更早版本没有更新器，需要手动安装新版。0.1.3 及后续版本可从软件内更新。每次 Release 需要匹配的安装 EXE、`latest.yml` 和 `.exe.blockmap`；新候选说明在 `docs/releases/0.1.5.md`。构建只在本地生成这些文件，始终 `--publish never`；发布在核对产物后另行执行。
 
 本地验收使用专用旧候选 `0.1.3-verify.0` 和受限 loopback 更新源；需要显式 `--verify-update`、专用配置目录及 `GENSHINEXE_VERIFY_UPDATE_URL`，独立下载缓存不会覆盖正式缓存。该候选只用于本地测试，不是发布版本。实际结果见 [docs/verification.md](docs/verification.md)。正常用户运行始终读取内置 GitHub 配置。
 

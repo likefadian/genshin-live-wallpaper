@@ -1,25 +1,28 @@
 const api=window.genshinDesktop,$=id=>document.getElementById(id);
-let state,pending={},timer,chain=Promise.resolve(),presetsReady=false,libraryKey='',actionError='',libraryActionPending=false;
-const titles={library:['壁纸库','挑选一处风景，或导入你收藏的 MP4 动态壁纸。'],light:['光影与时间','从晨光到夜色，让璃月与你的时间相遇。'],motion:['动效与画面','留住一阵风，也可以安静地看一会儿。'],app:['软件设置','设置随你保存，风景随 Windows 启动。']};
+let state,pending={},timer,chain=Promise.resolve(),presetsFor='',libraryKey='',actionError='',libraryActionPending=false;
+const titles={library:['壁纸库','挑选一处风景，或导入你收藏的 MP4 动态壁纸。'],light:['光影与时间','根据当前壁纸调节亮度、光影与昼夜时刻。'],motion:['动效与画面','留住一阵风，也可以安静地看一会儿。'],app:['软件设置','设置随你保存，风景随 Windows 启动。']};
 const formatTime=minutes=>String(Math.floor(minutes/60)%24).padStart(2,'0')+':'+String(Math.floor(minutes%60)).padStart(2,'0');
 function fail(error){actionError=String(error.message||error).replace(/^Error invoking remote method '[^']+': Error: /,'');$('error').hidden=false;$('error').textContent=actionError;$('save-status').textContent='操作未完成，请重试';}
 function display(snapshot){
  if(state&&snapshot.revision<state.revision)return;
  state=snapshot;const s=state.settings,scene=state.catalog.wallpapers.find(item=>item.id===state.catalog.defaultWallpaperId),content=state.catalog.wallpapers.find(item=>item.id===s.wallpaperId)||scene,video=content.kind==='video';
  $('version').textContent='v'+state.version+' · 本地版';$('character-name').textContent=content.name;$('scene-name').textContent=video?(content.source==='local'?'我的导入':'官方壁纸'):content.sceneName;
- $('character-tagline').textContent=video?'此刻的桌面':'守护璃月的风';$('character-card').classList.toggle('video-character',video);
+ $('character-tagline').textContent=content.presentation?.characterKey==='xiao'?'守护璃月的风':'此刻的风景';$('character-card').classList.toggle('video-character',video);
  const portraitUrl=new URL(content.thumbnail,state.serverUrl+'/').href;if($('portrait').src!==portraitUrl)$('portrait').src=portraitUrl;
  $('portrait').alt=content.name;
  $('content-version').textContent=content.name+' · '+state.catalog.contentVersion;
  document.querySelector('[data-tab=light]').hidden=video;
  for(const item of document.querySelectorAll('.scene-only'))item.hidden=video;
  for(const item of document.querySelectorAll('.video-only'))item.hidden=!video;
+ for(const item of document.querySelectorAll('[data-capability]'))item.hidden=video||content.capabilities?.[item.dataset.capability]===false;
+ for(const group of document.querySelectorAll('.switch-grid'))group.hidden=[...group.children].every(item=>item.hidden);
  if(video&&document.querySelector('[data-tab=light]').classList.contains('active'))activateTab(document.querySelector('[data-tab=library]'));
  displayLibrary();
  displayUpdate(state.update);
- if(!presetsReady){
-  for(const preset of scene.controls.presets){const button=document.createElement('button');button.textContent=preset.name;button.dataset.minutes=preset.minutes;button.onclick=()=>queue({timeMode:'manual',minutes:preset.minutes},true);$('presets').append(button);}
-  presetsReady=true;
+ if(presetsFor!==content.id){
+  $('presets').replaceChildren();
+  for(const preset of content.controls?.presets??[]){const button=document.createElement('button');button.textContent=preset.name;button.dataset.minutes=preset.minutes;button.onclick=()=>queue({timeMode:'manual',minutes:preset.minutes},true);$('presets').append(button);}
+  presetsFor=content.id;
  }
  for(const key of ['minutes','exposure','light','shadow','speed','videoVolume','timeMode','fit','quality']){
   if(document.activeElement!==$(key)&&!Object.hasOwn(pending,key))$(key).value=String(s[key]);
@@ -49,7 +52,7 @@ function displayLibrary(){
   for(const entry of state.catalog.wallpapers){
    const current=entry.id===state.settings.wallpaperId,card=document.createElement('article');card.className='wallpaper-card'+(current?' current':'');card.setAttribute('aria-current',String(current));
    const picture=document.createElement('div');picture.className='wallpaper-picture';const image=document.createElement('img');image.src=new URL(entry.thumbnail,state.serverUrl+'/').href;image.alt='';image.loading='lazy';picture.append(image);
-   const badge=document.createElement('span');badge.className='wallpaper-kind';badge.textContent=entry.kind==='video'?'MP4 视频':'实时场景';picture.append(badge);
+   const badge=document.createElement('span');badge.className='wallpaper-kind';badge.textContent=entry.kind==='video'?'MP4 视频':entry.capabilities?.time===false?'场景壁纸':'实时场景';picture.append(badge);
    const body=document.createElement('div');body.className='wallpaper-body';const name=document.createElement('h3');name.textContent=entry.name;name.title=entry.name;body.append(name);
    const metadata=document.createElement('p');metadata.className='wallpaper-meta';metadata.textContent=entry.available===false?'视频文件缺失，请重新导入':entry.kind==='video'?entry.width+' × '+entry.height+' · '+Math.round(entry.duration)+' 秒 · '+(entry.size/1048576).toFixed(1)+' MB':entry.sceneName;body.append(metadata);
    const actions=document.createElement('div');actions.className='wallpaper-actions';const select=document.createElement('button');select.className='small-button';select.textContent=current?'✓ 正在使用':'使用壁纸';select.dataset.libraryAction='select';select.dataset.unavailable=String(current||entry.available===false);select.onclick=()=>libraryAction('selectWallpaper',entry.id);actions.append(select);
